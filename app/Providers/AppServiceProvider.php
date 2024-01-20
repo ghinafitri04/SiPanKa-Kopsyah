@@ -9,9 +9,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void
+    public function register()
     {
-        //
     }
 
     /**
@@ -21,4 +20,14 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    
+    protected $guards = [
+        'web',
+        'admin_koperasi',
+        'admin_dps',
+        'admin_kabupaten',
+        'admin_provinsi',
+    ];
+    
 }
+
