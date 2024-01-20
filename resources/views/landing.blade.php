@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css"> <!-- Hubungkan dengan file CSS eksternal jika diperlukan -->
-  <!-- Bootstrap CSS (jika menggunakan Bootstrap) -->
+  <link rel="stylesheet" href="styles.css">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"> 
+
   <title>Sipanka KopSyah - Landing Page</title>
 
   <style>
@@ -74,7 +75,7 @@
       font-size: 21px;
       background-color: white;
       font-family: 'Poppins', sans-serif;
-      padding: 15px 165px 15px 30px;
+      padding: 15px 175px 15px 30px;
       color: black;
       border: black;
       cursor: pointer;
@@ -95,7 +96,7 @@
       font-size: 21px;
       background-color: white;
       font-family: 'Poppins', sans-serif;
-      padding: 15px 130px 15px 30px;
+      padding: 15px 128px 15px 30px;
       color: black;
       border: black;
       cursor: pointer;
@@ -107,7 +108,7 @@
       background-size: contain;
       background-position: left center;
       background-repeat: no-repeat;
-      background-size: auto 25px; /* Mengatur ukuran gambar */
+      background-size: auto 25px; 
       text-align: left;
     }
 
@@ -117,7 +118,8 @@
 </head>
 <body>
 
-
+    
+    
 
 <div class="center-text">
         <img src="/img/logo_sumbar.png">
@@ -125,8 +127,9 @@
 </div>
 
 <div class="button-container">
-    <button_admin onclick="location.href='/your-link-here';">Login Sebagai Admin</button>
+  <button_admin onclick="location.href='{{ route('admin_provinsi.login') }}';">Login Sebagai Admin </button_admin>
 </div>
+
 
 <div class="button-container">
     <button_dps onclick="location.href='/your-link-here';">Login Sebagai DPS</button>
