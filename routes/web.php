@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminProvinsiLoginController;
 use App\Http\Controllers\AdminProvinsiController;
@@ -16,6 +17,11 @@ use App\Http\Controllers\AdminProvinsiController;
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
+    return view('dashboard');
+});
+Route::resource('user', [UserController::class]);
+=======
     return view('landing');
 });
 
@@ -53,3 +59,4 @@ Route::prefix('admin_provinsi')->group(function () {
 
 Route::get('/admin_provinsi/dashboard', [AdminProvinsiController::class, 'showDashboard'])
     ->name('dashboardAdminProvinsi');
+>>>>>>> a01af7f2799b43e905d53e2e1b0ce4f5566bcffe
