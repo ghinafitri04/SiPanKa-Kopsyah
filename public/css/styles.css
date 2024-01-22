@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #28A745;
+    color: #fff;
+    padding: 10px;
+    transition: margin-right 0.3s;
+}
+.navbar img {
+    width: 50px; /* Sesuaikan lebar gambar */
+    height: auto;
+    margin-right: 10px;
+    margin-left: 24px;
+   
+}
+.navbar-shifted {
+    transition: margin-left 0.3s;
+    margin-left: 250px; /* Add a smooth transition effect */
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.sidebar {
+    width: 0;
+    height: 100%;
+    background-color: #f4f4f4;
+    position: fixed;
+    overflow: hidden;
+    
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+.sidebar.collapsed {
+    width: 250px;
+    transition: margin-right 0.3s;
+}
+
+#toggleSidebar {
+    background: none;
+    float: left; 
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+
