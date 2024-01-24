@@ -10,9 +10,9 @@
 </head>
 <body>
 
+    @include('layouts.sidebar')
     @include('layouts.navbar')
 
-    @include('layouts.sidebar')
 
 
     <!-- Content -->
