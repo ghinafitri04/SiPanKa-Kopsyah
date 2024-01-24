@@ -1,9 +1,71 @@
-<!-- Sidebar -->
+<!-- resources/views/layouts/sidebar.blade.php -->
+
 <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <img src='/img/profile_admin.png' alt="Admin Profile">
+        <p>Admin</p>
+    </div>
+
+    <div class="sidebar-sub-header" id="sidebar-sub-header">
+        <p>SIPANKA KOPSYAH</p>
+    </div>
+
+
     <ul>
-        <li><a href="#" onclick="changeContent('Home')">Home</a></li>
-        <li><a href="#" onclick="changeContent('Reports')">Reports</a></li>
-        <li><a href="#" onclick="changeContent('Settings')">Settings</a></li>
+        <li class="menu-item">
+            <img src='/img/tabler_home.png' alt="Home Icon"> 
+            <a href="#" onclick="changeContent('Sipanka')">Dashboard</a>
+        </li>
+        
+        <li class="menu-item">
+            <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
+            <a href="#" onclick="changeContent('Home')">Manajemen Kab/Kota</a>
+        </li>
+
+        <li class="parent-menu">
+            <li class="menu-item">
+            <img src='/img/dps.png' alt="Manajemen dps"> 
+            <a href="#" onclick="toggleSubMenu('dpsSubMenu')">Manajemen DPS <span class="arrow">&#11167;</span></a>
+            </li>
+
+            <ul id="dpsSubMenu" class="submenu">
+                <li class="menu-item">
+                    <img src='/img/dps.png' alt="Manajemen dps"> 
+                    <a href="#" onclick="changeContent('AdminDPS')">Admin DPS</a>
+                </li>
+
+                <li class="menu-item">
+                    <img src='/img/dps.png' alt="Manajemen dps"> 
+                    <a href="#" onclick="changeContent('PengawasanDPS')">Pengawasan DPS</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="parent-menu">
+            <li class="menu-item">
+                <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
+                <a href="#" onclick="toggleSubMenu('koperasiSubMenu')">Manajemen Koperasi <span class="arrow">&#11167;</span></a>
+            </li>
+
+            <ul id="koperasiSubMenu" class="submenu">
+                <li class="menu-item">
+                    <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
+                    <a href="#" onclick="changeContent('AdminKoperasi')">Admin Koperasi</a>
+                </li>
+                
+                <li class="menu-item">
+                    <img src='/img/koperasi.png' alt="Manajemen Koperasi">
+                    <a href="#" onclick="changeContent('KonversiKoperasi')">Konversi Koperasi</a>
+                </li>
+
+            </ul>
+        </li>
     </ul>
-    <button id="toggleSidebar" onclick="toggleSidebar()">Toggle Sidebar</button>
+
+    <div class="logout">
+        <a href="#" onclick="logout()">
+            <img src='/img/keluar.png' alt="Logout Icon">
+            Keluar
+        </a>
+    </div>
 </aside>

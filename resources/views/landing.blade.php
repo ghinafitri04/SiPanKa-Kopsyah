@@ -132,11 +132,11 @@
 
 
 <div class="button-container">
-    <button_dps onclick="location.href='/your-link-here';">Login Sebagai DPS</button>
+    <button_dps onclick="location.href='{{ route('admin_provinsi.login') }}';">Login Sebagai DPS</button>
 </div>
 
 <div class="button-container">
-    <button_koperasi onclick="location.href='/your-link-here';">Login Sebagai Koperasi</button>
+    <button_koperasi onclick="location.href='{{ route('admin_provinsi.login') }}';">Login Sebagai Koperasi</button>
 </div>
 
 
