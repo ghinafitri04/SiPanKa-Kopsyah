@@ -18,16 +18,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
     }
-    
-    protected $guards = [
-        'web',
-        'admin_koperasi',
-        'admin_dps',
-        'admin_kabupaten',
-        'admin_provinsi',
-    ];
-    
+    // public function boot()
+    // {
+    //     //
+    //     Paginator::useBootstrapFive();
+    // }
 }
-
