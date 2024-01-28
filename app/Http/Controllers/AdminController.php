@@ -19,12 +19,11 @@ class AdminController extends Controller
         return view('admin.create', compact('roles'));
     }
 
-    // Menyimpan data admin baru
     public function store(Request $request)
     {
         // Validasi data
         $request->validate([
-            'id_role' => ['required', Role::in(['Kabupaten/Kota', 'Koperasi', 'DPS'])],
+            'id_role' => ['required', 'in:Admin Kabupaten/Kota,Koperasi,DPS'],
             'username' => 'required|unique:admins,username',
             'password' => 'required',
             'nama_instansi' => 'required',
@@ -34,17 +33,18 @@ class AdminController extends Controller
         // Dapatkan id_role berdasarkan nama rolenya
         $roleId = Role::where('role_name', $request->id_role)->value('id');
 
-        // Simpan data admin baru tanpa menyertakan nilai "id"
+        // Simpan data admin baru dengan menggunakan bcrypt pada password
         Admin::create([
             'id_role' => $roleId,
             'username' => $request->username,
-            'password' => $request->password,
+            'password' => bcrypt($request->password), // Menggunakan bcrypt pada password
             'nama_instansi' => $request->nama_instansi,
             'region' => $request->region,
         ]);
 
         return redirect()->route('tes')->with('success', 'Admin berhasil ditambahkan!');
     }
+
     public function destroy($id)
     {
         $admin = Admin::findOrFail($id);
