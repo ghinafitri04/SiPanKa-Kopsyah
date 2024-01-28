@@ -31,16 +31,25 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+use App\Http\Controllers\AdminManajemenKoperasiController;
+
+Route::get('/manajemen-koperasi', [AdminManajemenKoperasiController::class, 'manajemenKoperasi'])->name('admin.manajemenKoperasi');
+Route::post('/tambah-admin-koperasi', [AdminManajemenKoperasiController::class, 'tambahDataAdminKoperasi'])->name('admin.tambahDataAdminKoperasi');
+Route::delete('/hapus-admin-koperasi/{id}', [AdminManajemenKoperasiController::class, 'hapusDataAdminKoperasi'])->name('admin.hapusDataAdminKoperasi'); // Ganti menjadi DELETE
+Route::get('/edit-admin-koperasi/{id}', [AdminManajemenKoperasiController::class, 'editDataAdminKoperasi'])->name('admin.editDataAdminKoperasi');
+Route::put('/update-admin-koperasi/{id}', [AdminManajemenKoperasiController::class, 'updateDataAdminKoperasi'])->name('admin.updateDataAdminKoperasi');
+
+
+// Yang di Atas Ini Udah yaaa
+
+
 Route::get('/admin_provinsi_dashboard', function () {
     return view('admin_provinsi_dashboard');
 });
 
-// Yang di Atas Ini Udah yaaa
 // File: routes/web.php
 
 
-Route::get('/admin_provinsi/dashboard', [AdminProvinsiController::class, 'showDashboard'])
-    ->name('dashboardAdminProvinsi');
 
 
 Route::get('/', function () {

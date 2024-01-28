@@ -20,7 +20,7 @@
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="#" onclick="changeContent('admin_provinsi_dashboard')">Manajemen Kab Kota</a>
+            <a href="{{ route('admin.manajemenKabKota') }}">Manajemen Kab/Kota</a>
         </li>
 
         <li class="parent-menu">
@@ -51,7 +51,7 @@
             <ul id="koperasiSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
-                    <a href="#" onclick="changeContent('AdminKoperasi')">Admin Koperasi</a>
+                    <a href="{{ route('admin.manajemenKoperasi') }}">Admin Koperasi</a>
                 </li>
                 
                 <li class="menu-item">
