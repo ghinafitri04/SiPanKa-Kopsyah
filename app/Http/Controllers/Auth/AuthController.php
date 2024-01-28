@@ -29,7 +29,7 @@ class AuthController extends Controller
         // Sesuaikan kolom 'username' dengan nama kolom yang seharusnya ada di tabel
         if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']])) {
             // Jika berhasil login
-            return redirect('/tes');
+            return redirect('/admin_provinsi_manajemenkabkota');
         }
 
         // Jika login gagal
