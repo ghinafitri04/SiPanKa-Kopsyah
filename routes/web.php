@@ -1,26 +1,41 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AdminProvinsiLoginController;
+use App\Http\Controllers\AdminProvinsiController;
+use App\Http\Controllers\AdminProvinsiManajemenKabKota;
+
 
 /*
 |--------------------------------------------------------------------------
-@@ -15,6 +17,46 @@
+@@ -14,5 +16,40 @@
 */
 
-Route::get('/', function () {
-    return view('dashboard');
+
+
+
+
+Route::prefix('admin_provinsi')->group(function () {
+
+    Route::post('/login', [AdminProvinsiLoginController::class, 'login']);
+    Route::post('/logout', [AdminProvinsiLoginController::class, 'logout'])->name('admin_provinsi.logout');
+    Route::get('/admin_provinsi/login', [AdminProvinsiLoginController::class, 'showLoginForm'])->name('admin_provinsi.login');
+
 });
 
-use App\Http\Controllers\HalamanController;
+// File: routes/web.php
 
-Route::get('/tes', [HalamanController::class, 'tes']);
-// routes/web.php
 
-use App\Http\Controllers\AdminController;
+Route::get('/admin_provinsi/dashboard', [AdminProvinsiController::class, 'showDashboard'])
+    ->name('dashboardAdminProvinsi');
 
-// ...
+Route::get('/admin/provinsi/manajemenkabkota', [AdminProvinsiManajemenKabKota::class, 'manajemenKabKota'])
+->name('admin_provinsi.login');
 
-Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
-Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
-Route::delete('/admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
+    Route::get('/', function () {
+        return view('welcome');
+        return view('landing');
+    });
+    
+     

@@ -171,8 +171,6 @@
             <p class="small-text">Silahkan login untuk mengakses aplikasi.</p>
         </div>
 
-        <!-- Form Login -->
-        <form id="login-form" action="{{ route('admin_provinsi.login') }}" method="POST">
 
             <!-- Input Username -->
             <div class="form-group input-with-icon">
@@ -205,37 +203,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- JavaScript untuk toggle password -->
-    <script>
-        var loginForm = document.getElementById('login-form');
-
-        loginForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            var usernameValue = document.getElementById('username').value;
-            var passwordValue = document.getElementById('password').value;
-
-            if (usernameValue === "admin" && passwordValue === "admin") {
-                // Alihkan ke halaman dashboard (ganti URL sesuai dengan route dashboard Anda)
-                window.location.href = "{{ route('dashboardAdminProvinsi') }}";
-                alert("Selamat Datang!");
-            } else {
-                alert("Login gagal. Tolong cek username dan Password.");
-            }
-        });
-
-        function togglePassword(inputId) {
-            var passwordInput = document.getElementById(inputId);
-            var eyeIcon = document.getElementById('eye-icon');
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                eyeIcon.src = "/img/openeye.png"; // Ganti dengan path gambar mata tertutup
-            } else {
-                passwordInput.type = "password";
-                eyeIcon.src = "/img/eyeclosed.png"; // Ganti dengan path gambar mata terbuka
-            }
-        }
-    </script>
+   
 
 </body>
 

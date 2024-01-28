@@ -1,0 +1,121 @@
+
+
+.dashboard-title {
+    font-size: 20px; /* Sesuaikan dengan ukuran yang diinginkan */
+    margin-left: 120px; /* Sesuaikan dengan margin kiri yang diinginkan */
+  }
+
+    /* Tambahkan gaya CSS di sini */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+
+
+    /* Style untuk tabel */
+   /* Style untuk tabel */
+   table {
+  border-collapse: collapse;
+    width: 100%; /* Sesuaikan dengan lebar yang diinginkan */
+    margin: 5px; /* Sesuaikan dengan margin yang diinginkan */
+    border-radius: 8px; /* Menambahkan sudut melengkung pada tabel */
+    overflow: hidden; /* Memastikan border-radius bekerja dengan baik */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Efek bayangan pada tabel */
+}
+
+/* Style untuk sel header */
+th, td {
+  border: 1px solid #ddd; /* Garis batas untuk sel */
+    padding: 10px; /* Sesuaikan dengan padding yang diinginkan */
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    width: 20px; /* Sesuaikan dengan lebar yang diinginkan */
+}
+
+/* Style untuk baris genap */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Warna latar belakang untuk baris genap */
+}
+
+/* Hover efek untuk baris */
+tr:hover {
+    background-color: #e0e0e0; /* Warna latar belakang saat dihover */
+}
+
+/*POP UP NIHHHHH */ 
+        .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .popup-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .popup-content {
+      width: 400px; /* Sesuaikan dengan lebar yang diinginkan */
+        max-width: 80%; /* Maksimum lebar 80% dari layar */
+        margin: 20px auto;  /* Center the content horizontally */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+
+
+    /* Style for the buttons */
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 15px;
+    }
+
+    .btn-container button {
+        margin-left: 10px;
+    }

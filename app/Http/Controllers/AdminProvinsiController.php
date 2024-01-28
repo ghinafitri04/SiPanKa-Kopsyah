@@ -8,6 +8,7 @@ class AdminProvinsiController extends Controller
 {
     public function showDashboard()
     {
-        return view('admin_provinsi_dashboard');
+        return view('admin_provinsi_konversikoperasi');
     }
+
 }

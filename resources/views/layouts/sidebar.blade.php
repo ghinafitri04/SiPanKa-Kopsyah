@@ -14,12 +14,13 @@
     <ul>
         <li class="menu-item">
             <img src='/img/tabler_home.png' alt="Home Icon"> 
-            <a href="#" onclick="changeContent('Sipanka')">Dashboard</a>
+            <a href="#" onclick="changeContent('admin_provinsi_dashboard')">Dashboard</a>
         </li>
+        
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="#" onclick="changeContent('Home')">Manajemen Kab/Kota</a>
+            <a href="#" onclick="changeContent('admin_provinsi_dashboard')">Manajemen Kab Kota</a>
         </li>
 
         <li class="parent-menu">
