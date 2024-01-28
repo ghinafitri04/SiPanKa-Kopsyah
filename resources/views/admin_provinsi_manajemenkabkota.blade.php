@@ -33,8 +33,8 @@
     <span class="close-icon" onclick="togglePopup()">X</span>
     <div class="popup-content">
         <div class="popup-title">Data Admin Kab/Kota</div>
-        <form>
-            <!-- Your form fields go here -->
+        <form action="{{ route('admin.tambahDataAdmin') }}" method="post">
+            @csrf
             <div class="form-group">
                 <label for="namaLengkap">Nama Lengkap:</label>
                 <input type="text" id="namaLengkap" name="namaLengkap">
@@ -52,16 +52,11 @@
 
             <div class="form-group">
                 <label for="kabupatenKota">Kabupaten/Kota:</label>
-                <select id="kabupatenKota" name="kabupatenKota">
-                    <option value="kabupaten1">Kabupaten 1</option>
-                    <option value="kabupaten2">Kabupaten 2</option>
-                    <!-- Add more options as needed -->
-                </select>
+                <input type="text" id="kabupatenKota" name="kabupatenKota">
             </div>
-
             <div class="btn-container">
                 <button type="button" class="btn btn-danger" onclick="togglePopup()">Batal</button>
-                <button type="button" class="btn btn-success">Tambah</button>
+                <button type="submit" class="btn btn-success">Tambah</button>
             </div>
         </form>
     </div>
@@ -79,23 +74,75 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($admins as $admin)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $admin->nama_instansi }}</td>
                         <td>
-                        <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> Mark<br>
-                        <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> p1234567   </td>
-                        <td>Jakarta</td>
+                            <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> {{ $admin->username }}<br>
+                            <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> {{ $admin->password }}
+                        </td>
+                        <td>{{ $admin->region }}</td>
                         <td>
-                            <a><img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
-                            </i></a>
-                            <a><img src="/img/Hapus.png" alt="Edit Icon" width="30" height="30"></i></a>
-                            {{-- <a href="#"><i class="fas fa-eye"></i></a> --}}
-                        </td>      
+                            <!-- Icon Edit dengan Modal -->
+                            <a data-toggle="modal" data-target="#editModal{{ $admin->id }}">
+                                <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
+                            </a>
+            
+                            <!-- Modal Edit -->
+                            <div class="modal fade" id="editModal{{ $admin->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalLabel">Edit Data Admin</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Tempatkan formulir edit di sini -->
+                                            <form action="{{ route('admin.updateDataAdmin', ['id' => $admin->id]) }}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                            
+                                                <div class="form-group">
+                                                    <label for="editNamaLengkap">Nama Lengkap:</label>
+                                                    <input type="text" id="editNamaLengkap" name="editNamaLengkap" value="{{ $admin->nama_instansi }}">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="editUsername">Username:</label>
+                                                    <input type="text" id="editUsername" name="editUsername" value="{{ $admin->username }}">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="editKabKota">Kabupaten/Kota:</label>
+                                                    <input type="text" id="editKabKota" name="editKabKota" value="{{ $admin->region }}">
+                                                </div>
+                                            
+                                                <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <a href="{{ route('admin.hapusDataAdmin', ['id' => $admin->id]) }}"
+                                onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('hapus-form-{{ $admin->id }}').submit(); }">
+                                <img src="/img/Hapus.png" alt="Hapus Icon" width="30" height="30">
+                             </a>
+                             
+                             <form id="hapus-form-{{ $admin->id }}" action="{{ route('admin.hapusDataAdmin', ['id' => $admin->id]) }}" method="POST" style="display: none;">
+                                 @csrf
+                                 @method('DELETE')
+                             </form>
+                        </td>
                     </tr>
-                    <!-- Tambahkan baris lain sesuai kebutuhan -->
+                    @endforeach
                 </tbody>
             </table>
+            
         </div>
     </div>
 </div>
