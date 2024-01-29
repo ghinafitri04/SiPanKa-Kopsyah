@@ -39,6 +39,15 @@ Route::delete('/hapus-admin-koperasi/{id}', [AdminManajemenKoperasiController::c
 Route::get('/edit-admin-koperasi/{id}', [AdminManajemenKoperasiController::class, 'editDataAdminKoperasi'])->name('admin.editDataAdminKoperasi');
 Route::put('/update-admin-koperasi/{id}', [AdminManajemenKoperasiController::class, 'updateDataAdminKoperasi'])->name('admin.updateDataAdminKoperasi');
 
+use App\Http\Controllers\AdminProvinsiManajemenDpsController;
+
+Route::get('/admin/manajemenDps', [AdminProvinsiManajemenDpsController::class, 'manajemenDps'])->name('admin.manajemenDps');
+Route::post('/admin/manajemenDps', [AdminProvinsiManajemenDpsController::class, 'tambahDataAdminDps'])->name('admin.manajemenDps.tambah');
+Route::delete('/admin/manajemenDps/{id}', [AdminProvinsiManajemenDpsController::class, 'hapusDataAdminDps'])->name('admin.manajemenDps.hapus');
+Route::get('/admin/manajemenDps/{id}/edit', [AdminProvinsiManajemenDpsController::class, 'editDataAdminDps'])->name('admin.manajemenDps.edit');
+Route::put('/admin/manajemenDps/{id}', [AdminProvinsiManajemenDpsController::class, 'updateDataAdminDps'])->name('admin.manajemenDps.update');
+
+
 
 // Yang di Atas Ini Udah yaaa
 

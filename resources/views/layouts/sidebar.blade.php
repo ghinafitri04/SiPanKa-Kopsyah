@@ -31,8 +31,8 @@
 
             <ul id="dpsSubMenu" class="submenu">
                 <li class="menu-item">
-                    <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="#" onclick="changeContent('AdminDPS')">Admin DPS</a>
+                    <img src='/img/dps.png' alt="Manajemen DPS"> 
+                    <a href="{{ route('admin.manajemenDps') }}">Admin DPS</a>
                 </li>
 
                 <li class="menu-item">
