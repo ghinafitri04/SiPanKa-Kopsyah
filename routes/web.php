@@ -35,9 +35,39 @@ Route::get('/admin_provinsi/dashboard', [AdminProvinsiController::class, 'showDa
     ->name('dashboardAdminProvinsi');
 
 Route::get('/admin/provinsi/manajemenkabkota', [AdminProvinsiManajemenKabKota::class, 'manajemenKabKota'])
+<<<<<<< Updated upstream
 ->name('admin_provinsi.login');
 
 <<<<<<< HEAD
+=======
+    ->name('manajemenKabKota');
+
+Route::view('/admin-dps', 'admin_provinsi_admindps')->name('admindps');
+
+Route::view('/pengawasan-dps', 'admin_provinsi_pengawasandps')->name('pengawasandps');
+
+Route::view('/admin-koperasi', 'admin_provinsi_adminkoperasi')->name('adminkoperasi');
+
+Route::view('/konversi-koperasi', 'admin_provinsi_konversikoperasi')->name('konversikoperasi');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('admin_provinsi_dashboard');
+});
+
+Route::get('/ya', function () {
+    return view('admin_provinsi_dashboard');
+});
+
+Route::get('/coba', function () {
+    return view('admin_kabkota_dashboard');
+});
+
+
+>>>>>>> Stashed changes
 
     Route::get('/', function () {
         return view('welcome');

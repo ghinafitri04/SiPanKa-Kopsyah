@@ -1,5 +1,3 @@
-src="https://code.jquery.com/jquery-3.6.0.min.js"
-
 function loadAdminProvinsiDashboard() {
     // Menggunakan AJAX untuk memuat konten dari view yang sesuai
     var xhttp = new XMLHttpRequest();
@@ -8,26 +6,15 @@ function loadAdminProvinsiDashboard() {
             document.getElementById("main-content").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "{{ route('admin_provinsi_dashboard') }}", true);
+    xhttp.open("GET", "{{ route('admin_kabkota_dashboard') }}", true);
     xhttp.send();
 }
 
 function changeContent(view) {
     // Gantilah fungsi ini sesuai dengan kebutuhan Anda
-    if (view === 'admin_provinsi_dashboard') {
+    if (view === 'admin_kabkota_dashboard') {
         loadAdminProvinsiDashboard();
     } else {
         // Logika lain jika diperlukan
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    var cards = document.querySelectorAll('.card');
-
-    cards.forEach(function(card) {
-        card.addEventListener('click', function() {
-            var routeName = this.getAttribute('data-route-name');
-            window.location.href = routeName;
-        });
-    });
-});

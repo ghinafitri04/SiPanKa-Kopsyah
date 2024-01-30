@@ -13,8 +13,6 @@
     @include('layouts.sidebar')
     @include('layouts.navbar')
 
-
-
     <!-- Content -->
     <div class="content" id="dashboardContent">
         <h1>Welcome to Your Dashboard!</h1>

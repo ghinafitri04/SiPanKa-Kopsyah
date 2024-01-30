@@ -171,7 +171,9 @@
             <p class="small-text">Silahkan login untuk mengakses aplikasi.</p>
         </div>
 
-
+<!-- Form Login -->
+<form id="login-form" action="{{ route('admin_provinsi.login') }}" method="POST">
+<div>
             <!-- Input Username -->
             <div class="form-group input-with-icon">
                 <img src="/img/username.png" class="icon" alt="Username icon">
@@ -182,8 +184,8 @@
             <div class="form-group input-with-icon">
                 <img src="/img/password.png" class="icon" alt="Password icon">
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password">
-                <img src="/img/eyeclosed.png" id="eye-icon" class="toggle-password" style="width: 17px; height: 17px;"
-                    onclick="togglePassword('password')">
+                <img src="/img/eyeclosed.png" id="eye-icon" class="toggle-password" style="width: 17px; height: 17px;" onclick="togglePassword('password')">
+
             </div>
 
             <div class="small small-text">
@@ -194,9 +196,24 @@
                 <button type="submit" class="btn-login">Login</button>
             </div>
 
-        </form>
+ </form>
     </div>
 
+    <!-- Tambahkan skrip JavaScript berikut di dalam tag head setelah file Bootstrap dan sebelum tag body ditutup -->
+    <script>
+     function togglePassword(inputId) {
+    var passwordInput = document.getElementById(inputId);
+    var eyeIcon = document.getElementById('eye-icon');
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.src = "/img/openeye.png"; // Ganti dengan path gambar mata terbuka
+    } else {
+        passwordInput.type = "password";
+        eyeIcon.src = "/img/eyeclosed.png"; // Ganti dengan path gambar mata tertutup
+    }
+}
+    </script>
     <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

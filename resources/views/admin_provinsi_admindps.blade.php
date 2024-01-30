@@ -4,63 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/admindps.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/adminkoperasi.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
-  <!-- Font Awesome -->
-
-  <title>Sipanka KopSyah - Landing Page</title>
-
-
-
-
+  <title>Sipanka KopSyah - AdminKoperasi</title>
 </head>
 
 <body>
+  @include('layouts.sidebar')
+  @include('layouts.navbar')
+  <script src="{{asset('js/script.js')}}"></script>
+  <script src="{{asset('js/adminkoperasi.js')}}"></script>
 
-    @include('layouts.sidebar')
-    @include('layouts.navbar')
-
- 
-
-    <div class="container mt-5">
+   <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
-            <h4>Dashboard / Manajemen DPS / Admin DPS</h4>
+            <h4>Admin Koperasi</h4>
           </div>
-          <button class="btn btn-success" id="btnTambah" onclick="togglePopup()">Tambah Data DPS</button>
+          <button class="tambah-admin" id="btnTambah" onclick="togglePopup()">Tambah Data DPS</button>
         </div>
-      </div>
+    </div>
 
-   
     <div class="overlay" id="overlay"></div>
-<div class="popup-container" id="popupContainer">
-    <span class="close-icon" onclick="togglePopup()">X</span>
-    <div class="popup-content">
-        <div class="popup-title">Data DPS</div>
+        <div class="popup-container" id="popupContainer">
+            <span class="close-icon" onclick="togglePopup()">
+                <img src="/img/close.png" alt="Close Icon" width="15" height="15">
+            </span>
+        
+<div class="popup-content" id="formTambahAdminContainer">
+            <div class="popup-title">Data DPS</div>
         <form>
-            
             <div class="form-group">
-                <label for="namaLengkap">Nama Lengkap:</label>
-                <input type="text" id="namaLengkap" name="namaLengkap">
+                <label for="namaLengkap">Nama Lengkap</label>
+                <div class="input-fields">
+                    <input type="text" id="namaLengkap" name="namaLengkap">
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
+                <label for="username">Username</label>
+                <div class="input-fields">
+                    <input type="text" id="username" name="username">
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
+                <label for="password">Password</label>
+                <div class="input-fields">
+                    <input type="password" id="password" name="password">
+                </div>
             </div>
 
             <div class="btn-container">
-                <button type="button" class="btn btn-danger" onclick="togglePopup()">Batal</button>
-                <button type="button" class="btn btn-success">Tambah</button>
+                <button type="button" class="btn btn-danger btn-batal" onclick="togglePopup()">Batal</button>
+                <button type="button" class="btn btn-success" id="btnTambahForm">Tambah</button>
             </div>
         </form>
     </div>
+</div>
+
+<div class="success-popup-container" id="successPopup">
+    <img src="/img/ceklis.png" alt="Success Image" width="100" height="100">
+    <div class="success-popup-title">Sukses!</div>
+    <p>Data berhasil ditambahkan.</p>
+    <button class="btn btn-success" onclick="closeSuccessPopup()">Tutup</button>
 </div>
 
         <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
@@ -74,7 +82,7 @@
                         <th scope="col">Tindakan</th>
                     </tr>
                 </thead>
-                <tbody>
+            <tbody>
                     <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
@@ -85,24 +93,30 @@
                         <td>
                             <a><img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
                             </i></a>
-                            <a><img src="/img/Hapus.png" alt="Edit Icon" width="30" height="30"></i></a>
-                           
+                            <a href="#" class="btn-hapus" data-id="1">
+                                <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
+                            </a>
                         </td>
-                        
                     </tr>
-                    <!-- Tambahkan baris lain sesuai kebutuhan -->
                 </tbody>
             </table>
         </div>
-        <button id="toggleSidebar" onclick="toggleSidebar()">Toggle Sidebar</button>
-        <script src="{{asset('js/script.js')}}"></script>
-        <script src="{{asset('js/admindps.js')}}"></script>
+
+        <div class="confirmation-popup-container" id="confirmationPopup">
+            <div class="confirmation-popup-card">
+                <div class="confirmation-popup-content">
+                    <div class="confirmation-popup-title">Anda yakin akan menghapus data ini?</div>
+                    <div class="btn-container">
+                        <button type="button" class="btn-batal-hapus" onclick="closeConfirmationPopup()">Batal</button>
+                        <button type="button" class="btn-success-hapus" onclick="hapusData()">Hapus</button>
+                    </div>
+                </div>
+            </div>
+        </div>       
 </div>
 
-<!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
     </body>
 </html>

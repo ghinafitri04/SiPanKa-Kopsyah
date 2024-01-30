@@ -20,47 +20,28 @@
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="{{ route('manajemenKabKota') }}">Manajemen Kab Kota</a>
+            <a href="{{ route('manajemenKabKota') }}">Pengawasan DPS</a>
         </li>
 
         <li class="parent-menu">
             <li class="menu-item">
             <img src='/img/dps.png' alt="Manajemen dps"> 
-            <a href="#" onclick="toggleSubMenu('dpsSubMenu')">Manajemen DPS <span class="arrow">&#11167;</span></a>
+            <a href="#" onclick="toggleSubMenu('dpsSubMenu')">Manajemen Koperasi <span class="arrow">&#11167;</span></a>
             </li>
 
             <ul id="dpsSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('admindps') }}">Admin DPS</a>
+                    <a href="{{ route('admindps') }}">Admin Koperasi</a>
                 </li>
 
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('pengawasandps') }}">Pengawasan DPS</a>
+                    <a href="{{ route('pengawasandps') }}">Konversi Koperasi</a>
                 </li>
             </ul>
         </li>
 
-        <li class="parent-menu">
-            <li class="menu-item">
-                <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
-                <a href="#" onclick="toggleSubMenu('koperasiSubMenu')">Manajemen Koperasi <span class="arrow">&#11167;</span></a>
-            </li>
-
-            <ul id="koperasiSubMenu" class="submenu">
-                <li class="menu-item">
-                    <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
-                    <a href="{{ route('adminkoperasi') }}">Admin Koperasi</a>
-                </li>
-                
-                <li class="menu-item">
-                    <img src='/img/koperasi.png' alt="Manajemen Koperasi">
-                    <a href="{{ route('konversikoperasi') }}">Konversi Koperasi</a>
-                </li>
-
-            </ul>
-        </li>
     </ul>
 
     <div class="logout">
