@@ -1,0 +1,96 @@
+.dashboard-title  {
+    margin-top: -40px;
+  }
+  
+  .dashboard-subtitle  {
+    margin-top: 20px;
+  }
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .box-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Menyusun ulang kotak jika tidak muat dalam satu baris */
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+
+  .box {
+    width: calc(27% - 16px); /* Menambah lebar kotak dan memberikan margin antar kotak */
+    height: 250px;
+    margin: -20px 30px 30px 10px; /* Ubah nilai margin-top sesuai keinginan */
+    position: relative;
+    overflow: hidden; /* Menyembunyikan efek shadow yang mungkin melewati batas kotak */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Menambahkan efek shadow */
+    transition: transform 0.3s ease-in-out;
+    border-radius: 10px; /* Radius sudut kotak */
+  }
+
+  .box:hover {
+    transform: scale(1.05); /* Efek scaling pada hover */
+  }
+
+  .box img {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Sesuaikan dengan kebutuhan */
+    height: 60%; /* Sesuaikan dengan kebutuhan */
+    object-fit: cover;
+    max-width: 100%;
+  }
+
+  .box .details {
+    display: flex;
+    flex-direction: column; /* Mengatur tata letak kolom untuk elemen flex */
+    justify-content: flex-start;
+    align-items: flex-start; /* Menggeser teks ke kiri */
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .box .details h5 {
+    margin: 0;
+    font-weight: bold;
+    background-color: #fff;
+    z-index: 1;
+    color: #333;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Menambahkan margin bawah untuk memberi jarak dengan tombol */
+  }
+  
+  .detail-button {
+    display: block;
+    background: linear-gradient(to top, #4CAF50 0%, #4CAF50 100%);
+    color: white;
+    padding: 8px 15px;
+    margin-left: auto; /* Menggeser tombol ke kanan */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+
+ .detail-button:hover {
+  background: linear-gradient(to top, #45a049 0%, #45a049 100%);
+}

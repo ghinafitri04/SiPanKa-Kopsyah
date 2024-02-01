@@ -6,41 +6,23 @@ use App\Http\Controllers\AdminProvinsiController;
 use App\Http\Controllers\AdminProvinsiManajemenKabKota;
 
 
-/*
-|--------------------------------------------------------------------------
-@@ -14,5 +16,40 @@
-*/
 
-<<<<<<< HEAD
-
-
-
-
-Route::prefix('admin_provinsi')->group(function () {
-
-    Route::post('/login', [AdminProvinsiLoginController::class, 'login']);
-    Route::post('/logout', [AdminProvinsiLoginController::class, 'logout'])->name('admin_provinsi.logout');
-    Route::get('/admin_provinsi/login', [AdminProvinsiLoginController::class, 'showLoginForm'])->name('admin_provinsi.login');
-
-=======
 Route::get('/admin_provinsi_dashboard', function () {
     return view('admin_provinsi_dashboard');
->>>>>>> fa1054ad0f5a7964a74bb62375e498ca883eded3
+
 });
-
-// File: routes/web.php
-
 
 Route::get('/admin_provinsi/dashboard', [AdminProvinsiController::class, 'showDashboard'])
     ->name('dashboardAdminProvinsi');
 
 Route::get('/admin/provinsi/manajemenkabkota', [AdminProvinsiManajemenKabKota::class, 'manajemenKabKota'])
-<<<<<<< Updated upstream
 ->name('admin_provinsi.login');
 
-<<<<<<< HEAD
-=======
+Route::get('/admin/provinsi/manajemenkabkota', [AdminProvinsiManajemenKabKota::class, 'manajemenKabKota'])
     ->name('manajemenKabKota');
+
+
+Route::view('/admin-dps', 'admin_provinsi_admindps')->name('manajemenKabKota');
 
 Route::view('/admin-dps', 'admin_provinsi_admindps')->name('admindps');
 
@@ -49,6 +31,18 @@ Route::view('/pengawasan-dps', 'admin_provinsi_pengawasandps')->name('pengawasan
 Route::view('/admin-koperasi', 'admin_provinsi_adminkoperasi')->name('adminkoperasi');
 
 Route::view('/konversi-koperasi', 'admin_provinsi_konversikoperasi')->name('konversikoperasi');
+
+Route::view('/detail-dps', 'detail_pengawasan_dps')->name('detail_pengawasan_dps');
+
+Route::view('/detail-pengawasankoperasi', 'detail_pengawasandps_koperasi')->name('detailkoperasi');
+
+Route::view('/detail-dpsditolak', 'detail_pengawasan_dpsditolak')->name('detail_dpsditolak');
+
+Route::view('/detail-dpsditerima', 'detail_pengawasan_dpsditerima')->name('detail_dpsditerima');
+
+Route::view('/detail-dpsmenunggu', 'detail_pengawasan_dpsmenunggu')->name('detail_dpsmenunggu');
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -65,24 +59,3 @@ Route::get('/ya', function () {
 Route::get('/coba', function () {
     return view('admin_kabkota_dashboard');
 });
-
-
->>>>>>> Stashed changes
-
-    Route::get('/', function () {
-        return view('welcome');
-        return view('landing');
-    });
-    
-     
-=======
-Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
-Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
-Route::delete('/admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
-
-use App\Http\Controllers\Auth\AuthController;
-
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
->>>>>>> fa1054ad0f5a7964a74bb62375e498ca883eded3

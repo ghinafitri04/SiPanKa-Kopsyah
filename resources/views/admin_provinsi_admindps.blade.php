@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/admindps.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/adminkoperasi.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
@@ -15,14 +15,14 @@
   @include('layouts.sidebar')
   @include('layouts.navbar')
   <script src="{{asset('js/script.js')}}"></script>
-  <script src="{{asset('js/admindps.js')}}"></script>
+  <script src="{{asset('js/adminkoperasi.js')}}"></script>
 
    <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
             <h4>Admin DPS</h4>
           </div>
-          <button class="tambah-admin" id="btnTambah" onclick="togglePopup()">Tambah Data Koperasi</button>
+          <button class="tambah-admin" id="btnTambah" onclick="togglePopup()">Tambah Data DPS</button>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
             </span>
         
 <div class="popup-content" id="formTambahAdminContainer">
-            <div class="popup-title">Data Koperasi</div>
+            <div class="popup-title">Data DPS</div>
         <form>
             <div class="form-group">
                 <label for="namaLengkap">Nama Lengkap</label>
@@ -53,13 +53,6 @@
                 <label for="password">Password</label>
                 <div class="input-fields">
                     <input type="password" id="password" name="password">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Nama Koperasi</label>
-                <div class="input-fields">
-                    <input type="password" id="namaKoperasi" name="password">
                 </div>
             </div>
 
@@ -85,7 +78,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Nama Lengkap</th>
                         <th scope="col">Akses Login</th>
-                        <th scope="col">Nama Koperasi</th>
+                        <th scope="col">Sertifikat</th>
                         <th scope="col">Tindakan</th>
                     </tr>
                 </thead>

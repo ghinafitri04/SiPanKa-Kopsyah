@@ -1,0 +1,65 @@
+h4 {
+    font-size: 20px !important; /* Gunakan !important untuk memastikan prioritas tertinggi */
+  }
+
+.dashboard-title {
+    font-size: 8px; /* Sesuaikan dengan ukuran yang diinginkan */
+    margin-left: 120px; /* Sesuaikan dengan margin kiri yang diinginkan */
+  }
+
+    /* Tambahkan gaya CSS di sini */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard-title {
+      font-size: 8px;
+      margin-left: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .dashboard-title h4 {
+      font-size: 20px;
+      margin: 0 0 10px 0; /* Tambahkan margin bawah */
+    }
+
+    .dashboard-subtitle {
+      font-size: 16px; /* Sesuaikan dengan ukuran yang diinginkan */
+      margin-top: 5px; /* Tambahkan margin atas */
+    }
+
+    .dashboard-subtitle strong {
+      font-weight: bold; /* Membuat teks dalam tag strong menjadi bold */
+    }
+
+    .dashboard-box {
+        background-color: #ffffff; /* Warna latar belakang box (putih) */
+        padding: 20px; /* Padding di dalam box */
+        margin-top: 10px; /* Margin atas dari box */
+        margin-left: 255px;
+        margin-right: 2cm;
+        border: 1px solid rgba(128, 128, 128, 0.3); /* Warna garis tepi (outline) abu-abu samar-samar */
+        height: 545px; /* Tinggi box sejauh 200 piksel, sesuaikan sesuai kebutuhan Anda */
+    }
+
+    .dashboard-box h2 {
+      font-size: 18px;
+      color: #07170b; /* Warna teks judul box */
+      margin-bottom: 10px;
+    }
+
+    .d-flex-buttons {
+        justify-content: end;
+        margin-top: 10px; /* Sesuaikan dengan kebutuhan */
+        margin-right: 100px;
+      }
+
+      .btn-reject {
+        margin-right: 0.5rem; /* You can adjust this value for the desired spacing */
+    }
+      
+      

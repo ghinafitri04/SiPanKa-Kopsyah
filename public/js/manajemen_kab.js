@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Cek apakah pop-up form tambah data sudah pernah ditampilkan dalam sesi ini
     var isFormPopupShown = sessionStorage.getItem("formPopupShown");
+    var isEditFormShown = sessionStorage.getItem("editFormShown");
 
-    if (isFormPopupShown) {
-        // Sembunyikan formulir tambah data admin jika sudah pernah ditampilkan
+    if (isFormPopupShown || isEditFormShown) {
+        // Sembunyikan formulir tambah data admin atau edit jika sudah pernah ditampilkan
         formContainer.style.display = "none";
     }
 
@@ -86,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Hapus status pop-up form dari sessionStorage saat halaman di-refresh
     window.addEventListener('beforeunload', function () {
         sessionStorage.removeItem("formPopupShown");
+        sessionStorage.removeItem("editFormDataId");
     });
 });
 
@@ -134,5 +136,57 @@ function hapusData() {
 
     // Setelah data dihapus, sembunyikan popup konfirmasi
     closeConfirmationPopup();
+}
+
+$(document).ready(function () {
+    $('.btn-edit').click(function () {
+        // Ambil ID dari data yang akan diedit
+        var dataId = $(this).data('id');
+
+        // Ambil data dari baris yang di-klik (sesuaikan dengan struktur HTML Anda)
+        var namaLengkap = $(this).closest('tr').find('td:eq(1)').text();
+        var username = $(this).closest('tr').find('td:eq(2)').text();
+        // ... ambil data lainnya sesuai kebutuhan
+
+        // Setel nilai input pada formulir edit
+        $('#editNamaLengkap').val(namaLengkap);
+        $('#editUsername').val(username);
+        // ... setel nilai input lainnya
+
+        // Set status formulir edit dalam sessionStorage
+        sessionStorage.setItem("editFormShown", "true");
+
+        // Tampilkan formulir edit
+        showEditForm();
+    });
+});
+
+function showEditForm() {
+    // Sesuaikan dengan kelas atau ID formulir edit yang sebenarnya
+    $('.editz-form').show();
+}
+
+
+// Fungsi untuk menyembunyikan pop-up edit
+function toggleEditPopup() {
+    var editFormContainer = document.querySelector('.edit-form-container');
+    editFormContainer.style.display = "none";
+}
+
+// Hapus status pop-up edit dari sessionStorage saat halaman di-refresh
+sessionStorage.removeItem("editFormShown");
+
+function togglePopup() {
+    var body = document.body;
+    body.classList.toggle("popup-open");
+    
+    // ... (kode lainnya)
+}
+
+function closePopup() {
+    var body = document.body;
+    body.classList.remove("popup-open");
+
+    // ... (kode lainnya)
 }
 
