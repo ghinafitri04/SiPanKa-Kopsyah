@@ -42,6 +42,13 @@ Route::view('/detail-dpsditerima', 'detail_pengawasan_dpsditerima')->name('detai
 
 Route::view('/detail-dpsmenunggu', 'detail_pengawasan_dpsmenunggu')->name('detail_dpsmenunggu');
 
+Route::view('/konversi-tahap1', 'konversi_koperasi_tahap1')->name('konversi_tahap1');
+
+Route::view('/konversi-tahap2', 'konversi_koperasi_tahap2')->name('konversi_tahap2');
+
+Route::view('/konversi-tahap3', 'konversi_koperasi_tahap3')->name('konversi_tahap3');
+
+Route::view('/konversi-tahap4', 'konversi_koperasi_tahap4')->name('konversi_tahap4');
 
 
 Route::get('/', function () {
