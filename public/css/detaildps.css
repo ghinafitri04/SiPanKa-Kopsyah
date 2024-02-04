@@ -1,32 +1,28 @@
-h4 {
-    font-size: 20px !important; /* Gunakan !important untuk memastikan prioritas tertinggi */
+  .dashboard-title {
+    font-size: 20px; 
+    margin-left: 120px; 
   }
 
-.dashboard-title {
-    font-size: 8px; /* Sesuaikan dengan ukuran yang diinginkan */
-    margin-left: 120px; /* Sesuaikan dengan margin kiri yang diinginkan */
-  }
-
-    /* Tambahkan gaya CSS di sini */
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
     }
 
     .navbar {
-      border-color: rgb(255, 255, 255); /* Warna border navbar */
-      background-color: #28A745; /* Warna latar belakang navbar */
+      border-color: rgb(255, 255, 255); 
+      background-color: #28A745; 
     }
 
     .navbar-brand, .navbar-nav .nav-link {
-      color: white; /* Warna teks putih untuk brand dan link navbar */
+      color: white; 
     }
 
       .navbar-brand img {
-      margin-right: 10px; /* Jarak antara gambar dan teks brand */
-      max-height: 45px; /* Sesuaikan tinggi maksimal gambar sesuai kebutuhan */
+      margin-right: 10px;
+      max-height: 45px; 
     }
+
     .center-text {
       display: flex;
       align-items: center;
@@ -48,35 +44,30 @@ h4 {
       text-align: left;
     }
 
-    /* Style untuk tabel */
-   /* Style untuk tabel */
    table {
   border-collapse: collapse;
-    width: 80%; /* Sesuaikan dengan lebar yang diinginkan */
-    margin: 5px; /* Sesuaikan dengan margin yang diinginkan */
-    border-radius: 8px; /* Menambahkan sudut melengkung pada tabel */
-    overflow: hidden; /* Memastikan border-radius bekerja dengan baik */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Efek bayangan pada tabel */
-}
+    width: 80%; 
+    margin: 5px; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+  }
 
-/* Style untuk sel header */
-th, td {
-  border: 1px solid #ddd; /* Garis batas untuk sel */
-    padding: 10px; /* Sesuaikan dengan padding yang diinginkan */
-    text-align: left;
-}
+  th, td {
+    border: 1px solid #ddd;
+      padding: 10px; 
+      text-align: left;
+  }
 
-th:first-child,
-td:first-child {
-    width: 20px; /* Sesuaikan dengan lebar yang diinginkan */
-}
+  th:first-child,
+  td:first-child {
+      width: 20px; 
+  }
 
-/* Style untuk baris genap */
-tr:nth-child(even) {
-    background-color: #f2f2f2; /* Warna latar belakang untuk baris genap */
-}
+  tr:nth-child(even) {
+      background-color: #f2f2f2; 
+  }
 
-/* Hover efek untuk baris */
-tr:hover {
-    background-color: #e0e0e0; /* Warna latar belakang saat dihover */
-}
+  tr:hover {
+      background-color: #e0e0e0; 
+  }

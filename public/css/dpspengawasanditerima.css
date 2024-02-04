@@ -1,57 +1,95 @@
-h4 {
-    font-size: 20px !important; /* Gunakan !important untuk memastikan prioritas tertinggi */
-  }
-
 .dashboard-title {
-    font-size: 8px; /* Sesuaikan dengan ukuran yang diinginkan */
-    margin-left: 120px; /* Sesuaikan dengan margin kiri yang diinginkan */
-  }
+  font-size: 20px; 
+  font-family: 'Poppins', sans-serif;
+  margin-left: 120px; 
+  margin-top: -30px;
+  color: #147167;
+}
 
-    /* Tambahkan gaya CSS di sini */
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    .dashboard-title {
-      font-size: 8px;
-      margin-left: 120px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
+.dashboard-subtitle {
+  font-size: 16px; 
+  margin-top: 5px; 
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
 
-    .dashboard-title h4 {
-      font-size: 20px;
-      margin: 0 0 10px 0; /* Tambahkan margin bawah */
-    }
+.dashboard-subtitle strong {
+  font-weight: bold; 
+  font-family: 'Poppins', sans-serif;
+}
 
-    .dashboard-subtitle {
-      font-size: 16px; /* Sesuaikan dengan ukuran yang diinginkan */
-      margin-top: 5px; /* Tambahkan margin atas */
-    }
+.dashboard-box {
+    background-color: #ffffff; 
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 10px; 
+    margin-left: 255px;
+    margin-right: 2cm;
+    border: 1px solid rgba(128, 128, 128, 0.3); 
+    height: 545px;
+}
 
-    .dashboard-subtitle strong {
-      font-weight: bold; /* Membuat teks dalam tag strong menjadi bold */
-    }
+.dashboard-box h2 {
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  color: #07170b; 
+  margin-bottom: 10px;
+}
 
-    .dashboard-box {
-        background-color: #ffffff; /* Warna latar belakang box (putih) */
-        padding: 20px; /* Padding di dalam box */
-        margin-top: 10px; /* Margin atas dari box */
-        margin-left: 255px;
-        margin-right: 2cm;
-        border: 1px solid rgba(128, 128, 128, 0.3); /* Warna garis tepi (outline) abu-abu samar-samar */
-        height: 545px; /* Tinggi box sejauh 200 piksel, sesuaikan sesuai kebutuhan Anda */
-    }
+.additional-info {
+  margin-top: 3cm; 
+  font-family: 'Poppins', sans-serif;
+}
 
-    .dashboard-box h2 {
-      font-size: 18px;
-      color: #07170b; /* Warna teks judul box */
-      margin-bottom: 10px;
-    }
+.comment-box {
+    width: 100%;
+    float: left;
+    font-family: 'Poppins', sans-serif;
+    padding: 0px;
+} */
 
-    
+.comment-info {
+    font-size: 14px;
+    margin-top: 20px; 
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 3px;
+}
 
-  
+.comment-name {
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    margin: 5px 0;
+}
+
+.comment-date {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.comment-content {
+    margin: 5px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.comment-divider {
+    border: 1px solid #d3d3d3;
+    font-family: 'Poppins', sans-serif;
+    margin: 10px 0;
+}
+
+.user-comment-column {
+    background-color: #ffffff; 
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    margin-top: 10px; 
+    margin-left: 255px;
+    margin-right: 2cm;
+    border: 1px solid rgba(128, 128, 128, 0.3); 
+    height: 545px; 
+}

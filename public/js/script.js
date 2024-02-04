@@ -23,6 +23,10 @@ function toggleSidebar() {
     // Tambahkan atau hapus class 'collapsed' pada sidebar header tergantung dari kondisi saat ini
     var sidebarHeader = document.querySelector(".sidebar-header");
     sidebarHeader.classList.toggle("collapsed", sidebar.classList.contains("collapsed"));
+
+    // Simpan status sidebar di localStorage
+    var sidebarStatus = sidebar.classList.contains("collapsed") ? "collapsed" : "expanded";
+    localStorage.setItem("sidebarStatus", sidebarStatus);
 }
 
 // Fungsi untuk menangani toggle submenu
@@ -37,22 +41,9 @@ function logout() {
     alert("Anda telah logout!");
 }
 
-// Pastikan sidebar tetap terbuka
-var sidebar = document.getElementById("sidebar");
-if (sidebar && sidebar.classList.contains("collapsed")) {
-    toggleSidebar();
-}
-
-function changeContent(content) {
-    console.log('Content changed:', content);
-    document.getElementById("dashboardContent").innerHTML = `<h1>${content}</h1>`;
-}
-
-
 // Fungsi untuk menangani klik pada link di sidebar
 function handleSidebarLinkClick(event) {
     event.preventDefault();
-    // toggleSidebar(); // Sementara dihapus
     event.stopPropagation();
     console.log('Handle Sidebar Link Click function called');
     changeContent('Dashboard');
@@ -62,3 +53,36 @@ function handleOtherClicks(event) {
     // Logika penanganan event lainnya
     event.stopPropagation(); // Mencegah event klik menyebar
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var savedSidebarStatus = localStorage.getItem("sidebarStatus");
+    var sidebar = document.getElementById("sidebar");
+    var navbar = document.getElementById("mainNavbar");
+
+    if (savedSidebarStatus === "collapsed") {
+        sidebar.classList.add("collapsed");
+        navbar.classList.add("navbar-shifted");
+        document.body.classList.add("body-shifted");
+        navbar.classList.add("black");
+        var sidebarHeader = document.querySelector(".sidebar-header");
+        sidebarHeader.classList.add("collapsed");
+    }
+});
+
+
+window.addEventListener('popstate', function(event) {
+    // Tambahkan logika yang diperlukan, seperti mengecek URL dan menjalankan script sesuai
+    console.log('URL changed:', window.location.href);
+});
+
+window.addEventListener('load', function() {
+    var savedSidebarStatus = localStorage.getItem("sidebarStatus");
+    var sidebar = document.getElementById("sidebar");
+    var navbar = document.getElementById("mainNavbar");
+
+    if (savedSidebarStatus === "collapsed") {
+        sidebar.classList.add("collapsed");
+        var sidebarHeader = document.querySelector(".sidebar-header");
+        sidebarHeader.classList.add("collapsed");
+    }
+});

@@ -1,7 +1,8 @@
 .dashboard-title {
     font-size: 20px; 
-    margin-left: 120px;
+    margin-left: 100px;
     font-family: 'Poppins', sans-serif;
+    color: #147167;
 }
 
 body {
@@ -10,42 +11,40 @@ body {
   padding: 0;
 }
 
- /* Style untuk tabel */
 table {
-border-collapse: collapse;
-font-family: 'Poppins', sans-serif;
-width: 80%; /* Sesuaikan dengan lebar yang diinginkan */
-margin: 5px; /* Sesuaikan dengan margin yang diinginkan */
-border-radius: 8px; /* Menambahkan sudut melengkung pada tabel */
-overflow: hidden; /* Memastikan border-radius bekerja dengan baik */
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Efek bayangan pada tabel */
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    width: 80%; 
+    margin: 5px; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
 }
 
 /* Style untuk sel header */
-th, td {
-border: 1px solid #ddd; /* Garis batas untuk sel */
-padding: 10px; /* Sesuaikan dengan padding yang diinginkan */
-font-family: 'Poppins', sans-serif;
-text-align: left;
+    th, td {
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
 }
 
 th:first-child,
 td:first-child {
-    width: 20px; /* Sesuaikan dengan lebar yang diinginkan */
+    width: 20px; 
 }
 
 /* Style untuk baris genap */
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Warna latar belakang untuk baris genap */
+    background-color: #f2f2f2; 
 }
 
 /* Hover efek untuk baris */
 tr:hover {
-    background-color: #e0e0e0; /* Warna latar belakang saat dihover */
+    background-color: #e0e0e0; 
 }
 
-/*POP UP NIHHHHH */ 
-    .popup-container {
+.popup-container {
     display: none;
     font-family: 'Poppins', sans-serif;
     position: fixed;
@@ -86,27 +85,25 @@ tr:hover {
 }
 
 .popup-content {
-  width: 400px; /* Sesuaikan dengan lebar yang diinginkan */
-    max-width: 80%; /* Maksimum lebar 80% dari layar */
+    width: 400px; 
+    max-width: 80%; 
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    margin: 20px auto;  /* Center the content horizontally */
+    margin: 20px auto;  
     display: flex;
     flex-direction: column;
 }
 
-
-
 .tambah-admin{
-font-weight: normal;
-margin-bottom: 15px;
-font-family: 'Poppins', sans-serif;
-background-color: green; /* Tambahkan properti warna hijau di sini */
-color: white;
-border: none;
-padding: 7px 16px;
-font-size: 14px;
-border-radius: 8px;
+    font-weight: normal;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #147167; 
+    color: white;
+    border: none;
+    padding: 7px 16px;
+    font-size: 14px;
+    border-radius: 8px;
 }
 
 label {
@@ -121,9 +118,9 @@ label {
 
 .selected-option {
     display: inline-block;
-background-color: #ffffff;
-cursor: pointer;
-width: 287px; /* Sesuaikan dengan lebar yang diinginkan */
+    background-color: #ffffff;
+    cursor: pointer;
+    width: 287px; 
 }
 
 .options {
@@ -139,7 +136,7 @@ width: 287px; /* Sesuaikan dengan lebar yang diinginkan */
     border: 1px solid #ffffff;
     top: 0;
     left: 0;
-    background-color: #fff; /* Menetapkan warna latar belakang menjadi putih */
+    background-color: #fff; 
 }
 
 .options li {
@@ -153,33 +150,33 @@ width: 287px; /* Sesuaikan dengan lebar yang diinginkan */
 
 
 .btn-container {
-display: flex;
-justify-content: flex-end; /* Memindahkan tombol ke kanan */
-font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: flex-end; 
+    font-family: 'Poppins', sans-serif;
 }
 
 .btn-container button {
-    font-size: 14px; /* Sesuaikan dengan ukuran font yang diinginkan */
-    padding: 5px 14px; /* Sesuaikan dengan padding yang diinginkan (atas bawah, kanan kiri) */
+    font-size: 14px; 
+    padding: 5px 14px; 
 }
 
 .btn-container .btn-batal {
-    margin-right: 16px; /* Sesuaikan dengan jarak yang diinginkan antara tombol "Batal" dan "Tambah" */
-    font-size: 14px; /* Sesuaikan dengan ukuran font yang diinginkan */
-padding: 5px 25px; /* Sesuaikan dengan padding yang diinginkan (atas bawah, kanan kiri) */
+    margin-right: 16px;
+    font-size: 14px; 
+    padding: 5px 25px; 
 }
 
 .form-group {
-    margin-bottom: 8px; /* Sesuaikan dengan jarak yang diinginkan antar form groups */
+    margin-bottom: 8px; 
     font-family: 'Poppins', sans-serif;
 }
 
 .form-group label {
     width: 120px;
-display: inline-block;
-font-family: 'Poppins', sans-serif;
-margin-bottom: 5px;
-font-weight: bold;  /* Jarak antara label dan input field */
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 5px;
+    font-weight: bold; 
 }
 
 .input-fields {
@@ -189,73 +186,94 @@ font-weight: bold;  /* Jarak antara label dan input field */
 
 .input-fields input[type="text"],
 .input-fields input[type="password"] {
-width: 160%; /* Sesuaikan dengan lebar yang diinginkan, bisa dalam persentase atau nilai lainnya */
-padding: 7px;
-font-size: 16px;
-box-sizing: border-box;
-margin-bottom: 10px;
+    width: 160%; 
+    padding: 7px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .success-popup-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-family: 'Poppins', sans-serif;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: #fff;
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-z-index: 3; /* Pastikan z-index lebih tinggi dari popup utama */
-width: 400px; /* Sesuaikan dengan lebar yang diinginkan */
+    width: 30%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
 }
 
 .success-popup-title {
-font-weight: bold;
-font-size: 18px;
-margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.success-popup-content {
-text-align: center;
+.success-popup-content img {
+    margin-bottom: 20px;
+}
+
+.success-popup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .success-popup-container button {
-margin-top: 10px;
-font-size: 14px;
-padding: 5px 14px;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px 14px;
 }
 
-#overlay, #popupContainer, #successPopup, #formTambahAdminContainer, #confirmationPopup {
+.success-popup-title img {
+    position: absolute;
+    top: -5px; 
+    left: 10px;
+}
+
+body.popup-open {
+    overflow: hidden;
+}
+
+.success-popup-container,
+.confirmation-popup-container,
+.editz-form {
+    z-index: 1000; 
+}
+
+#overlay, #popupContainer, #successPopup, #formTambahAdminContainer, #confirmationPopup, #successPopup,  #hapusPopup{
 display: none;
 }
 
 .confirmation-popup-container {
-display: none;
-font-family: 'Poppins', sans-serif;
+    display: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 .confirmation-popup-card {
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background-color: #fff;
-border-radius: 8px;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-max-width: 400px; /* Sesuaikan dengan lebar kartu yang diinginkan */
-margin: auto;
-font-family: 'Poppins', sans-serif;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .confirmation-popup-content {
@@ -265,7 +283,8 @@ text-align: center;
 .confirmation-popup-title {
     font-weight: bold;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: 15px;
 }
 
 .confirmation-popup-content p {
@@ -273,34 +292,171 @@ text-align: center;
 }
 
 .btn-container {
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 15px;
 }
 
 .btn-container button {
     font-size: 14px;
     padding: 5px 14px;
     margin: 0 10px;
-    margin-left: 10px; /* Sesuaikan dengan jarak yang diinginkan antara tombol "Batal" dan "Hapus" */
+    margin-left: 10px;
 }
 
 .btn-batal-hapus, .btn-success-hapus {
     font-size: 14px;
     padding: 5px 14px;
     cursor: pointer;
-    border-radius: 8px; /* Sesuaikan dengan tingkat lengkungan yang diinginkan */
+    border-radius: 8px;
     border: none;
+    margin-top: 10px; 
 }
 
 .btn-batal-hapus {
-    background-color: #6c757d; /* Warna background untuk tombol Batal */
-    color: #000000; /* Warna teks untuk tombol Batal */
+    background-color: #6c757d; 
+    color: #000000;
 }
 
 .btn-success-hapus {
-    background-color: #dc3545; /* Warna background untuk tombol Hapus */
-    color: #fff; /* Warna teks untuk tombol Hapus */
+    background-color: #dc3545; 
+    color: #fff; 
 }
 
+.editz-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    display: flex; 
+}
+
+.editz-form .input-fields input[type="text"],
+.editz-form .input-fields input[type="password"] {
+    width: 132%; 
+    padding: 7px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.editz-form .form-group {
+    margin-bottom: 8px; 
+}
+
+.editz-form .form-group label {
+    width: 160px;
+    display: inline-block;
+}
+
+.editz-form .btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.editz-form .btn-container button {
+    margin-left: 10px; 
+}
+
+.edit-popup-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.edit-popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-popup-content img {
+    margin-bottom: 20px;
+}
+
+.edit-popup-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 400px; 
+    padding: 30px;
+}
+
+.edit-popup-container button {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+
+.edit-popup-title img {
+    position: absolute;
+    top: -5px;
+    left: 10px;
+}
+
+
+.hapus-popup-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.hapus-popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hapus-popup-content img {
+    margin-bottom: 20px;
+}
+
+.hapus-popup-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 400px;
+    padding: 30px;
+}
+
+.hapus-popup-container button {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+
+.hapus-popup-title img {
+    position: absolute;
+    top: -5px;
+    left: 10px;
+}

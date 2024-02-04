@@ -6,19 +6,20 @@
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
   <link rel="stylesheet" href="{{ asset('css/detailpengawasankoperasi.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
   <title>Sipanka KopSyah - Detail Pengawasan Koperasi</title>
 </head>
 
 <body>
-  @include('layouts.sidebar')
-  @include('layouts.navbar')
+  @include('layouts.admin_provinsi_sidebar')
+  @include('layouts.admin_provinsi_navbar')
   <script src="{{asset('js/script.js')}}"></script>
 
   <div class="content">
     <div class="containermt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
-            <h4>Manajemen DPS / Pengawasan DPS</h4>
+            <strong>Manajemen DPS / Pengawasan DPS</strong>
           </div>
         </div>
 
@@ -48,7 +49,6 @@
                       <a href="/detail-dpsditerima"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
                       </i></a>
                   </tr>
-
 
                   <tr>
                     <th scope="row">2</th>
@@ -89,6 +89,5 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
     </body>
 </html>

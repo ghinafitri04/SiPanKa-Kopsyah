@@ -10,7 +10,7 @@ body {
     font-size: 20px;
     color: black;
     margin-top: 0.5cm;
-    margin-left: -23cm; 
+    margin-left: -20cm; 
 }
 
 .tulisantengah {
@@ -77,7 +77,7 @@ border: none;
 }
 
 .custom-table td:nth-child(2) .card:hover {
-background: linear-gradient(to right, #f9ca24, #f39c12);
+background: linear-gradient(to right, #4a9df5, #1259a4);
 font-family: 'Poppins', sans-serif;
 border: none; 
 }

@@ -6,19 +6,20 @@
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
   <link rel="stylesheet" href="{{ asset('css/detailpengawasandps.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
   <title>Sipanka KopSyah - Detail Pengawasan DPS</title>
 </head>
 <body>
 
-  @include('layouts.sidebar')
-  @include('layouts.navbar')
+  @include('layouts.admin_provinsi_sidebar')
+  @include('layouts.admin_provinsi_navbar')
   <script src="{{ asset('js/script.js') }}"></script>
 
   <div class="content">
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center">
         <div class="dashboard-title">
-          <h4>Manajemen DPS / Pengawasan DPS</h4>
+          <strong>Manajemen DPS / Pengawasan DPS</strong>
           <div class="dashboard-subtitle">
             <p><strong>Nama:</strong> Amaliaaaaaaaa</p>
             <p>Daftar Koperasi</p>

@@ -12,15 +12,18 @@
 </head>
 
 <body>
-  @include('layouts.sidebar')
-  @include('layouts.navbar')
+    @include('layouts.admin_provinsi_sidebar')
+    @include('layouts.admin_provinsi_navbar')
   <script src="{{asset('js/script.js')}}"></script>
   <script src="{{asset('js/manajemen_kab.js')}}"></script>
 
+  <div class="content">
    <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
-            <h4>Manajemen Kabupaten/Kota</h4>
+            <h4>
+                <strong> Manajemen Kabupaten/Kota</strong>
+            </h4>
           </div>
           <button class="tambah-admin" id="btnTambah" onclick="togglePopup()">Tambah Data Admin</button>
         </div>
@@ -32,8 +35,8 @@
                 <img src="/img/close.png" alt="Close Icon" width="15" height="15">
             </span>
         
-<div class="popup-content" id="formTambahAdminContainer">
-            <div class="popup-title">Data Admin Kab/Kota</div>
+    <div class="popup-content" id="formTambahAdminContainer">
+        <div class="popup-title">Data Admin Kab/Kota</div>
         <form>
             <div class="form-group">
                 <label for="namaLengkap">Nama Lengkap</label>
@@ -89,62 +92,144 @@
                 <button type="button" class="btn btn-success" id="btnTambahForm">Tambah</button>
             </div>
         </form>
-    </div>
-</div>
-
-<div class="success-popup-container" id="successPopup">
-    <img src="/img/ceklis.png" alt="Success Image" width="100" height="100">
-    <div class="success-popup-title">Sukses!</div>
-    <p>Data berhasil ditambahkan.</p>
-    <button class="btn btn-success" onclick="closeSuccessPopup()">Tutup</button>
-</div>
-
-        <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
-            <table class="table">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama Lengkap</th>
-                        <th scope="col">Akses Login</th>
-                        <th scope="col">Kabupaten/Kota</th>
-                        <th scope="col">Tindakan</th>
-                    </tr>
-                </thead>
-            <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>
-                        <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> Mark<br>
-                        <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> p1234567   </td>
-                        <td>null</td>
-                        <td>
-                            <a><img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
-                            </i></a>
-                            <a href="#" class="btn-hapus" data-id="1">
-                                <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
+    </div>
 
-        <div class="confirmation-popup-container" id="confirmationPopup">
-            <div class="confirmation-popup-card">
-                <div class="confirmation-popup-content">
-                    <div class="confirmation-popup-title">Anda yakin akan menghapus data ini?</div>
-                    <div class="btn-container">
-                        <button type="button" class="btn-batal-hapus" onclick="closeConfirmationPopup()">Batal</button>
-                        <button type="button" class="btn-success-hapus" onclick="hapusData()">Hapus</button>
+    <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Lengkap</th>
+                    <th scope="col">Akses Login</th>
+                    <th scope="col">Kabupaten/Kota</th>
+                    <th scope="col">Tindakan</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>
+                    <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> Mark<br>
+                    <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> p1234567   </td>
+                    <td> Kabupaten Agam </td>
+                    <td>
+                        <a href="#" class="btn-edit" data-id="1">
+                            <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
+                        </a>
+                        <a href="#" class="btn-hapus" data-id="1">
+                            <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="editz-form" style="display: none;">
+        <span class="close-icon" onclick="closeEditForm()">
+            <img src="/img/close.png" alt="Close Icon" width="15" height="15">
+        </span>
+        
+        <form>
+            <div class="popup-title">Edit Data Admin Kab/Kota</div>
+        
+                <div class="form-group">
+                    <label for="editNamaLengkap">Nama Lengkap</label>
+                    <div class="edit-fields">
+                        <input type="text" id="editNamaLengkap" name="editNamaLengkap">
                     </div>
                 </div>
+        
+                <div class="form-group">
+                    <label for="editUsername">Username</label>
+                    <div class="edit-fields">
+                        <input type="text" id="editUsername" name="editUsername">
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="editPassword">Password</label>
+                    <div class="edit-fields">
+                        <input type="password" id="editPassword" name="editPassword">
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="kabupatenKota">Kabupaten/Kota</label>
+                        <div class="custom-select">
+                            <div class="editable-option" id="selectedKabupatenKotaEdit" onclick="toggleOptionsList('edit')">Pilih Kabupaten/Kota</div>
+                            <ul class="options" id="kabupatenKotaOptionsEdit">
+                                <li value="kabupaten_1">Kabupaten Agam</li>
+                                <li value="kabupaten_2">Kabupaten Dharmasraya</li>
+                                <li value="kabupaten_3">Kabupaten Kepulauan Mentawai</li>
+                                <li value="kabupaten_4">Kabupaten Lima Puluh Kota</li>
+                                <li value="kabupaten_5">Kabupaten Padang Pariaman</li>
+                                <li value="kabupaten_6">Kabupaten Pasaman</li>
+                                <li value="kabupaten_7">Kabupaten Pasaman Barat</li>
+                                <li value="kabupaten_8">Kabupaten Pesisir Selatan</li>
+                                <li value="kabupaten_9">Kabupaten Sijunjung</li>
+                                <li value="kabupaten_10">Kabupaten Solok</li>
+                                <li value="kabupaten_11">Kabupaten Solok Selatan</li>
+                                <li value="kabupaten_12">Kabupaten Tanah Datar</li>
+                                <li value="kota_1">Kota Bukittinggi</li>
+                                <li value="kota_2">Kota Padang</li>
+                                <li value="kota_3">Kota Padang Panjang</li>
+                                <li value="kota_4">Kota Pariaman</li>
+                                <li value="kota_5">Kota Payakumbuh</li>
+                                <li value="kota_6">Kota Sawahlunto</li>
+                                <li value="kota_7">Kota Solok</li>
+                            </ul>
+                        </div>
+                        <input type="hidden" id="selectedKabupatenKotaEditValue" name="selectedKabupatenKotaEdit" value="" />
+                </div>
+        
+                <div class="btn-container">
+                    <button type="button" class="btn btn-danger btn-batal-edit" onclick="cancelEdit()">Batal</button>
+                    <button type="button" class="btn btn-success" onclick="simpanPerubahan()">Simpan</button>
+                </div>
+        </form>
+    </div>
+        
+                <div id="confirmationPopup" class="confirmation-popup-container">
+                    <div class="confirmation-popup-card">
+                    <div class="confirmation-popup-title">Konfirmasi Hapus</div>
+                    <div class="confirmation-popup-content">
+                    <p>Anda yakin ingin menghapus data ini?</p>
+                </div>
+                <div class="btn-container">
+                    <button class="btn-batal-hapus" onclick="closeConfirmationPopup()">Batal</button>
+                    <button class="btn-success-hapus" onclick="hapusData()">Hapus</button>
+                </div>
+                </div>
             </div>
-        </div>       
-</div>
+
+        <div class="success-popup-container" id="successPopup">
+            <img src="/img/ceklis.png" alt="Success Image" width="100" height="100">
+            <div class="success-popup-title">Sukses!</div>
+            <p>Data Berhasil Ditambahkan</p>
+            <button class="btn btn-success" onclick="closeSuccessPopup()">Tutup</button>
+        </div>
+    
+        <div class="edit-popup-container" id="editPopup">
+            <img src="/img/ceklis.png" alt="Success Image" width="100" height="100">
+            <div class="success-popup-title">Sukses!</div>
+            <p>Data Berhasil Diedit</p>
+            <button class="btn btn-success" onclick="closeEditPopup()">Tutup</button>
+        </div>
+    
+        <div class="hapus-popup-container" id="hapusPopup">
+            <img src="/img/ceklis.png" alt="Success Image" width="100" height="100">
+            <div class="success-popup-title">Sukses!</div>
+            <p>Data Berhasil Dihapus</p>
+            <button class="btn btn-success" onclick="closeHapusPopup()">Tutup</button>
+        </div>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    </body>
+</body>
 </html>

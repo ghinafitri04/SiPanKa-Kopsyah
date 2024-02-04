@@ -7,12 +7,13 @@
   <link rel="stylesheet" href="{{ asset('css/dpspengawasanmenunggu.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <title>Sipanka KopSyah - Pengawasan Ditolak</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+  <title>Sipanka KopSyah - Pengawasan Menunggu</title>
 </head>
 
 <body>
-  @include('layouts.sidebar')
-  @include('layouts.navbar')
+  @include('layouts.admin_provinsi_sidebar')
+  @include('layouts.admin_provinsi_navbar')
   <script src="{{asset('js/script.js')}}"></script>
   <script src="{{asset('js/dpspengawasanmenunggu.js')}}"></script>
   
@@ -20,7 +21,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
-            <h4>Dashboard / Manajemen DPS / Pengawasan DPS</h4>
+            <strong>Manajemen DPS / Pengawasan DPS</strong>
             <div class="dashboard-subtitle">
               <p><strong>Nama:</strong> Ghina</p>
             </div>

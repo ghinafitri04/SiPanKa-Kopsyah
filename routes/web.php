@@ -50,6 +50,8 @@ Route::view('/konversi-tahap3', 'konversi_koperasi_tahap3')->name('konversi_taha
 
 Route::view('/konversi-tahap4', 'konversi_koperasi_tahap4')->name('konversi_tahap4');
 
+Route::view('/adminkoperasi-detail', 'admin_provinsi_detailadminkoperasi')->name('detail_adminkoperasi');
+
 
 Route::get('/', function () {
     return view('welcome');

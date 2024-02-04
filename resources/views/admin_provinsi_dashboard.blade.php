@@ -14,8 +14,8 @@
 </head>
 
 <body>
-    @include('layouts.sidebar')
-    @include('layouts.navbar')
+    @include('layouts.admin_provinsi_sidebar')
+    @include('layouts.admin_provinsi_navbar')
     <script src="{{asset('js/script.js')}}"></script>
     <script src="{{asset('js/dashboard_provinsi.js')}}"></script>
 
@@ -63,7 +63,7 @@
                         </td>
 
                         <td>
-                            <div class="card bg-warning text-white mb-4"  data-route-name="{{ route('admindps') }}">
+                            <div class="card bg-primary text-white mb-4"  data-route-name="{{ route('admindps') }}">
                                 <div class="number">0</div>
                                 <div class="text">DPS</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
