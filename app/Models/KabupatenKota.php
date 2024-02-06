@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class KabupatenKota extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'role_name',
-    ];
+    protected $table = 'kabupatenkota';
+    protected $primaryKey = 'id_kabupatenkota';
+    public $timestamps = true;
 
-    // Relasi dengan model Admin
-    public function admins()
-    {
-        return $this->hasMany(Admin::class, 'id_role');
-    }
+    protected $fillable = [
+        'nama_kabupatenkota',
+    ];
 }

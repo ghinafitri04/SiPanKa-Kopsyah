@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id(); // Ini sudah mencukupi sebagai primary key
-            $table->foreignId('id_role')->constrained('roles');
+        Schema::create('admin_provinsi', function (Blueprint $table) {
+            $table->id('id_admin_provinsi');
             $table->string('username');
             $table->string('password');
-            $table->string('nama_instansi');
-            $table->string('region');
+            $table->string('password_text');
+            $table->string('role');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('admin_provinsi');
     }
 };

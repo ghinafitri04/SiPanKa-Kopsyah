@@ -100,34 +100,44 @@
             <thead class="table-light">
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama Lengkap</th>
-                    <th scope="col">Akses Login</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Password</th>
                     <th scope="col">Kabupaten/Kota</th>
                     <th scope="col">Tindakan</th>
                 </tr>
             </thead>
-            
+        
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>
-                    <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> Mark<br>
-                    <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> p1234567   </td>
-                    <td> Kabupaten Agam </td>
-                    <td>
-                        <a href="#" class="btn-edit" data-id="1">
-                            <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
-                        </a>
-                        <a href="#" class="btn-hapus" data-id="1">
-                            <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
-                        </a>
-                    </td>
-                </tr>
+                @if(isset($adminKabupatenKota) && count($adminKabupatenKota) > 0)
+                @foreach ($adminKabupatenKota as $index => $admin)
+                    <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>
+                            <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> {{ $admin->username }}<br>
+                        </td>
+                        <td>
+                            <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> {{ $admin->password_text }}
+                        </td>
+                        <td>{{ $admin->kabupatenKota->nama_kabupatenkota }}</td>
+                        <td>
+                            <a href="#" class="btn-edit" data-id="{{ $admin->id_admin_kabupatenkota }}">
+                                <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
+                            </a>
+                            <a href="#" class="btn-hapus" data-id="{{ $admin->id_admin_kabupatenkota }}">
+                                <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                @else
+                    <tr>
+                        <td colspan="5">Tidak ada data yang tersedia</td>
+                    </tr>
+                @endif
             </tbody>
-        </table>
+        </table>        
     </div>
-
+    
     <div class="editz-form" style="display: none;">
         <span class="close-icon" onclick="closeEditForm()">
             <img src="/img/close.png" alt="Close Icon" width="15" height="15">

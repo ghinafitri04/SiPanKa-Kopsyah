@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdminProvinsiController extends Controller
+class AdminKabupatenKotaController extends Controller
 {
     public function dashboard()
     {
-        return view('admin_provinsi_dashboard');
+        return view('admin_kabkota_dashboard');
     }
 }

@@ -53,7 +53,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="card bg-danger text-white mb-4" data-route-name="{{ route('manajemenKabKota') }}">
+                            <div class="card bg-danger text-white mb-4" data-route-name="{{ route('admin_provinsi.manajemen_kab_kota.index') }}">
                                 <div class="number">0</div>
                                 <div class="text">Admin Kab Kota</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">

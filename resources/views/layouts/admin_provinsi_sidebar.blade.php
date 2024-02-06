@@ -20,8 +20,9 @@
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="{{ route('manajemenKabKota') }}">Manajemen Kab Kota</a>
+            <a href="{{ route('admin_provinsi.manajemen_kab_kota.index') }}">Manajemen Kab Kota</a>
         </li>
+        
 
         <li class="parent-menu">
             <li class="menu-item">
