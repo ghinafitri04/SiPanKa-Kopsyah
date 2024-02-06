@@ -19,7 +19,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // Route untuk halaman dashboard (untuk semua role)
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth:admin_provinsi'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin_provinsi_dashboard')->name('dashboard');
     });
@@ -31,6 +31,10 @@ Route::middleware(['auth'])->group(function () {
     // Route untuk manajemen kabupaten/kota
     Route::get('/admin-provinsi/manajemen-kab-kota', [AdminProvinsiManajemenKabKotaController::class, 'index'])
         ->name('admin_provinsi.manajemen_kab_kota.index');
+    Route::post('/admin-provinsi/manajemen-kab-kota', [AdminProvinsiManajemenKabKotaController::class, 'store'])
+        ->name('admin_provinsi.manajemen_kab_kota.store');
+    Route::delete('/admin-provinsi/manajemen-kab-kota/{id}', [AdminProvinsiManajemenKabKotaController::class, 'destroy'])
+        ->name('admin_provinsi.manajemen_kab_kota.destroy');
 
     // Route untuk halaman detail admin koperasi
     Route::view('/adminkoperasi-detail', 'admin_provinsi_detailadminkoperasi')

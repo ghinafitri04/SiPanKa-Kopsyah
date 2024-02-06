@@ -37,61 +37,33 @@
         
     <div class="popup-content" id="formTambahAdminContainer">
         <div class="popup-title">Data Admin Kab/Kota</div>
-        <form>
-            <div class="form-group">
-                <label for="namaLengkap">Nama Lengkap</label>
-                <div class="input-fields">
-                    <input type="text" id="namaLengkap" name="namaLengkap">
-                </div>
-            </div>
-
+        <form method="POST" action="{{ route('admin_provinsi.manajemen_kab_kota.store') }}">
+            @csrf        
             <div class="form-group">
                 <label for="username">Username</label>
-                <div class="input-fields">
-                    <input type="text" id="username" name="username">
-                </div>
+                <input type="text" id="username" name="username">
             </div>
-
+        
             <div class="form-group">
                 <label for="password">Password</label>
-                <div class="input-fields">
-                    <input type="password" id="password" name="password">
-                </div>
+                <input type="password" id="password" name="password">
             </div>
-
+        
             <div class="form-group">
                 <label for="kabupatenKota">Kabupaten/Kota</label>
-                <div class="custom-select">
-                    <span class="selected-option">Pilih Kabupaten/Kota</span>
-                    <ul class="options">
-                        <li value="kabupaten_1">Kabupaten Agam</li>
-                        <li value="kabupaten_2">Kabupaten Dharmasraya</li>
-                        <li value="kabupaten_3">Kabupaten Kepulauan Mentawai</li>
-                        <li value="kabupaten_4">Kabupaten Lima Puluh Kota</li>
-                        <li value="kabupaten_5">Kabupaten Padang Pariaman</li>
-                        <li value="kabupaten_6">Kabupaten Pasaman</li>
-                        <li value="kabupaten_7">Kabupaten Pasaman Barat</li>
-                        <li value="kabupaten_8">Kabupaten Pesisir Selatan</li>
-                        <li value="kabupaten_9">Kabupaten Sijunjung</li>
-                        <li value="kabupaten_10">Kabupaten Solok</li>
-                        <li value="kabupaten_11">Kabupaten Solok Selatan</li>
-                        <li value="kabupaten_12">Kabupaten Tanah Datar</li>
-                        <li value="kota_1">Kota Bukittinggi</li>
-                        <li value="kota_2">Kota Padang</li>
-                        <li value="kota_3">Kota Padang Panjang</li>
-                        <li value="kota_4">Kota Pariaman</li>
-                        <li value="kota_5">Kota Payakumbuh</li>
-                        <li value="kota_6">Kota Sawahlunto</li>
-                        <li value="kota_7">Kota Solok</li>
-                    </ul>
-                </div>
+                <select id="kabupatenKota" name="kabupatenKota">
+                    <option value="">Pilih Kabupaten/Kota</option>
+                    @foreach($kabupatenKotaList as $kabupatenKota)
+                        <option value="{{ $kabupatenKota->id_kabupatenkota }}">{{ $kabupatenKota->nama_kabupatenkota }}</option>
+                    @endforeach
+                </select>                               
             </div>
-
+        
             <div class="btn-container">
-                <button type="button" class="btn btn-danger btn-batal" onclick="togglePopup()">Batal</button>
-                <button type="button" class="btn btn-success" id="btnTambahForm">Tambah</button>
+                <button type="submit" class="btn btn-success">Tambah</button>
             </div>
         </form>
+        
         </div>
     </div>
 

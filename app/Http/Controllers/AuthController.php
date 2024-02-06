@@ -27,6 +27,7 @@ class AuthController extends Controller
             if (Auth::guard($guard)->attempt($credentials)) {
                 // Autentikasi berhasil, ambil pengguna dan arahkan sesuai role
                 $user = Auth::guard($guard)->user();
+                Log::info('User authenticated:', ['user' => $user]);
                 return $this->redirectBasedOnRole($user->role);
             }
         }
@@ -41,6 +42,7 @@ class AuthController extends Controller
     {
         switch ($role) {
             case 'admin_provinsi':
+                Log::info('Redirecting to dashboardAdminProvinsi');
                 return redirect()->route('dashboardAdminProvinsi');
                 break;
 

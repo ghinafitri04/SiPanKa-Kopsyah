@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     var overlay = document.getElementById("overlay");
     var popupContainer = document.getElementById("popupContainer");
     var btnTambah = document.getElementById("btnTambah");
@@ -24,10 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
     btnHapusElements.forEach(function (btnHapus) {
         btnHapus.addEventListener("click", function (event) {
             event.preventDefault();
-            var confirmationPopup = document.getElementById("confirmationPopup");
+            var confirmationPopup =
+                document.getElementById("confirmationPopup");
             confirmationPopup.style.display = "flex";
             var dataId = btnHapus.getAttribute("data-id");
-            var hapusButton = document.querySelector("#confirmationPopup .btn-success");
+            var hapusButton = document.querySelector(
+                "#confirmationPopup .btn-success"
+            );
             hapusButton.onclick = function () {
                 hapusData();
                 confirmationPopup.style.display = "none";
@@ -55,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var optionsList = document.querySelector(".options");
 
     selectedOption.addEventListener("click", function () {
-        optionsList.style.display = optionsList.style.display === "block" ? "none" : "block";
+        optionsList.style.display =
+            optionsList.style.display === "block" ? "none" : "block";
     });
 
     optionsList.addEventListener("click", function (event) {
@@ -83,11 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Fungsi untuk menangani dropdown Kabupaten/Kota pada formulir edit
-    var selectedOptionEdit = document.getElementById("selectedKabupatenKotaEdit");
+    var selectedOptionEdit = document.getElementById(
+        "selectedKabupatenKotaEdit"
+    );
     var optionsListEdit = document.getElementById("kabupatenKotaOptionsEdit");
 
     selectedOptionEdit.addEventListener("click", function () {
-        optionsListEdit.style.display = optionsListEdit.style.display === "block" ? "none" : "block";
+        optionsListEdit.style.display =
+            optionsListEdit.style.display === "block" ? "none" : "block";
     });
 
     optionsListEdit.addEventListener("click", function (event) {
@@ -101,7 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // console.log(selectedValueEdit);
 
         // Tetapkan nilai yang dipilih dalam input tersembunyi
-        document.getElementById("selectedKabupatenKotaEditValue").value = selectedValueEdit;
+        document.getElementById("selectedKabupatenKotaEditValue").value =
+            selectedValueEdit;
     });
 
     btnTambahForm.addEventListener("click", function () {
@@ -112,232 +120,236 @@ document.addEventListener('DOMContentLoaded', function () {
         // if (dataBerhasilDitambahkan) {
         //     showSuccessPopup();
         // }
-    
+
         // Contoh:
         simulateDataAdditionAndShowSuccessPopup();
     });
-    
 
     // Hapus status pop-up form dari sessionStorage saat halaman di-refresh
-    window.addEventListener('beforeunload', function () {
+    window.addEventListener("beforeunload", function () {
         sessionStorage.removeItem("formPopupShown");
         sessionStorage.removeItem("editFormDataId");
     });
 });
 
-    function simulateDataAdditionAndShowSuccessPopup() {
-        // Simulasikan bahwa data berhasil ditambahkan
-        // Anda dapat menyesuaikan ini dengan logika sesungguhnya
-        var dataBerhasilDitambahkan = true;
+function simulateDataAdditionAndShowSuccessPopup() {
+    // Simulasikan bahwa data berhasil ditambahkan
+    // Anda dapat menyesuaikan ini dengan logika sesungguhnya
+    var dataBerhasilDitambahkan = true;
 
-        if (dataBerhasilDitambahkan) {
-            showSuccessPopup();
-        }
+    if (dataBerhasilDitambahkan) {
+        showSuccessPopup();
     }
+}
 
-    function showSuccessPopup() {
-        var successPopup = document.getElementById("successPopup");
+function showSuccessPopup() {
+    var successPopup = document.getElementById("successPopup");
 
-        // Tampilkan pop-up sukses
-        successPopup.style.display = "flex";
+    // Tampilkan pop-up sukses
+    successPopup.style.display = "flex";
 
-        // Setelah beberapa waktu, sembunyikan pop-up sukses
-        setTimeout(function () {
-            successPopup.style.display = "none";
-        }, 3000);
-    }
-
-    function closeSuccessPopup() {
-        var successPopup = document.getElementById("successPopup");
+    // Setelah beberapa waktu, sembunyikan pop-up sukses
+    setTimeout(function () {
         successPopup.style.display = "none";
-    }
+    }, 3000);
+}
 
-    function showConfirmationPopup(dataId) {
-        var confirmationPopup = document.getElementById("confirmationPopup");
-        confirmationPopup.style.display = "flex";
+function closeSuccessPopup() {
+    var successPopup = document.getElementById("successPopup");
+    successPopup.style.display = "none";
+}
 
-        // Menggunakan dataId untuk melakukan operasi yang sesuai
-        console.log("Menghapus data dengan ID:", dataId);
-    }
+function showConfirmationPopup(dataId) {
+    var confirmationPopup = document.getElementById("confirmationPopup");
+    confirmationPopup.style.display = "flex";
 
-    function closeConfirmationPopup() {
-        var confirmationPopup = document.getElementById("confirmationPopup");
-        confirmationPopup.style.display = "none";
-    }
+    // Menggunakan dataId untuk melakukan operasi yang sesuai
+    console.log("Menghapus data dengan ID:", dataId);
+}
 
-    function hapusData() {
-        // Logika penghapusan data
+function closeConfirmationPopup() {
+    var confirmationPopup = document.getElementById("confirmationPopup");
+    confirmationPopup.style.display = "none";
+}
 
-        // Setelah data dihapus, tampilkan pop-up sukses
-        showHapusPopup();
+function hapusData() {
+    // Logika penghapusan data
 
-        // Setelah data dihapus, sembunyikan pop-up konfirmasi
-        closeConfirmationPopup();
-    }
+    // Setelah data dihapus, tampilkan pop-up sukses
+    showHapusPopup();
 
-    $(document).ready(function () {
-        $('.btn-edit').click(function () {
-            // Ambil ID dari data yang akan diedit
-            var dataId = $(this).data('id');
-    
-            // Ambil data dari baris yang di-klik (sesuaikan dengan struktur HTML Anda)
-            var namaLengkap = $(this).closest('tr').find('td:eq(1)').text();
-            var password = $(this).closest('tr').find('td:eq(4)').text(); // Sesuaikan indeks kolom dengan posisi kolom password
-            var kabupatenKota = $(this).closest('tr').find('td:eq(3)').data('kabupaten-kota');
-            // ... ambil data lainnya sesuai kebutuhan
-    
-            // Setel nilai input pada formulir edit
-            $('#editDataId').val(dataId); // Menyimpan ID untuk digunakan saat menyimpan perubahan
-            $('#editNamaLengkap').val(namaLengkap);
-            $('#editPassword').val(password);
-            $('#selectedKabupatenKota').val(kabupatenKota);
-            // ... setel nilai input lainnya
-    
-            // Set status formulir edit dalam sessionStorage
-            sessionStorage.setItem("editFormShown", "true");
-    
-            // Tampilkan formulir edit
-            showEditForm();
-        });
+    // Setelah data dihapus, sembunyikan pop-up konfirmasi
+    closeConfirmationPopup();
+}
+
+$(document).ready(function () {
+    $(".btn-edit").click(function () {
+        // Ambil ID dari data yang akan diedit
+        var dataId = $(this).data("id");
+
+        // Ambil data dari baris yang di-klik (sesuaikan dengan struktur HTML Anda)
+        var namaLengkap = $(this).closest("tr").find("td:eq(1)").text();
+        var password = $(this).closest("tr").find("td:eq(4)").text(); // Sesuaikan indeks kolom dengan posisi kolom password
+        var kabupatenKota = $(this)
+            .closest("tr")
+            .find("td:eq(3)")
+            .data("kabupaten-kota");
+        // ... ambil data lainnya sesuai kebutuhan
+
+        // Setel nilai input pada formulir edit
+        $("#editDataId").val(dataId); // Menyimpan ID untuk digunakan saat menyimpan perubahan
+        $("#editNamaLengkap").val(namaLengkap);
+        $("#editPassword").val(password);
+        $("#selectedKabupatenKota").val(kabupatenKota);
+        // ... setel nilai input lainnya
+
+        // Set status formulir edit dalam sessionStorage
+        sessionStorage.setItem("editFormShown", "true");
+
+        // Tampilkan formulir edit
+        showEditForm();
     });
-    
+});
 
-    function showEditForm() {
-        // Sesuaikan dengan kelas atau ID formulir edit yang sebenarnya
-        $('.editz-form').show();
-    }
+function showEditForm() {
+    // Sesuaikan dengan kelas atau ID formulir edit yang sebenarnya
+    $(".editz-form").show();
+}
 
-    function closeEditForm() {
-        var editFormContainer = document.querySelector('.editz-form');
-        editFormContainer.style.display = "none";
-    }
+function closeEditForm() {
+    var editFormContainer = document.querySelector(".editz-form");
+    editFormContainer.style.display = "none";
+}
 
-    // Fungsi untuk menangani pembatalan dalam formulir edit
-    function cancelEdit() {
-        closeEditForm();
-        sessionStorage.removeItem("editFormShown");
-    }
-
-    // Fungsi untuk menangani penyimpanan perubahan dalam formulir edit
-    function simpanPerubahan() {
-        // Implementasikan logika penyimpanan perubahan di sini
-        // Setelah penyimpanan berhasil, Anda dapat menampilkan pop-up sukses atau melakukan tindakan lainnya
-        showEditPopup(); // Contoh pemanggilan pop-up sukses
-        closeEditForm();
-        sessionStorage.removeItem("editFormShown");
-    }
-
-    function toggleOptionsList(formType, event) {
-        var optionsList = document.querySelector(".options");
-        optionsList.style.display = optionsList.style.display === "block" ? "none" : "block";
-
-        // Jika ini formulir edit, hindari menutup dropdown
-        if (formType === 'edit' && event) {
-            event.stopPropagation();
-        }
-    }
-
-    function selectOption(event, formType) {
-        var selectedValue = event.target.getAttribute("value");
-        var selectedText = event.target.innerText;
-
-        var selectedOption = document.getElementById("selectedKabupatenKotaEdit");
-        selectedOption.innerText = selectedText;
-
-        var selectedInput = document.getElementById("selectedKabupatenKotaEditValue");
-        selectedInput.value = selectedValue;
-
-        toggleOptionsList(formType);
-    }
-
-    // Tambahkan event listener ke tombol "Batal" dalam formulir edit
-    var btnCancelEdit = document.querySelector(".btn-batal-edit");
-    btnCancelEdit.addEventListener("click", cancelEdit);
-
-    // Tambahkan event listener ke tombol "Simpan" dalam formulir edit
-    var btnSimpanEdit = document.querySelector(".btn-simpan");
-    btnSimpanEdit.addEventListener("click", simpanPerubahan);
-
-    // Fungsi untuk menyembunyikan pop-up edit
-    function toggleEditPopup() {
-        var editFormContainer = document.querySelector('.edit-form-container');
-        editFormContainer.style.display = "none";
-    }
-
-    // Hapus status pop-up edit dari sessionStorage saat halaman di-refresh
+// Fungsi untuk menangani pembatalan dalam formulir edit
+function cancelEdit() {
+    closeEditForm();
     sessionStorage.removeItem("editFormShown");
+}
 
-    function togglePopup() {
-        var body = document.body;
-        body.classList.toggle("popup-open");
+// Fungsi untuk menangani penyimpanan perubahan dalam formulir edit
+function simpanPerubahan() {
+    // Implementasikan logika penyimpanan perubahan di sini
+    // Setelah penyimpanan berhasil, Anda dapat menampilkan pop-up sukses atau melakukan tindakan lainnya
+    showEditPopup(); // Contoh pemanggilan pop-up sukses
+    closeEditForm();
+    sessionStorage.removeItem("editFormShown");
+}
 
-        // ... (kode lainnya)
+function toggleOptionsList(formType, event) {
+    var optionsList = document.querySelector(".options");
+    optionsList.style.display =
+        optionsList.style.display === "block" ? "none" : "block";
+
+    // Jika ini formulir edit, hindari menutup dropdown
+    if (formType === "edit" && event) {
+        event.stopPropagation();
     }
+}
 
-    function closePopup() {
-        var body = document.body;
-        body.classList.remove("popup-open");
+function selectOption(event, formType) {
+    var selectedValue = event.target.getAttribute("value");
+    var selectedText = event.target.innerText;
 
-        // ... (kode lainnya)
+    var selectedOption = document.getElementById("selectedKabupatenKotaEdit");
+    selectedOption.innerText = selectedText;
+
+    var selectedInput = document.getElementById(
+        "selectedKabupatenKotaEditValue"
+    );
+    selectedInput.value = selectedValue;
+
+    toggleOptionsList(formType);
+}
+
+// Tambahkan event listener ke tombol "Batal" dalam formulir edit
+var btnCancelEdit = document.querySelector(".btn-batal-edit");
+btnCancelEdit.addEventListener("click", cancelEdit);
+
+// Tambahkan event listener ke tombol "Simpan" dalam formulir edit
+var btnSimpanEdit = document.querySelector(".btn-simpan");
+btnSimpanEdit.addEventListener("click", simpanPerubahan);
+
+// Fungsi untuk menyembunyikan pop-up edit
+function toggleEditPopup() {
+    var editFormContainer = document.querySelector(".edit-form-container");
+    editFormContainer.style.display = "none";
+}
+
+// Hapus status pop-up edit dari sessionStorage saat halaman di-refresh
+sessionStorage.removeItem("editFormShown");
+
+function togglePopup() {
+    var body = document.body;
+    body.classList.toggle("popup-open");
+
+    // ... (kode lainnya)
+}
+
+function closePopup() {
+    var body = document.body;
+    body.classList.remove("popup-open");
+
+    // ... (kode lainnya)
+}
+
+document.addEventListener("click", function (event) {
+    var optionsList = document.querySelector(".options");
+    if (optionsList.style.display === "block") {
+        optionsList.style.display = "none";
     }
+});
 
-    document.addEventListener('click', function(event) {
-        var optionsList = document.querySelector(".options");
-        if (optionsList.style.display === "block") {
-            optionsList.style.display = "none";
-        }
-    });
+function simulateDataEditAndShowEditPopup() {
+    // Simulasikan bahwa data berhasil diedit
+    // Anda dapat menyesuaikan ini dengan logika sesungguhnya
+    var dataBerhasilDiedit = true;
 
-    function simulateDataEditAndShowEditPopup() {
-        // Simulasikan bahwa data berhasil diedit
-        // Anda dapat menyesuaikan ini dengan logika sesungguhnya
-        var dataBerhasilDiedit = true;
-
-        if (dataBerhasilDiedit) {
-            showEditPopup();
-        }
+    if (dataBerhasilDiedit) {
+        showEditPopup();
     }
+}
 
-    function showEditPopup() {
-        var editPopup = document.getElementById("editPopup");
+function showEditPopup() {
+    var editPopup = document.getElementById("editPopup");
 
-        // Tampilkan pop-up pengeditan
-        editPopup.style.display = "flex";
+    // Tampilkan pop-up pengeditan
+    editPopup.style.display = "flex";
 
-        // Setelah beberapa waktu, sembunyikan pop-up pengeditan
-        setTimeout(function () {
-            editPopup.style.display = "none";
-        }, 3000);
-    }
-
-    function closeEditPopup() {
-        var editPopup = document.getElementById("editPopup");
+    // Setelah beberapa waktu, sembunyikan pop-up pengeditan
+    setTimeout(function () {
         editPopup.style.display = "none";
+    }, 3000);
+}
+
+function closeEditPopup() {
+    var editPopup = document.getElementById("editPopup");
+    editPopup.style.display = "none";
+}
+
+function simulateDataDeletionAndShowHapusPopup() {
+    // Simulasikan bahwa data berhasil dihapus
+    // Anda dapat menyesuaikan ini dengan logika sesungguhnya
+    var dataBerhasilDihapus = true;
+
+    if (dataBerhasilDihapus) {
+        showHapusPopup();
     }
+}
 
-    function simulateDataDeletionAndShowHapusPopup() {
-        // Simulasikan bahwa data berhasil dihapus
-        // Anda dapat menyesuaikan ini dengan logika sesungguhnya
-        var dataBerhasilDihapus = true;
+function showHapusPopup() {
+    var hapusPopup = document.getElementById("hapusPopup");
 
-        if (dataBerhasilDihapus) {
-            showHapusPopup();
-        }
-    }
+    // Tampilkan pop-up sukses
+    hapusPopup.style.display = "flex";
 
-    function showHapusPopup() {
-        var hapusPopup = document.getElementById("hapusPopup");
-
-        // Tampilkan pop-up sukses
-        hapusPopup.style.display = "flex";
-
-        // Setelah beberapa waktu, sembunyikan pop-up sukses
-        setTimeout(function () {
-            hapusPopup.style.display = "none";
-        }, 3000);
-    }
-
-    function closeHapusPopup() {
-        var hapusPopup = document.getElementById("hapusPopup");
+    // Setelah beberapa waktu, sembunyikan pop-up sukses
+    setTimeout(function () {
         hapusPopup.style.display = "none";
-    }
+    }, 3000);
+}
+
+function closeHapusPopup() {
+    var hapusPopup = document.getElementById("hapusPopup");
+    hapusPopup.style.display = "none";
+}
