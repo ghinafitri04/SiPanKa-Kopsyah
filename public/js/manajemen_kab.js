@@ -187,27 +187,71 @@ $(document).ready(function () {
         // Ambil ID dari data yang akan diedit
         var dataId = $(this).data("id");
 
-        // Ambil data dari baris yang di-klik (sesuaikan dengan struktur HTML Anda)
-        var namaLengkap = $(this).closest("tr").find("td:eq(1)").text();
-        var password = $(this).closest("tr").find("td:eq(4)").text(); // Sesuaikan indeks kolom dengan posisi kolom password
-        var kabupatenKota = $(this)
+        // Ambil data dari baris yang di-klik
+        var username = $(this).closest("tr").find("td:eq(0)").text().trim();
+        var password = $(this).closest("tr").find("td:eq(1)").text().trim();
+        var kabupatenKotaId = $(this)
             .closest("tr")
-            .find("td:eq(3)")
+            .find("td:eq(2)")
             .data("kabupaten-kota");
-        // ... ambil data lainnya sesuai kebutuhan
 
         // Setel nilai input pada formulir edit
-        $("#editDataId").val(dataId); // Menyimpan ID untuk digunakan saat menyimpan perubahan
-        $("#editNamaLengkap").val(namaLengkap);
+        $("#editForm").attr(
+            "action",
+            "/admin_provinsi/manajemen_kab_kota/" + dataId
+        );
+        $("#editUsername").val(username);
         $("#editPassword").val(password);
-        $("#selectedKabupatenKota").val(kabupatenKota);
-        // ... setel nilai input lainnya
 
-        // Set status formulir edit dalam sessionStorage
-        sessionStorage.setItem("editFormShown", "true");
+        // Setel nilai pada dropdown Kabupaten/Kota
+        $("#editKabupatenKota").val(kabupatenKotaId);
 
         // Tampilkan formulir edit
-        showEditForm();
+        $(".editz-form").show();
+    });
+
+    // Tangkap acara submit formulir edit
+    $("#editForm").submit(function (event) {
+        // Menghentikan perilaku bawaan formulir untuk mengirimkan permintaan
+        event.preventDefault();
+
+        // Ambil URL aksi formulir dari atribut action
+        var url = $(this).attr("action");
+
+        // Ambil metode HTTP dari atribut method
+        var method = $(this).attr("method");
+
+        // Ambil data formulir
+        var formData = $(this).serialize();
+
+        // Kirim permintaan AJAX ke server
+        $.ajax({
+            url: url,
+            method: method,
+            data: formData,
+            success: function (response) {
+                // Tampilkan pesan sukses jika permintaan berhasil
+                alert("Data berhasil diperbarui.");
+                // Redirect ke halaman indeks
+                window.location.href =
+                    "{{ route('admin_provinsi.manajemen_kab_kota.index') }}";
+            },
+            error: function (xhr, status, error) {
+                // Tangani kesalahan jika permintaan gagal
+                if (xhr.status == 422) {
+                    // Jika validasi gagal, tampilkan pesan validasi yang diberikan oleh server
+                    var errors = xhr.responseJSON.errors;
+                    var errorMessage = "";
+                    $.each(errors, function (key, value) {
+                        errorMessage += value[0] + "\n";
+                    });
+                    alert(errorMessage);
+                } else {
+                    // Jika terjadi kesalahan server lainnya, tampilkan pesan umum
+                    alert("Gagal memperbarui data. Silakan coba lagi.");
+                }
+            },
+        });
     });
 });
 

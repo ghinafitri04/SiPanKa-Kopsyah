@@ -57,4 +57,46 @@ class AdminProvinsiManajemenKabKotaController extends Controller
             return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal menghapus admin kabupaten.');
         }
     }
+
+    public function edit($id)
+    {
+        try {
+            // Find the admin kabupaten by ID
+            $admin = AdminKabupatenKota::findOrFail($id);
+            $kabupatenKotaList = KabupatenKota::all();
+
+            return view('edit_admin_provinsi_manajemenkabkota', compact('admin', 'kabupatenKotaList'));
+        } catch (\Exception $e) {
+            // Handle errors by redirecting with an error message
+            return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal memuat halaman edit admin kabupaten.');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the request
+        $request->validate([
+            'username' => 'required|unique:admin_kabupatenkota,username,' . $id . ',id_admin_kabupatenkota',
+            'password' => 'nullable',
+            'kabupatenKota' => 'required',
+        ]);
+
+        try {
+            $admin = AdminKabupatenKota::findOrFail($id);
+            // Update admin data
+            $admin->username = $request->username;
+            if ($request->has('password')) {
+                $admin->password = bcrypt($request->password);
+                $admin->password_text = $request->password;
+            }
+            $admin->id_kabupatenkota = $request->kabupatenKota; // Ubah menjadi 'kabupatenKota'
+            $admin->save();
+
+            // Redirect with success message
+            return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('success', 'Data admin kabupaten berhasil diperbarui.');
+        } catch (\Exception $e) {
+            // Handle errors by redirecting with an error message
+            return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal memperbarui data admin kabupaten.');
+        }
+    }
 }
