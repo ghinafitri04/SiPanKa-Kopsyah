@@ -42,21 +42,22 @@ class AdminProvinsiManajemenKabKotaController extends Controller
     }
 
     public function destroy($id)
-    {
-        try {
-            // Cari admin kabupaten berdasarkan ID
-            $admin = AdminKabupatenKota::findOrFail($id);
+{
+    try {
+        // Cari admin kabupaten berdasarkan ID
+        $admin = AdminKabupatenKota::findOrFail($id);
 
-            // Hapus admin kabupaten
-            $admin->delete();
+        // Hapus admin kabupaten
+        $admin->delete();
 
-            // Redirect ke halaman indeks dengan pesan sukses
-            return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('success', 'Admin kabupaten berhasil dihapus.');
-        } catch (\Exception $e) {
-            // Tangani kesalahan dengan menampilkan pesan gagal
-            return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal menghapus admin kabupaten.');
-        }
+        // Redirect ke halaman indeks dengan pesan sukses
+        return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('success', 'Admin kabupaten berhasil dihapus.');
+    } catch (\Exception $e) {
+        // Tangani kesalahan dengan menampilkan pesan gagal
+        return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal menghapus admin kabupaten.');
     }
+}
+
 
     public function edit($id)
     {

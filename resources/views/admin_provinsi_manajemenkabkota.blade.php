@@ -86,12 +86,21 @@
                                 {{ $admin->kabupatenKota->nama_kabupatenkota }}
                             </td>
                             <td>
-                                <a href="#" class="btn-edit" data-id="{{ $admin->id_admin_kabupatenkota }}">
-                                    <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
-                                </a>
-                                <a href="#" class="btn-hapus" data-id="{{ $admin->id_admin_kabupatenkota }}">
-                                    <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
-                                </a>
+                                <div class="btn-group">
+                                    <a href="#" class="btn-edit" data-id="{{ $admin->id_admin_kabupatenkota }}">
+                                        <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
+                                    </a>
+                                    <form id="form-hapus" action="{{ route('admin_provinsi.manajemen_kab_kota.destroy', ['id' => $admin->id_admin_kabupatenkota]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="delete-btn-container">
+                                            <a href="#" class="btn-hapus" data-id="{{ $admin->id_admin_kabupatenkota }}">
+                                                <img src="/img/Hapus.png" alt="Hapus" style="width: 30px; height: 30px;">
+                                            </a>
+                                            <button type="submit" style="display:none;" id="btn-hapus"></button>
+                                        </div>
+                                    </form>
+                                </div>
                             </td>                        
                         </tr>
                     @endforeach
@@ -109,7 +118,7 @@
             <img src="/img/close.png" alt="Close Icon" width="15" height="15">
         </span>
         
-        <form method="POST" id="editForm" action="{{ route('admin_provinsi.manajemen_kab_kota.update', ['id' => $admin->id_admin_kabupatenkota]) }}">
+        <form method="POST" id="editForm" action="{{ route('admin_provinsi.manajemen_kab_kota.update', ['id' => 'admin_id']) }}">
             @csrf
             @method('PUT')
             <div class="popup-title">Edit Data Admin Kab/Kota</div>
@@ -149,8 +158,10 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
   <script src="{{asset('js/script.js')}}"></script>
   <script src="{{asset('js/manajemen_kab.js')}}"></script>
 </body>

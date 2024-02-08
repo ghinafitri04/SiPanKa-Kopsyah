@@ -20,24 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formContainer.style.display = "block";
     });
 
-    var btnHapusElements = document.querySelectorAll(".btn-hapus");
-    btnHapusElements.forEach(function (btnHapus) {
-        btnHapus.addEventListener("click", function (event) {
-            event.preventDefault();
-            var confirmationPopup =
-                document.getElementById("confirmationPopup");
-            confirmationPopup.style.display = "flex";
-            var dataId = btnHapus.getAttribute("data-id");
-            var hapusButton = document.querySelector(
-                "#confirmationPopup .btn-success"
-            );
-            hapusButton.onclick = function () {
-                hapusData();
-                confirmationPopup.style.display = "none";
-                // Tambahkan logika lain yang perlu dilakukan setelah penghapusan
-            };
-        });
-    });
+ 
 
     var closeIcon = document.querySelector(".close-icon");
     closeIcon.addEventListener("click", function () {
@@ -254,6 +237,26 @@ $(document).ready(function () {
         });
     });
 });
+
+
+
+
+    $(document).ready(function(){
+        $('.btn-hapus').click(function(e){
+            e.preventDefault();
+            var id = $(this).data('id');
+            if(confirm("Apakah Anda yakin ingin menghapus admin kabupaten ini?")) {
+                $('#form-hapus').submit(); // Submit formulir tersembunyi
+            }
+        });
+    });
+
+
+
+
+
+
+
 
 function showEditForm() {
     // Sesuaikan dengan kelas atau ID formulir edit yang sebenarnya
