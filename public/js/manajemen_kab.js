@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         formContainer.style.display = "block";
     });
 
- 
-
     var closeIcon = document.querySelector(".close-icon");
     closeIcon.addEventListener("click", function () {
         overlay.style.display = "none";
@@ -238,25 +236,14 @@ $(document).ready(function () {
     });
 });
 
-
-
-
-    $(document).ready(function(){
-        $('.btn-hapus').click(function(e){
-            e.preventDefault();
-            var id = $(this).data('id');
-            if(confirm("Apakah Anda yakin ingin menghapus admin kabupaten ini?")) {
-                $('#form-hapus').submit(); // Submit formulir tersembunyi
-            }
-        });
+$(document).ready(function () {
+    $(".btn-hapus").click(function (e) {
+        e.preventDefault();
+        if (confirm("Apakah Anda yakin ingin menghapus admin kabupaten ini?")) {
+            $(this).closest("form").submit(); // Submit formulir tersembunyi terdekat
+        }
     });
-
-
-
-
-
-
-
+});
 
 function showEditForm() {
     // Sesuaikan dengan kelas atau ID formulir edit yang sebenarnya
