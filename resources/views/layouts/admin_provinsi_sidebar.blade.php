@@ -33,7 +33,7 @@
             <ul id="dpsSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('admindps') }}">Admin DPS</a>
+                    <a href="{{ route('admin_provinsi.manajemen_dps.index') }}">Admin DPS</a>
                 </li>
 
                 <li class="menu-item">

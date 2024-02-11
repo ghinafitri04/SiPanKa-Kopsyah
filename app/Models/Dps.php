@@ -16,7 +16,7 @@ class Dps extends Model implements Authenticatable
     public $timestamps = true;
 
     protected $fillable = [
-        'id_admin_kabupatenkota',
+        'id_admin_provinsi',
         'username',
         'password',
         'password_text',
@@ -30,7 +30,7 @@ class Dps extends Model implements Authenticatable
     // Relationships
     public function adminKabupatenKota()
     {
-        return $this->belongsTo(AdminKabupatenKota::class, 'id_admin_kabupatenkota');
+        return $this->belongsTo(AdminProvinsi::class, 'id_admin_provinsi');
     }
     public function isDps()
     {
