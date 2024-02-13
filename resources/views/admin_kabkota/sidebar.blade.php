@@ -20,7 +20,7 @@
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="{{ route('manajemenKabKota') }}">Pengawasan DPS</a>
+            <a href="{{ route('pengawasandps') }}">Pengawasan DPS</a>
         </li>
 
         <li class="parent-menu">
@@ -32,12 +32,12 @@
             <ul id="dpsSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('admindps') }}">Admin Koperasi</a>
+                    <a href="{{ route('adminkoperasi') }}">Admin Koperasi</a>
                 </li>
 
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('pengawasandps') }}">Konversi Koperasi</a>
+                    <a href="{{ route('konversikoperasi') }}">Konversi Koperasi</a>
                 </li>
             </ul>
         </li>

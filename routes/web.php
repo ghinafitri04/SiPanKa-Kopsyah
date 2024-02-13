@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\AdminProvinsiController;
 use App\Http\Controllers\AdminKabupatenKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenKabKotaController;
+use App\Http\Controllers\AdminProvinsiManajemenDpsController;
 
 // Route untuk halaman login
 Route::get('/login', function () {
@@ -20,13 +22,10 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 // Route untuk halaman dashboard (untuk semua role)
 Route::middleware(['auth:admin_provinsi'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin_provinsi_dashboard')->name('dashboard');
+    Route::get('/dashboardAdminProvinsi', [AdminProvinsiController::class, 'dashboard'])->name('dashboardAdminProvinsi');
     });
 
-    // Route untuk dashboard admin provinsi
-    Route::get('/dashboardAdminProvinsi', [AdminProvinsiController::class, 'dashboard'])
-        ->name('dashboardAdminProvinsi');
+    
 
     // Route untuk manajemen kabupaten/kota
     Route::get('/admin-provinsi/manajemen-kab-kota', [AdminProvinsiManajemenKabKotaController::class, 'index'])
@@ -40,6 +39,34 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         ->name('admin_provinsi.manajemen_kab_kota.edit');
     Route::put('/admin_provinsi/manajemen_kab_kota/{id}', [AdminProvinsiManajemenKabKotaController::class, 'update'])
         ->name('admin_provinsi.manajemen_kab_kota.update');
+        Route::get('/admin_provinsi/get_jumlah_admin_kabupaten_kota', 'AdminProvinsiManajemenKabKotaController@getJumlahAdminKabupatenKota')
+        ->name('admin_provinsi.get_jumlah_admin_kabupaten_kota');
+    
+
+      // Route untuk manajemen DPS
+      Route::get('/admin-provinsi/manajemen-dps', [AdminProvinsiManajemenDpsController::class, 'index'])
+      ->name('admin_provinsi.manajemen_dps.index');
+  Route::post('/admin-provinsi/manajemen-dps', [AdminProvinsiManajemenDpsController::class, 'store'])
+      ->name('admin_provinsi.manajemen_dps.store');
+  Route::delete('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'destroy'])
+      ->name('admin_provinsi.manajemen_dps.destroy');
+  Route::get('/admin-provinsi/manajemen-dps/{id}/edit', [AdminProvinsiManajemenDpsController::class, 'edit'])
+      ->name('admin_provinsi.manajemen_dps.edit');
+  Route::put('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'update'])
+      ->name('admin_provinsi.manajemen_dps.update');
+  Route::get('/sertifikat/{filename}', function ($filename) {
+      $path = storage_path('app/public/sertifikat/' . $filename);
+
+      if (!File::exists($path)) {
+          abort(404);
+      }
+
+      return response()->file($path);
+  })->name('sertifikat.show');
+  Route::get('/admin_provinsi/get_jumlah_admin_dps', 'AdminProvinsiManajemenDpsController@getJumlahAdminDps')
+  ->name('admin_provinsi.get_jumlah_admin_dps');
+
+
 
     // Route untuk halaman detail admin koperasi
     Route::view('/adminkoperasi-detail', 'admin_provinsi_detailadminkoperasi')
@@ -68,7 +95,7 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
     // Route untuk halaman detail pengawasan DPS
     Route::view('/detail-dps', 'detail_pengawasan_dps')
         ->name('detail_pengawasan_dps');
-});
+
 
 
 
