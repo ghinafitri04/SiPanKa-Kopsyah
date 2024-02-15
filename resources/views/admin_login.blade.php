@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
 
-    <title>Sipanka KopSyah - Login Admin Provinsi </title>
+    <title>Sipanka KopSyah - Login Admin </title>
 
     <style>
         body {
@@ -146,15 +146,6 @@
             align-items: center;
             margin-top: -15px;
         }
-
-        .small-text a#lupa {
-            color: black;
-            text-decoration: none;
-        }
-
-        .small-text a#lupa:hover {
-            text-decoration: underline;
-        }
     </style>
 
 </head>
@@ -172,7 +163,7 @@
         </div>
 
 <!-- Form Login -->
-<form id="login-form" action="{{ route('admin_provinsi.login') }}" method="POST">
+<form id="login-form" action="{{ route('login') }}" method="POST">
 <div>
             <!-- Input Username -->
             <div class="form-group input-with-icon">
@@ -186,10 +177,6 @@
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password">
                 <img src="/img/eyeclosed.png" id="eye-icon" class="toggle-password" style="width: 17px; height: 17px;" onclick="togglePassword('password')">
 
-            </div>
-
-            <div class="small small-text">
-                <p class="small-text"><a id="lupa" href="#">Lupa Password?</a></p>
             </div>
 
             <div class="bt-login">
@@ -207,7 +194,7 @@
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        eyeIcon.src = "/img/eyeopen.png"; // Ganti dengan path gambar mata terbuka
+        eyeIcon.src = "/img/openeye.png"; // Ganti dengan path gambar mata terbuka
     } else {
         passwordInput.type = "password";
         eyeIcon.src = "/img/eyeclosed.png"; // Ganti dengan path gambar mata tertutup

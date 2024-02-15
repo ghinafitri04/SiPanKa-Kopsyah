@@ -82,22 +82,24 @@ class AdminProvinsiManajemenDpsController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Dps $dps)
     {
         try {
-            // Cari DPS berdasarkan ID
-            $dps = Dps::findOrFail($id);
-
             // Hapus DPS
             $dps->delete();
-
+    
             // Redirect ke halaman indeks dengan pesan sukses
-            return redirect()->route('admin_provinsi.manajemen_dps.index')->with('success', 'Data DPS berhasil dihapus.');
+            return response()->json(['message' => 'Data berhasil dihapus.']);
         } catch (\Exception $e) {
             // Tangani kesalahan dengan menampilkan pesan gagal
-            return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal menghapus data DPS.');
+            return response()->json(['message' => 'Gagal menghapus data.'], 500);
         }
     }
+    
+    
+    
+
+    
 
     public function edit($id)
     {

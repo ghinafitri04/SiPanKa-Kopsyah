@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dps', function (Blueprint $table) {
             $table->id('id_dps');
-            $table->unsignedBigInteger('id_admin_kabupatenkota');
+            $table->unsignedBigInteger('id_admin_provinsi');
             $table->string('username');
             $table->string('password');
             $table->string('password_text');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign Key
-            $table->foreign('id_admin_kabupatenkota')->references('id_admin_kabupatenkota')->on('admin_kabupatenkota')->onDelete('cascade');
+            $table->foreign('id_admin_provinsi')->references('id_admin_provinsi')->on('admin_provinsi')->onDelete('cascade');
         });
     }
 

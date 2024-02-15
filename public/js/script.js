@@ -35,11 +35,7 @@ function toggleSubMenu(submenuId) {
     submenu.classList.toggle('show');
 }
 
-// Fungsi untuk logout (sesuaikan dengan kebutuhan Anda)
-function logout() {
-    // Implementasi fungsi logout di sini
-    alert("Anda telah logout!");
-}
+
 
 // Fungsi untuk menangani klik pada link di sidebar
 function handleSidebarLinkClick(event) {
@@ -86,3 +82,26 @@ window.addEventListener('load', function() {
         sidebarHeader.classList.add("collapsed");
     }
 });
+
+
+     
+function logout() {
+    console.log('Logout button clicked'); // Pastikan bahwa fungsi logout() dijalankan
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/login';
+        } else {
+            console.error('Logout request failed');
+        }
+    })
+    .catch(error => {
+        console.error('Network error:', error);
+    });
+}
