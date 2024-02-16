@@ -83,18 +83,19 @@ class AdminProvinsiManajemenDpsController extends Controller
 
 
     public function destroy(Dps $dps)
-    {
-        try {
-            // Hapus DPS
-            $dps->delete();
-    
-            // Redirect ke halaman indeks dengan pesan sukses
-            return response()->json(['message' => 'Data berhasil dihapus.']);
-        } catch (\Exception $e) {
-            // Tangani kesalahan dengan menampilkan pesan gagal
-            return response()->json(['message' => 'Gagal menghapus data.'], 500);
-        }
+{
+    try {
+        // Hapus DPS
+        $dps->delete();
+        
+        // Redirect ke halaman indeks dengan pesan sukses
+        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('success', 'Data DPS berhasil dihapus.');
+    } catch (\Exception $e) {
+        // Tangani kesalahan dengan menampilkan pesan gagal
+        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal menghapus data DPS.');
     }
+}
+
     
     
     

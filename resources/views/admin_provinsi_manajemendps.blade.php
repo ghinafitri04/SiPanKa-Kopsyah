@@ -121,11 +121,15 @@
                   <a href="{{ route('sertifikat.show', ['filename' => basename($dps->sertifikat)]) }}" target="_blank">{{ basename($dps->sertifikat) }}</a>
                 </td>
                 <td>
-                  <form id="form-hapus-{{ $dps }}" action="{{ route('admin_provinsi.manajemen_dps.destroy', ['dps' => $dps]) }}" method="POST">
+                  <form id="form-hapus-{{ $dps->id }}" action="{{ route('admin_provinsi.manajemen_dps.destroy', ['dps' => $dps]) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data DPS ini?')">Hapus</button>
+                    <a href="#" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data DPS ini?')) document.getElementById('form-hapus-{{ $dps->id }}').submit();">
+                        <img src="/img/Hapus.png" alt="Hapus" width="30" height="30">
+                    </a>
                 </form>
+                
+                
                 
                 
                 
