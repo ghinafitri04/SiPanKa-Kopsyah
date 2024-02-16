@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AdminKabupatenKota;
 use App\Models\KabupatenKota;
 use Illuminate\Http\Request;
+use App\Models\Dps;
 
 class AdminProvinsiManajemenKabKotaController extends Controller
 {
