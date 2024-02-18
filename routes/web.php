@@ -56,7 +56,7 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
     Route::put('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'update'])
         ->name('admin_provinsi.manajemen_dps.update');
     Route::get('/sertifikat/{filename}', function ($filename) {
-        $path = storage_path('app/public/sertifikat/' . $filename);
+        $path = storage_path('app/sertifikat/' . $filename);
 
         if (!File::exists($path)) {
             abort(404);
