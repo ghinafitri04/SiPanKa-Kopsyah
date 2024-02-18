@@ -3,21 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
->>>>>>> 1cb7f29184f592215a8ac8ffb1a50062a470b1f9
-=======
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
->>>>>>> 4df9f2cf298063e488b1cad204092cff9981c36a
->>>>>>> d6616a963435ab1d1c332f4142837db4d167f075
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admindps.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -134,7 +120,6 @@
                   <a href="{{ route('sertifikat.show', ['filename' => basename($dps->sertifikat)]) }}" target="_blank">{{ basename($dps->sertifikat) }}</a>
                 </td>
                 <td>
-<<<<<<< HEAD
                   <form id="form-hapus-{{ $dps->id_dps }}" action="{{ route('admin_provinsi.manajemen_dps.destroy', ['id' => $dps->id_dps]) }}" method="POST" style="display: inline;">
                       @csrf
                       @method('DELETE')
@@ -143,37 +128,6 @@
                       </a>
                   </form> 
               </td>                          
-=======
-                  <form id="form-hapus-{{ $dps->id }}" action="{{ route('admin_provinsi.manajemen_dps.destroy', ['dps' => $dps]) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <a href="#" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data DPS ini?')) document.getElementById('form-hapus-{{ $dps->id }}').submit();">
-                        <img src="/img/Hapus.png" alt="Hapus" width="30" height="30">
-                    </a>
-<<<<<<< HEAD
-                </form>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-=======
-                </form>              
->>>>>>> 4df9f2cf298063e488b1cad204092cff9981c36a
-                </td>
->>>>>>> d6616a963435ab1d1c332f4142837db4d167f075
               </tr>
               @endforeach
             </tbody>

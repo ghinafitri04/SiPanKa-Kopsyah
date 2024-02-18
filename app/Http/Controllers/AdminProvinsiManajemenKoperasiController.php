@@ -18,7 +18,17 @@ class AdminProvinsiManajemenKoperasiController extends Controller
         return view('admin_provinsi_manajemenkoperasi', compact('koperasiList', 'kabupatenKotaList'));
     }
 
+    public function detail_index($id)
+    {
+        $koperasi = Koperasi::findOrFail($id);
+        $kabupatenKota = AdminKabupatenKota::with('kabupatenKota')
+            ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
+            ->where('admin_kabupatenkota.id_kabupatenkota', $koperasi->adminKabupatenKota->id_kabupatenkota)
+            ->select('kabupatenkota.nama_kabupatenkota as nama_kabupatenkota')
+            ->first();
 
+        return view('admin_provinsi_detailadminkoperasi', compact('koperasi', 'kabupatenKota'));
+    }
 
     public function store(Request $request)
     {

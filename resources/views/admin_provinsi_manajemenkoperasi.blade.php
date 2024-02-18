@@ -87,7 +87,7 @@
                     <th scope="col">Tindakan</th>
                 </tr>
             </thead>
-            
+        
             <tbody>
                 @foreach($koperasiList as $koperasi)
                 <tr>
@@ -100,9 +100,9 @@
                     </td>
                     <td>{{ $koperasi->adminKabupatenKota->kabupatenKota->nama_kabupatenkota }}</td>
                     <td>
-                        <a href="#" class="ini-info" id="infoIcon{{ $koperasi->id }}" data-id="{{ $koperasi->id }}">
+                        <a href="{{ route('admin_provinsi.detail_manajemen_koperasi.detail_index', ['id' => $koperasi->id_koperasi]) }}" class="ini-info">
                             <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
-                        </a>
+                        </a>                        
                         <a href="#" class="btn-hapus" data-id="{{ $koperasi->id }}">
                             <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
                         </a>
@@ -110,8 +110,7 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
-        
+        </table>      
     </div>
                 <div id="confirmationPopup" class="confirmation-popup-container">
                     <div class="confirmation-popup-card">

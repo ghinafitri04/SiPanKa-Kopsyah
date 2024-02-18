@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     var overlay = document.getElementById("overlay");
     var popupContainer = document.getElementById("popupContainer");
     var btnTambah = document.getElementById("btnTambah");
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Cek apakah pop-up form tambah data sudah pernah ditampilkan dalam sesi ini
     var isFormPopupShown = sessionStorage.getItem("formPopupShown");
 
-    if (isFormPopupShown ) {
+    if (isFormPopupShown) {
         // Sembunyikan formulir tambah data admin atau edit jika sudah pernah ditampilkan
         formContainer.style.display = "none";
     }
@@ -20,17 +20,17 @@ document.addEventListener('DOMContentLoaded', function () {
         formContainer.style.display = "block";
     });
 
-   
-    
-
     var btnHapusElements = document.querySelectorAll(".btn-hapus");
     btnHapusElements.forEach(function (btnHapus) {
         btnHapus.addEventListener("click", function (event) {
             event.preventDefault();
-            var confirmationPopup = document.getElementById("confirmationPopup");
+            var confirmationPopup =
+                document.getElementById("confirmationPopup");
             confirmationPopup.style.display = "flex";
             var dataId = btnHapus.getAttribute("data-id");
-            var hapusButton = document.querySelector("#confirmationPopup .btn-success");
+            var hapusButton = document.querySelector(
+                "#confirmationPopup .btn-success"
+            );
             hapusButton.onclick = function () {
                 hapusData();
                 confirmationPopup.style.display = "none";
@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var optionsList = document.querySelector(".options");
 
     selectedOption.addEventListener("click", function () {
-        optionsList.style.display = optionsList.style.display === "block" ? "none" : "block";
+        optionsList.style.display =
+            optionsList.style.display === "block" ? "none" : "block";
     });
 
     optionsList.addEventListener("click", function (event) {
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Sembunyikan formulir "Pilih Kabupaten/Kota"
         var optionsList = document.querySelector(".options");
         optionsList.style.display = "none";
-    
+
         // Simulasikan penambahan data dari backend
         // Anda dapat menyesuaikan ini dengan logika sesungguhnya saat menambahkan data
         // Jika berhasil, baru panggil fungsi showSuccessPopup
@@ -84,15 +85,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // if (dataBerhasilDitambahkan) {
         //     showSuccessPopup();
         // }
-    
+
         // Contoh:
         simulateDataAdditionAndShowSuccessPopup();
     });
-
-    
-    
-
-  
 
     btnTambahForm.addEventListener("click", function () {
         // Simulasikan penambahan data dari backend
@@ -102,145 +98,141 @@ document.addEventListener('DOMContentLoaded', function () {
         // if (dataBerhasilDitambahkan) {
         //     showSuccessPopup();
         // }
-    
+
         // Contoh:
         simulateDataAdditionAndShowSuccessPopup();
     });
-    
 
     // Hapus status pop-up form dari sessionStorage saat halaman di-refresh
-    window.addEventListener('beforeunload', function () {
+    window.addEventListener("beforeunload", function () {
         sessionStorage.removeItem("formPopupShown");
     });
 });
 
-    function simulateDataAdditionAndShowSuccessPopup() {
-        // Simulasikan bahwa data berhasil ditambahkan
-        // Anda dapat menyesuaikan ini dengan logika sesungguhnya
-        var dataBerhasilDitambahkan = true;
+function simulateDataAdditionAndShowSuccessPopup() {
+    // Simulasikan bahwa data berhasil ditambahkan
+    // Anda dapat menyesuaikan ini dengan logika sesungguhnya
+    var dataBerhasilDitambahkan = true;
 
-        if (dataBerhasilDitambahkan) {
-            showSuccessPopup();
-        }
+    if (dataBerhasilDitambahkan) {
+        showSuccessPopup();
     }
+}
 
-    function showSuccessPopup() {
-        var successPopup = document.getElementById("successPopup");
+function showSuccessPopup() {
+    var successPopup = document.getElementById("successPopup");
 
-        // Tampilkan pop-up sukses
-        successPopup.style.display = "flex";
+    // Tampilkan pop-up sukses
+    successPopup.style.display = "flex";
 
-        // Setelah beberapa waktu, sembunyikan pop-up sukses
-        setTimeout(function () {
-            successPopup.style.display = "none";
-        }, 3000);
-    }
-
-    function closeSuccessPopup() {
-        var successPopup = document.getElementById("successPopup");
+    // Setelah beberapa waktu, sembunyikan pop-up sukses
+    setTimeout(function () {
         successPopup.style.display = "none";
+    }, 3000);
+}
+
+function closeSuccessPopup() {
+    var successPopup = document.getElementById("successPopup");
+    successPopup.style.display = "none";
+}
+
+function showConfirmationPopup(dataId) {
+    var confirmationPopup = document.getElementById("confirmationPopup");
+    confirmationPopup.style.display = "flex";
+
+    // Menggunakan dataId untuk melakukan operasi yang sesuai
+    console.log("Menghapus data dengan ID:", dataId);
+}
+
+function closeConfirmationPopup() {
+    var confirmationPopup = document.getElementById("confirmationPopup");
+    confirmationPopup.style.display = "none";
+}
+
+function hapusData() {
+    // Logika penghapusan data
+
+    // Setelah data dihapus, tampilkan pop-up sukses
+    showHapusPopup();
+
+    // Setelah data dihapus, sembunyikan pop-up konfirmasi
+    closeConfirmationPopup();
+}
+
+function toggleOptionsList(formType, event) {
+    var optionsList = document.querySelector(".options");
+    optionsList.style.display =
+        optionsList.style.display === "block" ? "none" : "block";
+}
+
+function selectOption(event, formType) {
+    var selectedValue = event.target.getAttribute("value");
+    var selectedText = event.target.innerText;
+
+    toggleOptionsList(formType);
+}
+
+function togglePopup() {
+    var body = document.body;
+    body.classList.toggle("popup-open");
+
+    // ... (kode lainnya)
+}
+
+function closePopup() {
+    var body = document.body;
+    body.classList.remove("popup-open");
+
+    // ... (kode lainnya)
+}
+
+document.addEventListener("click", function (event) {
+    var optionsList = document.querySelector(".options");
+    if (optionsList.style.display === "block") {
+        optionsList.style.display = "none";
     }
+});
 
-    function showConfirmationPopup(dataId) {
-        var confirmationPopup = document.getElementById("confirmationPopup");
-        confirmationPopup.style.display = "flex";
+function simulateDataDeletionAndShowHapusPopup() {
+    // Simulasikan bahwa data berhasil dihapus
+    // Anda dapat menyesuaikan ini dengan logika sesungguhnya
+    var dataBerhasilDihapus = true;
 
-        // Menggunakan dataId untuk melakukan operasi yang sesuai
-        console.log("Menghapus data dengan ID:", dataId);
-    }
-
-    function closeConfirmationPopup() {
-        var confirmationPopup = document.getElementById("confirmationPopup");
-        confirmationPopup.style.display = "none";
-    }
-
-    function hapusData() {
-        // Logika penghapusan data
-
-        // Setelah data dihapus, tampilkan pop-up sukses
+    if (dataBerhasilDihapus) {
         showHapusPopup();
-
-        // Setelah data dihapus, sembunyikan pop-up konfirmasi
-        closeConfirmationPopup();
     }
+}
 
- 
-    
+function showHapusPopup() {
+    var hapusPopup = document.getElementById("hapusPopup");
 
+    // Tampilkan pop-up sukses
+    hapusPopup.style.display = "flex";
 
-    function toggleOptionsList(formType, event) {
-        var optionsList = document.querySelector(".options");
-        optionsList.style.display = optionsList.style.display === "block" ? "none" : "block";
-
-       
-    }
-
-    function selectOption(event, formType) {
-        var selectedValue = event.target.getAttribute("value");
-        var selectedText = event.target.innerText;
-
-
-        toggleOptionsList(formType);
-    }
-  
-
-    function togglePopup() {
-        var body = document.body;
-        body.classList.toggle("popup-open");
-
-        // ... (kode lainnya)
-    }
-
-    function closePopup() {
-        var body = document.body;
-        body.classList.remove("popup-open");
-
-        // ... (kode lainnya)
-    }
-
-    document.addEventListener('click', function(event) {
-        var optionsList = document.querySelector(".options");
-        if (optionsList.style.display === "block") {
-            optionsList.style.display = "none";
-        }
-    });
-
-    function simulateDataDeletionAndShowHapusPopup() {
-        // Simulasikan bahwa data berhasil dihapus
-        // Anda dapat menyesuaikan ini dengan logika sesungguhnya
-        var dataBerhasilDihapus = true;
-
-        if (dataBerhasilDihapus) {
-            showHapusPopup();
-        }
-    }
-
-    function showHapusPopup() {
-        var hapusPopup = document.getElementById("hapusPopup");
-
-        // Tampilkan pop-up sukses
-        hapusPopup.style.display = "flex";
-
-        // Setelah beberapa waktu, sembunyikan pop-up sukses
-        setTimeout(function () {
-            hapusPopup.style.display = "none";
-        }, 3000);
-    }
-
-    function closeHapusPopup() {
-        var hapusPopup = document.getElementById("hapusPopup");
+    // Setelah beberapa waktu, sembunyikan pop-up sukses
+    setTimeout(function () {
         hapusPopup.style.display = "none";
-    }
+    }, 3000);
+}
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Ganti 'infoIcon1' dengan ID yang sesuai untuk ikon info pertama
-        var infoIcon1 = document.getElementById('infoIcon1');
+function closeHapusPopup() {
+    var hapusPopup = document.getElementById("hapusPopup");
+    hapusPopup.style.display = "none";
+}
+// document.addEventListener("DOMContentLoaded", function () {
+//     // Mencari semua elemen dengan kelas 'ini-info'
+//     var infoIcons = document.querySelectorAll(".ini-info");
 
-        infoIcon1.addEventListener('click', function () {
-            // Dapatkan data ID dari atribut data-id
-            var dataId = infoIcon1.getAttribute('data-id');
+//     // Menambahkan event listener untuk setiap elemen
+//     infoIcons.forEach(function (infoIcon) {
+//         infoIcon.addEventListener("click", function () {
+//             // Dapatkan URL dari atribut data-url pada setiap elemen
+//             var url = infoIcon.getAttribute("data-url");
 
-            // Alihkan ke halaman lainnya dengan menggunakan data ID
-            window.location.href = '/adminkoperasi-detail' ; // Gantilah '/info/' dengan URL yang sesuai
-        });
-    });
+//             // Alihkan ke halaman detail menggunakan URL yang sesuai
+//             if (url) {
+//                 window.location.href = url;
+//             }
+//         });
+//     });
+// });
