@@ -63,17 +63,6 @@ class AdminProvinsiManajemenKoperasiController extends Controller
         }
     }
 
-    public function edit($id)
-    {
-        try {
-            $koperasi = Koperasi::findOrFail($id);
-            // Load additional data if needed
-            return view('admin_provinsi_manajemenkoperasi.edit', compact('koperasi'));
-        } catch (\Exception $e) {
-            return redirect()->route('admin_provinsi.manajemen_koperasi.index')->with('error', 'Gagal memuat halaman edit koperasi.');
-        }
-    }
-
     public function update(Request $request, $id)
     {
         $request->validate([
