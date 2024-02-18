@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminProvinsiController;
 use App\Http\Controllers\AdminKabupatenKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenKabKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenDpsController;
+use App\Http\Controllers\AdminProvinsiManajemenKoperasiController;
 
 
 // Route untuk halaman login
@@ -56,7 +57,7 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
     Route::put('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'update'])
         ->name('admin_provinsi.manajemen_dps.update');
     Route::get('/sertifikat/{filename}', function ($filename) {
-        $path = storage_path('app/public/sertifikat/' . $filename);
+        $path = storage_path('app/sertifikat/' . $filename);
 
         if (!File::exists($path)) {
             abort(404);
@@ -65,8 +66,21 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         return response()->file($path);
     })->name('sertifikat.show');
 
+    // Route untuk manajemen Koperasi
+    Route::get('/admin-provinsi/manajemen-koperasi', [AdminProvinsiManajemenKoperasiController::class, 'index'])
+        ->name('admin_provinsi.manajemen_koperasi.index');
 
+    Route::post('/admin-provinsi/manajemen-koperasi', [AdminProvinsiManajemenKoperasiController::class, 'store'])
+        ->name('admin_provinsi.manajemen_koperasi.store');
 
+    Route::delete('/admin-provinsi/manajemen-koperasi/{id}', [AdminProvinsiManajemenKoperasiController::class, 'destroy'])
+        ->name('admin_provinsi.manajemen_koperasi.destroy');
+
+    Route::get('/admin-provinsi/manajemen-koperasi/{id}/edit', [AdminProvinsiManajemenKoperasiController::class, 'edit'])
+        ->name('admin_provinsi.manajemen_koperasi.edit');
+
+    Route::put('/admin-provinsi/manajemen-koperasi/{id}', [AdminProvinsiManajemenKoperasiController::class, 'update'])
+        ->name('admin_provinsi.manajemen_koperasi.update');
 
 
     // Route untuk halaman detail admin koperasi
@@ -82,11 +96,6 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
     Route::get('/pengawasan-dps', function () {
         return view('admin_provinsi_pengawasandps');
     })->name('pengawasandps');
-
-    // Route sementara (opsional, bisa dihapus jika tidak digunakan)
-    Route::get('/admin-koperasi', function () {
-        return view('admin_provinsi_adminkoperasi');
-    })->name('adminkoperasi');
 
     // Route sementara (opsional, bisa dihapus jika tidak digunakan)
     Route::get('/konversi-koperasi', function () {

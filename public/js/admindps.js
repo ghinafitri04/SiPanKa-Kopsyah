@@ -24,29 +24,28 @@ document.addEventListener("DOMContentLoaded", function () {
         formContainer.style.display = "none";
     });
 
-    var btnHapusElements = document.querySelectorAll(".btn-hapus");
-    btnHapusElements.forEach(function (btnHapus) {
-        btnHapus.addEventListener("click", function (event) {
-            event.preventDefault();
-            var dataId = btnHapus.getAttribute("data-id");
-            showConfirmationPopup(dataId);
+    document
+        .getElementById("form-hapus-{{ $dps }}")
+        .addEventListener("submit", function (event) {
+            event.preventDefault(); // Mencegah formulir dikirim secara langsung
+            var form = this;
+            if (confirm("Apakah Anda yakin ingin menghapus data DPS ini?")) {
+                // Menggunakan Axios atau jQuery untuk mengirim permintaan DELETE secara asinkron
+                axios
+                    .delete(form.action)
+                    .then(function (response) {
+                        // Tindakan jika penghapusan berhasil
+                        console.log(response.data.message); // Log pesan sukses
+                        // Tambahkan kode lain yang ingin Anda jalankan setelah penghapusan berhasil
+                    })
+                    .catch(function (error) {
+                        // Tangani kesalahan jika penghapusan gagal
+                        console.error(
+                            "Gagal menghapus data:",
+                            error.response.data.message
+                        ); // Log pesan gagal
+                        // Tambahkan kode lain yang ingin Anda jalankan setelah penghapusan gagal
+                    });
+            }
         });
-    });
 });
-
-function showConfirmationPopup(dataId) {
-    var confirmationPopup = document.getElementById("confirmationPopup");
-    confirmationPopup.style.display = "flex";
-
-    var hapusButton = document.querySelector("#confirmationPopup .btn-success");
-    hapusButton.onclick = function () {
-        hapusData(dataId);
-        confirmationPopup.style.display = "none";
-    };
-}
-
-function hapusData(dataId) {
-    // Anda dapat menambahkan logika penghapusan data sesuai dengan kebutuhan
-    console.log("Menghapus data dengan ID:", dataId);
-    // Setelah data dihapus, Anda dapat menampilkan pop-up sukses atau melakukan tindakan lainnya
-}

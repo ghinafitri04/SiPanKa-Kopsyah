@@ -75,37 +75,43 @@
         </div>
     </div>
 
-    <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
+    <div class="mt-3" style="margin-left: 4.5cm; margin-right: 4cm;">
         <table class="table">
             <thead class="table-light">
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama Lengkap</th>
-                    <th scope="col">Akses Login</th>
+                    <th scope="col">Nama Admin</th>
                     <th scope="col">Nama Koperasi</th>
+                    <th scope="col">Akses Login</th>
+                    <th scope="col">Kabupaten/kota</th>
                     <th scope="col">Tindakan</th>
                 </tr>
             </thead>
             
             <tbody>
+                @foreach($koperasiList as $koperasi)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $koperasi->nama_admin_koperasi }}</td>
+                    <td>{{ $koperasi->nama_koperasi }}</td>
                     <td>
-                    <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> Mark<br>
-                    <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> p1234567   </td>
-                    <td> Nama Koperasi </td>
+                        <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> {{ $koperasi->username }}<br>
+                        <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> {{ $koperasi->password_text }}
+                    </td>
+                    <td>{{ $koperasi->adminKabupatenKota->kabupatenKota->nama_kabupatenkota }}</td>
                     <td>
-                        <a href="#" class="ini-info" id="infoIcon1" data-id="1">
+                        <a href="#" class="ini-info" id="infoIcon{{ $koperasi->id }}" data-id="{{ $koperasi->id }}">
                             <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
                         </a>
-                        <a href="#" class="btn-hapus" data-id="1">
+                        <a href="#" class="btn-hapus" data-id="{{ $koperasi->id }}">
                             <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
                         </a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
+        
     </div>
                 <div id="confirmationPopup" class="confirmation-popup-container">
                     <div class="confirmation-popup-card">

@@ -16,7 +16,6 @@ class Koperasi extends Model implements Authenticatable
     public $timestamps = true;
 
     protected $fillable = [
-        'id_kabupatenkota',
         'id_admin_kabupatenkota',
         'username',
         'password',
@@ -33,10 +32,6 @@ class Koperasi extends Model implements Authenticatable
         'role',
     ];
 
-    public function kabupatenKota()
-    {
-        return $this->belongsTo(KabupatenKota::class, 'id_kabupatenkota');
-    }
 
     public function adminKabupatenKota()
     {
@@ -45,5 +40,34 @@ class Koperasi extends Model implements Authenticatable
     public function isKoperasi()
     {
         return $this->role === 'koperasi';
+    }
+    public function getAuthIdentifierName()
+    {
+        return 'id_koperasi';
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRememberToken()
+    {
+        return null; // Jika Anda tidak menggunakan "remember me" token
+    }
+
+    public function setRememberToken($value)
+    {
+        // Jika Anda tidak menggunakan "remember me" token
+    }
+
+    public function getRememberTokenName()
+    {
+        return null; // Jika Anda tidak menggunakan "remember me" token
     }
 }

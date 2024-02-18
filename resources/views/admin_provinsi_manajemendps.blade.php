@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admindps.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -119,18 +121,24 @@
                   <a href="{{ route('sertifikat.show', ['filename' => basename($dps->sertifikat)]) }}" target="_blank">{{ basename($dps->sertifikat) }}</a>
                 </td>
                 <td>
-                  <a href="#" class="btn-hapus" data-id="{{ $dps->id }}">
-                    <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
-                  </a>
-                </td>
+                  <form id="form-hapus-{{ $dps->id_dps }}" action="{{ route('admin_provinsi.manajemen_dps.destroy', ['id' => $dps->id_dps]) }}" method="POST" style="display: inline;">
+                      @csrf
+                      @method('DELETE')
+                      <a href="#" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data DPS ini?')) document.getElementById('form-hapus-{{ $dps->id_dps }}').submit();">
+                          <img src="/img/Hapus.png" alt="Hapus" width="30" height="30">
+                      </a>
+                  </form> 
+              </td>                          
               </tr>
               @endforeach
             </tbody>
           </table>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 </body>
 </html>
