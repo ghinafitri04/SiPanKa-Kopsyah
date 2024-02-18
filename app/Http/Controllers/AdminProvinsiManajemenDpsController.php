@@ -10,7 +10,12 @@ class AdminProvinsiManajemenDpsController extends Controller
     public function index()
     {
         $dpsList = Dps::all();
-        return view('admin_provinsi_manajemendps', compact('dpsList'));
+        $jumlahAdminDps = \App\Models\Dps::count(); // Hitung jumlah admin kabupaten/kota
+
+        // Simpan nilai dalam sesi
+        session()->put('jumlahAdminDps',  $jumlahAdminDps);
+
+        return view('admin_provinsi_manajemendps', compact('dpsList', 'jumlahAdminDps'));
     }
 
     public function store(Request $request)
@@ -77,12 +82,9 @@ class AdminProvinsiManajemenDpsController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Dps $dps)
     {
         try {
-            // Cari DPS berdasarkan ID
-            $dps = Dps::findOrFail($id);
-
             // Hapus DPS
             $dps->delete();
 
@@ -93,6 +95,12 @@ class AdminProvinsiManajemenDpsController extends Controller
             return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal menghapus data DPS.');
         }
     }
+
+
+
+
+
+
 
     public function edit($id)
     {

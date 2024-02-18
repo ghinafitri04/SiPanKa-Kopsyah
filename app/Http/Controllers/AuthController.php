@@ -66,12 +66,8 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $role = $request->user()->role;
-
-        Auth::guard($role)->logout();
-
-        $request->session()->invalidate();
-
-        return redirect('/');
+        Auth::logout(); // Melakukan logout pengguna
+        $request->session()->invalidate(); // Mematikan sesi pengguna
+        return redirect('/login'); // Mengarahkan pengguna ke halaman login setelah logout
     }
-}
+}    

@@ -14,12 +14,11 @@
 </head>
 
 <body>
-    @include('admin_kabkota.sidebar')
-    @include('admin_kabkota.navbar')
+    @include('layouts.admin_kabkota_sidebar')
+    @include('layouts.admin_kabkota_navbar')
 
     <!-- Bagian baru yang ditambahkan -->
     <div class="content">
-
         <div class="center-text">
             <h4 class="dashboard-title">Dashboard Admin</h4>
         </div>
@@ -67,6 +66,7 @@
         <script src="{{asset('js/script_kabkota.js')}}"></script>
         <script src="{{asset('js/dashboard_kabkota.js')}}"></script>
     </div>
+</div>
 </body>
 
 </html>

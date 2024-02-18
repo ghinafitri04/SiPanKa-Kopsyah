@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AdminKabupatenKota;
 use App\Models\KabupatenKota;
 use Illuminate\Http\Request;
+use App\Models\Dps;
 
 class AdminProvinsiManajemenKabKotaController extends Controller
 {
@@ -12,9 +13,16 @@ class AdminProvinsiManajemenKabKotaController extends Controller
     {
         $adminKabupatenKota = \App\Models\AdminKabupatenKota::all();
         $kabupatenKotaList = KabupatenKota::all();
-
-        return view('admin_provinsi_manajemenkabkota', compact('adminKabupatenKota', 'kabupatenKotaList'));
+        $jumlahAdminKabupatenKota = \App\Models\AdminKabupatenKota::count(); // Hitung jumlah admin kabupaten/kota
+    
+        // Simpan nilai dalam sesi
+        session()->put('jumlahAdminKabupatenKota', $jumlahAdminKabupatenKota);
+    
+        return view('admin_provinsi_manajemenkabkota', compact('adminKabupatenKota', 'kabupatenKotaList', 'jumlahAdminKabupatenKota'));
     }
+    
+    
+
 
     public function store(Request $request)
     {
@@ -44,19 +52,20 @@ class AdminProvinsiManajemenKabKotaController extends Controller
     public function destroy($id)
 {
     try {
-        // Cari admin kabupaten berdasarkan ID
-        $admin = AdminKabupatenKota::findOrFail($id);
+        // Cari DPS berdasarkan ID
+        $dps = Dps::findOrFail($id);
 
-        // Hapus admin kabupaten
-        $admin->delete();
+        // Hapus DPS
+        $dps->delete();
 
         // Redirect ke halaman indeks dengan pesan sukses
-        return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('success', 'Admin kabupaten berhasil dihapus.');
+        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('success', 'Data DPS berhasil dihapus.');
     } catch (\Exception $e) {
         // Tangani kesalahan dengan menampilkan pesan gagal
-        return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal menghapus admin kabupaten.');
+        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal menghapus data DPS.');
     }
 }
+
 
 
     public function edit($id)
@@ -100,4 +109,6 @@ class AdminProvinsiManajemenKabKotaController extends Controller
             return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal memperbarui data admin kabupaten.');
         }
     }
+
+  
 }

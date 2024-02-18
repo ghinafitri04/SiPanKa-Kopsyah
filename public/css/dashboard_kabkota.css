@@ -1,16 +1,16 @@
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* Gaya untuk Dashboard Admin */
 .dashboard-title {
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     color: black;
     margin-top: 0.5cm;
-    margin-left: -25cm; /* Ubah margin kiri */
+    margin-left: -23cm;
 }
 
 .tulisantengah {
@@ -18,16 +18,19 @@ body {
     text-align: center;
     font-size: 36px;
     color: black;
-    margin-top: 6vh; /* Ubah margin top */
+    margin-top: 6vh; 
+    font-family: 'Poppins', sans-serif;
 }
 
 .tulisantengah:hover {
-    color: #0e690e; /* Ganti warna teks saat dihover */
+    color: #0e690e;
+    font-family: 'Poppins', sans-serif;
 }
 
 .center-textt {
     text-align: center;
     margin-left: -15cm;
+    font-family: 'Poppins', sans-serif;
 }
 
 .center-textt p {
@@ -35,9 +38,9 @@ body {
     color: black;
 }
 
-/* Gaya untuk Selamat Datang dan Admin */
 .center-textt p {
     font-size: 22px;
+    font-family: 'Poppins', sans-serif;
     color: black;
     margin-left: 578px;
 }
@@ -48,88 +51,85 @@ body {
     font-weight: normal;
 }
 
-/* Gaya untuk tabel kolom Admin Kab Kota, DPS, dan Koperasi Syariah */
 .table-container {
-margin: 10px 2cm; /* Tambahkan margin ke kiri dan kanan */
+margin: 10px 2cm; 
 margin-top: 1.5cm;
-position: relative; /* Tambahkan posisi relatif */
+position: relative;
+font-family: 'Poppins', sans-serif;
 }
 
-/* Box biru */
 .custom-box {
 position: absolute;
-top: -5px; /* Atur margin top agar tidak overlap dengan box merah */
-left: -5px; /* Atur margin left agar tidak overlap dengan box merah */
-width: calc(100% + 10px); /* Tambahkan margin left dan right ke width */
-/* height: calc(100% + 10px); Tambahkan margin top dan bottom ke height */
+top: -5px; 
+left: -5px; 
+width: calc(100% + 10px); 
+font-family: 'Poppins', sans-serif;
 height: 180px;
 border: 3px solid #d3d3d3; 
 box-sizing: border-box;
-border-radius: 10px; /* Border radius untuk ujung yang tumpul */
+border-radius: 10px; 
 }
 
-/* Box hijau */
 .custom-table td:nth-child(3) .card:hover {
 background: linear-gradient(to right, #55efc4, #00b894);
-border: none; /* Hapus border pada box hijau */
+border: none; 
 }
 
 .custom-table {
-    /* border-collapse: collapse; */
+    font-family: 'Poppins', sans-serif;
     width: 100%;
 }
 
 .custom-table th,
 .custom-table td {
-    /* border: 1px solid #007bff; */
     padding: 8px;
     text-align: center;
-    width: 100%; /* Atur lebar kolom agar sama */
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
 }
 
 .custom-table th {
     background-color: #007bff;
+    font-family: 'Poppins', sans-serif;
     color: white;
 }
 
 .custom-table td {
-    /* border: 1px solid #007bff; */
     padding: 8px;
     text-align: center;
-    width: 100%; /* Atur lebar kolom agar sama */
+    width: 100%; 
+    font-family: 'Poppins', sans-serif;
 }
 
 .custom-table td .card {
-    font-size: 24px; /* Ubah nilai sesuai keinginan Anda */
-    width: 250px; /* Ubah nilai sesuai keinginan Anda */
-    height: 125px; /* Ubah nilai sesuai keinginan Anda */
-    /* ... (properti lainnya) */
+    font-size: 24px; 
+    width: 250px; 
+    height: 125px; 
 }
 
 .custom-table td:nth-child(3) .card:hover {
-    width: 120%; /* Ubah nilai sesuai keinginan Anda */
-    height: 120%; /* Ubah nilai sesuai keinginan Anda */
-    /* ... (properti lainnya) */
+    width: 120%;
+    height: 120%; 
 }
 
 
 .custom-table td .number {
-    font-size: 30px; /* Ukuran font angka */
-    font-weight: bold; /* Bold untuk angka jika diinginkan */
-    /* margin-bottom: 0.1px; Mengurangi jarak antara angka dan teks */
+    font-size: 30px; 
+    font-weight: bold; 
+    font-family: 'Poppins', sans-serif;
 }
 
 .custom-table td .text {
-    font-size: 18px; /* Ukuran font teks */
-    /* margin-bottom: 2px; Mengurangi jarak antara teks dan link */
+    font-size: 18px;
 }
 
 .custom-table td .card-footer {
-    margin-top: 5px; /* Memberikan jarak antara teks dan "Lihat Detail" */
+    margin-top: 5px;
 }
 
 .centered-content {
     display: flex;
+    font-family: 'Poppins', sans-serif;
     justify-content: center;
     align-items: center;
     height: 100%;

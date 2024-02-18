@@ -236,6 +236,7 @@ $(document).ready(function () {
     });
 });
 
+<<<<<<< HEAD
 $(document).ready(function () {
     $(".btn-hapus").click(function (e) {
         e.preventDefault();
@@ -244,6 +245,29 @@ $(document).ready(function () {
         }
     });
 });
+=======
+
+
+
+  
+
+    $(document).ready(function () {
+        $(".btn-hapus").click(function (e) {
+            e.preventDefault();
+            if (confirm("Apakah Anda yakin ingin menghapus admin kabupaten ini?")) {
+                $(this).closest("form").submit(); // Submit formulir tersembunyi terdekat
+            }
+        });
+    });
+    
+
+
+
+
+
+
+
+>>>>>>> 1cb7f29184f592215a8ac8ffb1a50062a470b1f9
 
 function showEditForm() {
     // Sesuaikan dengan kelas atau ID formulir edit yang sebenarnya
@@ -387,3 +411,16 @@ function closeHapusPopup() {
     var hapusPopup = document.getElementById("hapusPopup");
     hapusPopup.style.display = "none";
 }
+
+$(document).ready(function() {
+    $.ajax({
+        url: "{{ route('admin_provinsi.get_jumlah_admin_kabupaten_kota') }}",
+        type: "GET",
+        success: function(response) {
+            $('#jumlahAdminKabupatenKota').text(response.jumlah);
+        },
+        error: function(xhr) {
+            console.error('Error:', xhr.responseText);
+        }
+    });
+});
