@@ -62,3 +62,24 @@ function handleOtherClicks(event) {
     // Logika penanganan event lainnya
     event.stopPropagation(); // Mencegah event klik menyebar
 }
+
+function logout() {
+    console.log('Logout button clicked'); // Pastikan bahwa fungsi logout() dijalankan
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/login';
+        } else {
+            console.error('Logout request failed');
+        }
+    })
+    .catch(error => {
+        console.error('Network error:', error);
+    });
+}
