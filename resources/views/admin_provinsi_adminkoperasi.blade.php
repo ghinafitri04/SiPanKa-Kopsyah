@@ -66,6 +66,19 @@
                 </div>
             </div>
 
+            @isset($kabupatenKotaList)
+        <select id="kabupatenKota" name="kabupatenKota">
+        <option value="">Pilih Kabupaten/Kota</option>
+        @foreach($kabupatenKotaList as $kabupatenKota)
+            <option value="{{ $kabupatenKota->id_kabupatenkota }}">{{ $kabupatenKota->nama_kabupatenkota }}</option>
+        @endforeach
+          </select>
+    @endisset
+
+            
+            
+            
+
             <div class="btn-container">
                 <button type="button" class="btn btn-danger btn-batal" onclick="togglePopup()">Batal</button>
                 <button type="button" class="btn btn-success" id="btnTambahForm" onclick="showSuccessPopup()">Tambah</button>
@@ -83,6 +96,7 @@
                     <th scope="col">Nama Lengkap</th>
                     <th scope="col">Akses Login</th>
                     <th scope="col">Nama Koperasi</th>
+                    <th scope="col">Kabupaten/Kota</th>
                     <th scope="col">Tindakan</th>
                 </tr>
             </thead>
@@ -95,6 +109,7 @@
                     <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> Mark<br>
                     <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> p1234567   </td>
                     <td> Nama Koperasi </td>
+                    <td> Disini isi kabupaten kotanya</td> 
                     <td>
                         <a href="#" class="ini-info" id="infoIcon1" data-id="1">
                             <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
