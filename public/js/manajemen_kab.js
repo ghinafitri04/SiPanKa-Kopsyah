@@ -214,8 +214,7 @@ $(document).ready(function () {
                 // Tampilkan pesan sukses jika permintaan berhasil
                 alert("Data berhasil diperbarui.");
                 // Redirect ke halaman indeks
-                window.location.href =
-                    "{{ route('admin_provinsi.manajemen_kab_kota.index') }}";
+                window.location.href = "/admin-provinsi/manajemen-kab-kota";
             },
             error: function (xhr, status, error) {
                 // Tangani kesalahan jika permintaan gagal
