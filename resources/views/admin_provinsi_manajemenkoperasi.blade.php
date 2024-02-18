@@ -29,10 +29,6 @@
         </div>
     </div>
 
-    
-            
-
-
     <div class="mt-3" style="margin-left: 4.5cm; margin-right: 4cm;">
         <table class="table">
             <thead class="table-light">
@@ -61,9 +57,13 @@
                         <a href="{{ route('admin_provinsi.detail_manajemen_koperasi.detail_index', ['id' => $koperasi->id_koperasi]) }}" class="ini-info">
                             <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
                         </a>                        
-                        <a href="#" class="btn-hapus" data-id="{{ $koperasi->id }}">
-                            <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
-                        </a>
+                        <form action="{{ route('admin_provinsi.manajemen_koperasi.destroy', ['id' => $koperasi->id_koperasi]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-hapus" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                                <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
+                            </button>
+                        </form>                        
                     </td>
                 </tr>
                 @endforeach

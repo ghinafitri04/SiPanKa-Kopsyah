@@ -20,25 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         formContainer.style.display = "block";
     });
 
-    var btnHapusElements = document.querySelectorAll(".btn-hapus");
-    btnHapusElements.forEach(function (btnHapus) {
-        btnHapus.addEventListener("click", function (event) {
-            event.preventDefault();
-            var confirmationPopup =
-                document.getElementById("confirmationPopup");
-            confirmationPopup.style.display = "flex";
-            var dataId = btnHapus.getAttribute("data-id");
-            var hapusButton = document.querySelector(
-                "#confirmationPopup .btn-success"
-            );
-            hapusButton.onclick = function () {
-                hapusData();
-                confirmationPopup.style.display = "none";
-                // Tambahkan logika lain yang perlu dilakukan setelah penghapusan
-            };
-        });
-    });
-
     var closeIcon = document.querySelector(".close-icon");
     closeIcon.addEventListener("click", function () {
         overlay.style.display = "none";
@@ -219,20 +200,3 @@ function closeHapusPopup() {
     var hapusPopup = document.getElementById("hapusPopup");
     hapusPopup.style.display = "none";
 }
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Mencari semua elemen dengan kelas 'ini-info'
-//     var infoIcons = document.querySelectorAll(".ini-info");
-
-//     // Menambahkan event listener untuk setiap elemen
-//     infoIcons.forEach(function (infoIcon) {
-//         infoIcon.addEventListener("click", function () {
-//             // Dapatkan URL dari atribut data-url pada setiap elemen
-//             var url = infoIcon.getAttribute("data-url");
-
-//             // Alihkan ke halaman detail menggunakan URL yang sesuai
-//             if (url) {
-//                 window.location.href = url;
-//             }
-//         });
-//     });
-// });
