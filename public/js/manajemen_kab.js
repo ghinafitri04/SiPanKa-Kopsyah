@@ -387,3 +387,16 @@ function closeHapusPopup() {
     var hapusPopup = document.getElementById("hapusPopup");
     hapusPopup.style.display = "none";
 }
+
+$(document).ready(function () {
+    $.ajax({
+        url: "{{ route('admin_provinsi.get_jumlah_admin_kabupaten_kota') }}",
+        type: "GET",
+        success: function (response) {
+            $("#jumlahAdminKabupatenKota").text(response.jumlah);
+        },
+        error: function (xhr) {
+            console.error("Error:", xhr.responseText);
+        },
+    });
+});

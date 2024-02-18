@@ -48,18 +48,18 @@
                         <th></th>
                         <th></th>
                     </tr>
-
+           
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <div class="card bg-danger text-white mb-4" data-route-name="{{ route('admin_provinsi.manajemen_kab_kota.index') }}">
-                                <div class="number">0</div>
+                            <a href="{{ route('admin_provinsi.manajemen_kab_kota.index') }}" class="card bg-danger text-white mb-4">
+                                <div class="number" id="jumlahAdminKabupatenKota">{{ session('jumlahAdminKabupatenKota') }}</div>
                                 <div class="text">Admin Kab Kota</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a href="#" class="small text-white stretched-link">Lihat Detail</a>
+                                    <span class="small text-white stretched-link">Lihat Detail</span>
                                 </div>
-                            </div>                        
+                            </a>    
                         </td>
 
                         <td>
@@ -67,9 +67,9 @@
                                 <div class="number">0</div>
                                 <div class="text">DPS</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a href="#" class="small text-white stretched-link">Lihat Detail</a>
+                                    <span class="small text-white stretched-link">Lihat Detail</span>
                                 </div>
-                            </div>
+                            </a>   
                         </td>
 
                         <td>
@@ -88,5 +88,9 @@
         </div>
     </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </html>

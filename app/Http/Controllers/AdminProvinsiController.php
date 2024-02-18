@@ -10,4 +10,7 @@ class AdminProvinsiController extends Controller
     {
         return view('admin_provinsi_dashboard');
     }
+
+ 
+
 }
