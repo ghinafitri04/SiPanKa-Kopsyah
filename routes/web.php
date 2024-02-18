@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminKabupatenKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenKabKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenDpsController;
 use App\Http\Controllers\ManajemenKoperasiController;
+use App\Http\Controllers\DpsController;
 
 
 // Route untuk halaman login
@@ -166,4 +167,9 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
 Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
     // Sesuaikan dengan controller dan metodenya
     Route::get('/admin_kabkota_dashboard', [AdminKabupatenKotaController::class, 'dashboard'])->name('admin_kabupatenkota.dashboard');
+});
+
+Route::middleware(['auth:dps'])->group(function () {
+    // Sesuaikan dengan controller dan metodenya
+    Route::get('/dps_dashboard', [DpsController::class, 'dashboard'])->name('dps.dashboard');
 });
