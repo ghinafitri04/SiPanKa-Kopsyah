@@ -14,35 +14,34 @@
     <ul>
         <li class="menu-item">
             <img src='/img/tabler_home.png' alt="Home Icon"> 
-            <a href="{{ route('admin_kabupatenkota.dashboard') }}" >Dashboard</a>
+            <a href="{{ route('admin_kabupatenkota.dashboard') }}">Dashboard</a>
         </li>
-        
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="{{ route('pengawasandpskabkota') }}">Pengawasan DPS</a>
+            <a href="{{ route('admin_kabkota.pengawasan_dps.index') }}">Pengawasan DPS</a>
         </li>
-
+    
         <li class="parent-menu">
             <li class="menu-item">
-            <img src='/img/dps.png' alt="Manajemen dps"> 
-            <a href="#" onclick="toggleSubMenu('dpsSubMenu')">Manajemen Koperasi <span class="arrow">&#11167;</span></a>
+                <img src='/img/dps.png' alt="Manajemen dps"> 
+                <a href="#" onclick="toggleSubMenu('dpsSubMenu')">Manajemen Koperasi <span class="arrow">&#11167;</span></a>
             </li>
-
+    
             <ul id="dpsSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('adminkoperasikabkota') }}">Admin Koperasi</a>
-                </li>
-
+                    <a href="{{ route('admin_kabkota.manajemen_koperasi.index') }}">Admin Koperasi</a>
+                </li>                
+    
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('konversikoperasikabkota') }}">Konversi Koperasi</a>
+                    <a href="{{ route('admin_kabkota.konversi_koperasi.index') }}">Konversi Koperasi</a>
                 </li>
             </ul>
         </li>
-
     </ul>
+    
 
     <div class="logout">
         <form id="logoutForm" action="{{ route('logout') }}" method="POST">

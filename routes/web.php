@@ -8,6 +8,9 @@ use App\Http\Controllers\AdminKabupatenKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenKabKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenDpsController;
 use App\Http\Controllers\AdminProvinsiManajemenKoperasiController;
+use App\Http\Controllers\AdminKabupatenKotaManajemenKoperasiController;
+use App\Http\Controllers\AdminKabupatenKotaKonversiKoperasiController;
+use App\Http\Controllers\AdminKabupatenKotaPengawasanDpsController;
 
 
 // Route untuk halaman login
@@ -76,6 +79,24 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         ->name('admin_provinsi.detail_manajemen_koperasi.detail_index');
 });
 
+Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
+    Route::get('/admin-kabkota/dashboard', [AdminKabupatenKotaController::class, 'dashboard'])
+        ->name('admin_kabkota.dashboard');
+    Route::get('/admin-kabkota/manajemen-koperasi', [AdminKabupatenKotaManajemenKoperasiController::class, 'index'])
+        ->name('admin_kabkota.manajemen_koperasi.index');
+    Route::post('/admin-kabkota/manajemen-koperasi/store', [AdminKabupatenKotaManajemenKoperasiController::class, 'store'])
+        ->name('admin_kabkota.manajemen_koperasi.store');
+    Route::delete('/admin-kabkota/manajemen-koperasi/{id}', [AdminKabupatenKotaManajemenKoperasiController::class, 'destroy'])
+        ->name('admin_kabkota.manajemen_koperasi.destroy');
+    Route::put('/admin-kabkota/manajemen-koperasi/{id}', [AdminKabupatenKotaManajemenKoperasiController::class, 'update'])
+        ->name('admin_kabkota.manajemen_koperasi.update');
+
+    // Route sementara (opsional, bisa dihapus jika tidak digunakan)
+    Route::get('/admin-kabkota/konversi-koperasi', [AdminKabupatenKotaKonversiKoperasiController::class, 'index'])
+        ->name('admin_kabkota.konversi_koperasi.index');
+    Route::get('/admin-kabkota/pengawasan-dps', [AdminKabupatenKotaPengawasanDpsController::class, 'index'])
+        ->name('admin_kabkota.pengawasan_dps.index');
+});
 
 // Route sementara (opsional, bisa dihapus jika tidak digunakan)
 Route::get('/admin-dps', function () {
