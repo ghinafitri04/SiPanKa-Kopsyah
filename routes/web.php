@@ -9,7 +9,8 @@ use App\Http\Controllers\AdminProvinsiManajemenKabKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenDpsController;
 use App\Http\Controllers\ManajemenKoperasiController;
 use App\Http\Controllers\DpsController;
-
+use App\Http\Controllers\KoperasiController;
+use App\Models\Koperasi;
 
 // Route untuk halaman login
 Route::get('/login', function () {
@@ -155,14 +156,26 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         return view('admin_kabkota_konversi_koperasi_tahap4');
     })->name('tahap4_konversikoperasikabkota');
 
-
-
     // Route untuk halaman detail pengawasan DPS
     Route::view('/detail-dps', 'detail_pengawasan_dps')
         ->name('detail_pengawasan_dps');
 
-    
+    // Route untuk halaman dps yaa
+    Route::get('/dps-pengawasandps', function () {
+        return view('dps_riwayat_pengawasan');
+    })->name('dps_riwayat_pengawasan');
 
+    Route::get('/dps-informasikoperasi', function () {
+        return view('dps_informasi_koperasi');
+    })->name('dps_informasi_koperasi');
+
+    Route::get('/dps-konversikoperasi', function () {
+        return view('dps_konversi_koperasi');
+    })->name('dps_konversi_koperasi');
+
+    Route::get('/detail-pengawasan-dps', function () {
+        return view('dps_detail_pengawasan');
+    })->name('dps_detail_pengawasan');
 
 Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
     // Sesuaikan dengan controller dan metodenya
@@ -172,4 +185,9 @@ Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
 Route::middleware(['auth:dps'])->group(function () {
     // Sesuaikan dengan controller dan metodenya
     Route::get('/dps_dashboard', [DpsController::class, 'dashboard'])->name('dps.dashboard');
+});
+
+Route::middleware(['auth:koperasi'])->group(function () {
+    // Sesuaikan dengan controller dan metodenya
+    Route::get('/koperasi_dashboard', [KoperasiController::class, 'dashboard'])->name('koperasi.dashboard');
 });

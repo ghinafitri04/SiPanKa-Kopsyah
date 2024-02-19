@@ -30,7 +30,7 @@
                 </div>
 
                 <div id="profilSubMenu" class="profile-dropdown">
-                    <a class="profile-item" href="/dps-update-profil">
+                    <a class="profile-item" href="/koperasi-update-profil">
                         <div class="profile-img">
                             <img src='/img/profile.png' alt="Profile Icon">
                         </div>

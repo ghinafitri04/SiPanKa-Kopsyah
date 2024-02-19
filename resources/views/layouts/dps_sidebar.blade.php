@@ -15,7 +15,7 @@
 
         <li class="menu-item">
             <img src='/img/dps.png' alt="Riwayat Pengawasan"> 
-            <a href="{{ route('dps.dashboard') }}" >Riwayat Pengawasan</a>
+            <a href="{{ route('dps_riwayat_pengawasan') }}" >Riwayat Pengawasan</a>
         </li>
         
         <li class="parent-menu">
@@ -27,12 +27,12 @@
             <ul id="koperasiSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
-                    <a href="{{ route('dps.dashboard') }}">Informasi Koperasi</a>
+                    <a href="{{ route('dps_informasi_koperasi') }}">Informasi Koperasi</a>
                 </li>
                 
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi">
-                    <a href="{{ route('dps.dashboard') }}">Konversi Koperasi</a>
+                    <a href="{{ route('dps_konversi_koperasi') }}">Konversi Koperasi</a>
                 </li>
 
             </ul>
