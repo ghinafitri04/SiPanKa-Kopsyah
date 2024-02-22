@@ -60,9 +60,9 @@
                     <form action="{{ route('admin_kabkota.manajemen_koperasi.destroy', ['id' => $koperasi->id_koperasi]) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn-hapus" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                        <a type="submit" class="btn-hapus" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
                             <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
-                        </button>
+                        </a>
                     </form>                        
                 </td>
             </tr>

@@ -11,8 +11,13 @@ use App\Http\Controllers\AdminProvinsiManajemenKoperasiController;
 use App\Http\Controllers\AdminKabupatenKotaManajemenKoperasiController;
 use App\Http\Controllers\AdminKabupatenKotaKonversiKoperasiController;
 use App\Http\Controllers\AdminKabupatenKotaPengawasanDpsController;
+use App\Http\Controllers\KoperasiController;
+use App\Models\Koperasi;
 
-
+// Route default, arahkan ke halaman login
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 // Route untuk halaman login
 Route::get('/login', function () {
     return view('login');
@@ -97,6 +102,13 @@ Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
     Route::get('/admin-kabkota/pengawasan-dps', [AdminKabupatenKotaPengawasanDpsController::class, 'index'])
         ->name('admin_kabkota.pengawasan_dps.index');
 });
+
+Route::middleware(['auth:koperasi'])->group(function () {
+    Route::get('/koperasi/dashboard', [KoperasiController::class, 'dashboard'])
+        ->name('koperasi.dashboard');
+});
+
+
 
 // Route sementara (opsional, bisa dihapus jika tidak digunakan)
 Route::get('/admin-dps', function () {
