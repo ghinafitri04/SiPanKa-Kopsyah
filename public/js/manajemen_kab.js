@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         formContainer.style.display = "block";
     });
 
- 
-
     var closeIcon = document.querySelector(".close-icon");
     closeIcon.addEventListener("click", function () {
         overlay.style.display = "none";
@@ -216,8 +214,7 @@ $(document).ready(function () {
                 // Tampilkan pesan sukses jika permintaan berhasil
                 alert("Data berhasil diperbarui.");
                 // Redirect ke halaman indeks
-                window.location.href =
-                    "{{ route('admin_provinsi.manajemen_kab_kota.index') }}";
+                window.location.href = "/admin-provinsi/manajemen-kab-kota";
             },
             error: function (xhr, status, error) {
                 // Tangani kesalahan jika permintaan gagal
@@ -238,27 +235,14 @@ $(document).ready(function () {
     });
 });
 
-
-
-
-  
-
-    $(document).ready(function () {
-        $(".btn-hapus").click(function (e) {
-            e.preventDefault();
-            if (confirm("Apakah Anda yakin ingin menghapus admin kabupaten ini?")) {
-                $(this).closest("form").submit(); // Submit formulir tersembunyi terdekat
-            }
-        });
+$(document).ready(function () {
+    $(".btn-hapus").click(function (e) {
+        e.preventDefault();
+        if (confirm("Apakah Anda yakin ingin menghapus admin kabupaten ini?")) {
+            $(this).closest("form").submit(); // Submit formulir tersembunyi terdekat
+        }
     });
-    
-
-
-
-
-
-
-
+});
 
 function showEditForm() {
     // Sesuaikan dengan kelas atau ID formulir edit yang sebenarnya
@@ -403,15 +387,15 @@ function closeHapusPopup() {
     hapusPopup.style.display = "none";
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     $.ajax({
         url: "{{ route('admin_provinsi.get_jumlah_admin_kabupaten_kota') }}",
         type: "GET",
-        success: function(response) {
-            $('#jumlahAdminKabupatenKota').text(response.jumlah);
+        success: function (response) {
+            $("#jumlahAdminKabupatenKota").text(response.jumlah);
         },
-        error: function(xhr) {
-            console.error('Error:', xhr.responseText);
-        }
+        error: function (xhr) {
+            console.error("Error:", xhr.responseText);
+        },
     });
 });

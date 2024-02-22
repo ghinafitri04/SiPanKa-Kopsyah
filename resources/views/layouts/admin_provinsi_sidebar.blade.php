@@ -52,8 +52,8 @@
             <ul id="koperasiSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
-                    <a href="{{ route('adminkoperasi') }}">Admin Koperasi</a>
-                </li>
+                    <a href="{{ route('admin_provinsi.manajemen_koperasi.index') }}">Admin Koperasi</a>
+                </li>                
                 
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi">

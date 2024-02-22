@@ -24,25 +24,28 @@ document.addEventListener("DOMContentLoaded", function () {
         formContainer.style.display = "none";
     });
 
-
-    document.getElementById('form-hapus-{{ $dps }}').addEventListener('submit', function(event) {
-        event.preventDefault(); // Mencegah formulir dikirim secara langsung
-        var form = this;
-        if (confirm('Apakah Anda yakin ingin menghapus data DPS ini?')) {
-            // Menggunakan Axios atau jQuery untuk mengirim permintaan DELETE secara asinkron
-            axios.delete(form.action)
-                .then(function(response) {
-                    // Tindakan jika penghapusan berhasil
-                    console.log(response.data.message); // Log pesan sukses
-                    // Tambahkan kode lain yang ingin Anda jalankan setelah penghapusan berhasil
-                })
-                .catch(function(error) {
-                    // Tangani kesalahan jika penghapusan gagal
-                    console.error('Gagal menghapus data:', error.response.data.message); // Log pesan gagal
-                    // Tambahkan kode lain yang ingin Anda jalankan setelah penghapusan gagal
-                });
-        }
-    });
-    
-        
-});           
+    document
+        .getElementById("form-hapus-{{ $dps }}")
+        .addEventListener("submit", function (event) {
+            event.preventDefault(); // Mencegah formulir dikirim secara langsung
+            var form = this;
+            if (confirm("Apakah Anda yakin ingin menghapus data DPS ini?")) {
+                // Menggunakan Axios atau jQuery untuk mengirim permintaan DELETE secara asinkron
+                axios
+                    .delete(form.action)
+                    .then(function (response) {
+                        // Tindakan jika penghapusan berhasil
+                        console.log(response.data.message); // Log pesan sukses
+                        // Tambahkan kode lain yang ingin Anda jalankan setelah penghapusan berhasil
+                    })
+                    .catch(function (error) {
+                        // Tangani kesalahan jika penghapusan gagal
+                        console.error(
+                            "Gagal menghapus data:",
+                            error.response.data.message
+                        ); // Log pesan gagal
+                        // Tambahkan kode lain yang ingin Anda jalankan setelah penghapusan gagal
+                    });
+            }
+        });
+});

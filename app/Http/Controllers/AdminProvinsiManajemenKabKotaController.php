@@ -14,14 +14,14 @@ class AdminProvinsiManajemenKabKotaController extends Controller
         $adminKabupatenKota = \App\Models\AdminKabupatenKota::all();
         $kabupatenKotaList = KabupatenKota::all();
         $jumlahAdminKabupatenKota = \App\Models\AdminKabupatenKota::count(); // Hitung jumlah admin kabupaten/kota
-    
+
         // Simpan nilai dalam sesi
         session()->put('jumlahAdminKabupatenKota', $jumlahAdminKabupatenKota);
-    
+
         return view('admin_provinsi_manajemenkabkota', compact('adminKabupatenKota', 'kabupatenKotaList', 'jumlahAdminKabupatenKota'));
     }
-    
-    
+
+
 
 
     public function store(Request $request)
@@ -50,21 +50,19 @@ class AdminProvinsiManajemenKabKotaController extends Controller
     }
 
     public function destroy($id)
-{
-    try {
-        // Cari DPS berdasarkan ID
-        $dps = Dps::findOrFail($id);
-
-        // Hapus DPS
-        $dps->delete();
-
-        // Redirect ke halaman indeks dengan pesan sukses
-        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('success', 'Data DPS berhasil dihapus.');
-    } catch (\Exception $e) {
-        // Tangani kesalahan dengan menampilkan pesan gagal
-        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal menghapus data DPS.');
+    {
+        try {
+            // Cari admin kabupaten berdasarkan ID
+            $admin = AdminKabupatenKota::findOrFail($id);
+            // Hapus admin kabupaten
+            $admin->delete();
+            // Redirect ke halaman indeks dengan pesan sukses
+            return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('success', 'Admin kabupaten berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Tangani kesalahan dengan menampilkan pesan gagal
+            return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal menghapus admin kabupaten.');
+        }
     }
-}
 
 
 
@@ -109,6 +107,4 @@ class AdminProvinsiManajemenKabKotaController extends Controller
             return redirect()->route('admin_provinsi.manajemen_kab_kota.index')->with('error', 'Gagal memperbarui data admin kabupaten.');
         }
     }
-
-  
 }

@@ -12,10 +12,10 @@ class AdminProvinsiManajemenDpsController extends Controller
         $dpsList = Dps::all();
         $jumlahAdminDps = \App\Models\Dps::count(); // Hitung jumlah admin kabupaten/kota
 
-          // Simpan nilai dalam sesi
-          session()->put('jumlahAdminDps',  $jumlahAdminDps);
-    
-          return view('admin_provinsi_manajemendps', compact('dpsList', 'jumlahAdminDps'));
+        // Simpan nilai dalam sesi
+        session()->put('jumlahAdminDps',  $jumlahAdminDps);
+
+        return view('admin_provinsi_manajemendps', compact('dpsList', 'jumlahAdminDps'));
     }
 
     public function store(Request $request)
@@ -82,25 +82,26 @@ class AdminProvinsiManajemenDpsController extends Controller
     }
 
 
-    public function destroy(Dps $dps)
-{
-    try {
-        // Hapus DPS
-        $dps->delete();
-        
-        // Redirect ke halaman indeks dengan pesan sukses
-        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('success', 'Data DPS berhasil dihapus.');
-    } catch (\Exception $e) {
-        // Tangani kesalahan dengan menampilkan pesan gagal
-        return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal menghapus data DPS.');
+    public function destroy($id)
+    {
+        try {
+            // Cari DPS berdasarkan ID
+            $dps = Dps::findOrFail($id);
+            // Hapus DPS
+            $dps->delete();
+            // Redirect ke halaman indeks dengan pesan sukses
+            return redirect()->route('admin_provinsi.manajemen_dps.index')->with('success', 'Data DPS berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Tangani kesalahan dengan menampilkan pesan gagal
+            return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal menghapus data DPS.');
+        }
     }
-}
 
-    
-    
-    
 
-    
+
+
+
+
 
     public function edit($id)
     {
