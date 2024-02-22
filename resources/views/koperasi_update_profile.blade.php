@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <title>Sipanka KopSyah - Update Profil</title>
-
 </head>
 
 <body>
@@ -18,107 +17,165 @@
     @include('layouts.koperasi_navbar')
     <script src="{{asset('js/script_koperasi.js')}}"></script>
 
-  <div class="content">
-    <!-- Logo Box -->
-    <div class="logo-box">
-      <h5>Logo Koperasi</h5>
-      <div class="border-gray">
-        <img src="/img/img5.png" alt="Profile Image">
-      </div>
-      <div class="edit-icon">
-        <button class="edit-button">
-          <img src="/img/edit-logo.png" alt="Edit Icon">
-        </button>
-      </div>
-    </div>
-  
-<!-- Dalam main-box -->
-<div class="main-box">
-    <!-- Konten utama di sini -->
-  
-    <!-- Box Profile -->
-    <div class="profile-box">
-      <h5 class="profile-title">Lengkapi Profile</h5>
-      <div class="border-gray"></div> <!-- Border abu-abu di bawah judul -->
-      <div class="table-row">
-        <div class="table-col">
-          <label for="adminName">Nama lengkap Admin</label>
-          <input type="text" id="adminName" name="adminName">
+    <div class="content">
+        <!-- Logo Box -->
+        <div class="logo-box">
+            <h5>Logo Koperasi</h5>
+            <div class="border-gray">
+                <img src="/img/logo_koperasi.png" alt="Profile Image">
+            </div>
+            <input type="file" id="imageInput" onchange="previewImage(event)">
+<img id="imagePreview" src="#" alt="Preview Image" style="display:none;">
+
+            <div class="edit-icon">
+                <!-- Tambahkan id pada tombol Edit untuk referensi JavaScript -->
+                <button id="editButton" class="edit-button" onclick="chooseFile()">
+                    <img src="/img/Edit_gambar.png" alt="Edit Icon">
+                </button>
+            </div>
         </div>
-        <div class="table-col">
-          <label for="coopName">Nama koperasi:</label>
-          <input type="text" id="coopName" name="coopName">
-        </div>
-      </div>
-      <div class="table-row">
-        <div class="table-col">
-          <label for="legalNumber">No Badan Hukum:</label>
-          <input type="text" id="legalNumber" name="legalNumber">
-        </div>
-        <div class="table-col">
-          <label for="legalDate">Tanggal Badan Hukum:</label>
-          <input type="date" id="legalDate" name="legalDate">
-        </div>
-      </div>
-      <!-- Baris ketiga -->
-      <div class="table-row">
-        <div class="table-col full-width">
-          <label for="address">Alamat:</label>
-          <input type="text" id="adress" name="address">
         
-        </div>
-      </div>
-<!-- Baris keempat -->
-<div class="table-row">
-  <div class="table-col">
-      <label for="district">Kecamatan:</label>
-      <select id="district" name="district">
-          <!-- Isi dropdown sesuai kebutuhan -->
-          <option value="kecamatan1">Kecamatan 1</option>
-          <option value="kecamatan2">Kecamatan 2</option>
-          <!-- ... -->
-      </select>
-  </div>
-  <div class="table-col">
-      <label for="city">Kabupaten/Kota:</label>
-      <select id="city" name="city">
-          <!-- Isi dropdown sesuai kebutuhan -->
-          <option value="kabupaten1">Kabupaten/Kota 1</option>
-          <option value="kabupaten2">Kabupaten/Kota 2</option>
-          <!-- ... -->
-      </select>
-  </div>
-</div>
+        
+        <div class="main-box">
+            <!-- Box Profile -->
+            <div class="profile-box">
+                <h5 class="profile-title">Lengkapi Profile</h5>
+                <div class="border-gray"></div> <!-- Border abu-abu di bawah judul -->
 
-      <!-- Baris kelima -->
-      <div class="table-row">
-        <div class="table-col">
-          <label for="kelurahan">Kelurahan:</label>
-          <input type="text" id="kelurahan" name="kelurahan">
-        </div>
-        <div class="table-col">
-          <label for="notelp">No Telp:</label>
-          <input type="text" id="notelp" name="notelp">
-        </div>
-      </div>
+           
+                @if($koperasi->id_koperasi)
+                <a href="{{ route('update_profile_koperasi', ['id' => $koperasi->id_koperasi]) }}"></a>
 
-<!-- Baris keenam (tambahan) -->
-<div class="table-row">
-  <div class="table-col full-width text-right"> <!-- Tambahkan kelas "text-right" di sini -->
-    <button class="save-button">Simpan</button>
-  </div>
-</div>
+            @else
+                <p>ID koperasi tidak valid.</p>
+            @endif
+            
 
+
+
+
+                @csrf
+
+                @if ($koperasi)
+                
+                    <div class="table-row">
+                        <div class="table-col">
+                            <label for="adminName">Nama lengkap Admin</label>
+                            <div id="adminName">
+                                {{ $koperasi->nama_admin_koperasi ?? 'Belum diisi' }}
+                            </div>
+                        </div>
+                        <div class="table-col">
+                            <label for="coopName">Nama koperasi:</label>
+                            <div id="coopName">
+                                {{ $koperasi->nama_koperasi ?? 'Belum diisi' }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-col">
+                            <label for="legalNumber">No Badan Hukum:</label>
+                            <div id="legalNumber">
+                                {{ $koperasi->no_badan_hukum ?? 'Belum diisi'}}
+                            </div>
+                        </div>
+                        <div class="table-col">
+                            <label for="legalDate">Tanggal Badan Hukum:</label>
+                            <div id="legalDate">
+                                {{ $koperasi->tanggal_badan_hukum ?? 'Belum diisi' }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-col full-width">
+                            <label for="address">Alamat:</label>
+                            <div id="address">
+                                {{ $koperasi->alamat ?? 'Belum diisi' }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-col">
+                            <label for="district">Kecamatan:</label>
+                            <div id="district">
+                                {{ $koperasi->kecamatan ?? 'Belum diisi' }}
+                            </div>
+                        </div>
+                        <div class="table-col">
+                            <label for="city">Kabupaten/Kota:</label>
+                            <div id="city">
+                                {{ $kabupatenKota->nama_kabupatenkota ?? 'Belum diisi' }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="table-col">
+                            <label for="kelurahan">Kelurahan:</label>
+                            <div id="subdistrict">
+                                {{ $koperasi->kelurahan ?? 'Belum diisi' }}
+                            </div>
+                        </div>
+                        <div class="table-col">
+                            <label for="notelp">No Telp:</label>
+                            <div id="phoneNumber">
+                                {{ $koperasi->no_telp ?? 'Belum diisi'}}
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <p>Data koperasi tidak ditemukan.</p>
+                @endif
+
+                <button type="submit">Simpan</button>
+
+            
+           
+            </div>
+
+        </div>
     </div>
-  </div>
-  
-  
-  </div>
+    <script>
+        function chooseFile() {
+            // Fungsi untuk memilih file gambar
+            console.log('Tombol Edit ditekan!');
+            // Temukan input file gambar dan klik secara otomatis saat tombol Edit ditekan
+            document.getElementById('imageInput').click();
+        }
 
-  <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        function previewImage(event) {
+    var imageInput = event.target;
+    var imagePreview = document.getElementById('imagePreview');
 
+    // Pastikan file dipilih
+    if (imageInput.files && imageInput.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+        }
+
+        reader.readAsDataURL(imageInput.files[0]);
+    }
+}
+
+    </script>
+
+    
+    
+    <script>
+        var url = window.location.href;
+        var decodedUrl = decodeURIComponent(url);
+        window.history.replaceState({}, document.title, decodedUrl);
+    </script>
+    
+    <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

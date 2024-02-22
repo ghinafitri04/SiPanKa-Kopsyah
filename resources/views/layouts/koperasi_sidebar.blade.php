@@ -15,17 +15,17 @@
 
         <li class="menu-item">
             <img src='/img/dps.png' alt="Pemilihan DPS"> 
-            <a href="{{ route('koperasi.dashboard') }}" >Pemilihan DPS</a>
+            <a href="{{ route('pemilihan.dps') }}" >Pemilihan DPS</a>
         </li>
         
         <li class="menu-item">
             <img src='/img/koperasi.png' alt="Proses Konversi">
-            <a href="{{ route('koperasi.dashboard') }}" >Proses Konversi</a>
+            <a href="{{ route('proses.konversi.koperasi') }}" >Proses Konversi</a>
         </li>
 
         <li class="menu-item">
             <img src='/img/dps.png' alt="Hasil Pengawasan"> 
-            <a href="{{ route('koperasi.dashboard') }}" >Hasil Pengawasan</a>
+            <a href="{{ route('hasil.pengawasan.koperasi') }}" >Hasil Pengawasan</a>
         </li>
     
     </ul>

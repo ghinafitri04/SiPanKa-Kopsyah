@@ -32,7 +32,6 @@ class Koperasi extends Model implements Authenticatable
         'role',
     ];
 
-
     public function adminKabupatenKota()
     {
         return $this->belongsTo(AdminKabupatenKota::class, 'id_admin_kabupatenkota');

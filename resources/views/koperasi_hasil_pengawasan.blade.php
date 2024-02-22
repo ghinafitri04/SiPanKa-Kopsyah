@@ -44,7 +44,7 @@
                       <td class="left-align">Amalia Sandi Alzahraaahh</td>
                       <td>Januari</td>
                       <td>   
-                        <a><img src="/img/detail.png" alt="Accepted Icon" width="30" height="30" >
+                        <a href="{{ route('hasil.pengawasan.koperasi2') }}"><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30"></a>
                       </i></a>
                   </tr>
 
@@ -54,7 +54,7 @@
                     <td class="left-align">Amalia Sandi Alzahraaahh</td>
                     <td>Januari</td>
                     <td>   
-                      <a><img src="/img/detail.png" alt="Accepted Icon" width="30" height="30" >
+                      <a><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30" >
                     </i></a>
                 </tr>
 

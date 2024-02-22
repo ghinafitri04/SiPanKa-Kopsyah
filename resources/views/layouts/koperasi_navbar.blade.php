@@ -30,9 +30,9 @@
                 </div>
 
                 <div id="profilSubMenu" class="profile-dropdown">
-                    <a class="profile-item" href="/koperasi-update-profil">
+                    <a class="profile-item" href="/update_profile_koperasi/{id}">
                         <div class="profile-img">
-                            <img src='/img/profile.png' alt="Profile Icon">
+                            <img src='/img/Profile Icon.png' alt="Profile Icon">
                         </div>
                         <div class="profile-text">
                             Profil
@@ -41,7 +41,7 @@
                         <hr class="dropdown-divider">
                     <a class="profile-item" href="#" onclick="logout()">
                         <div class="logout-img">
-                            <img src='/img/logout.png' alt="Logout Icon">
+                            <img src='/img/keluar.png' alt="Logout Icon">
                         </div>
                         <div class="logout-text">
                             Logout

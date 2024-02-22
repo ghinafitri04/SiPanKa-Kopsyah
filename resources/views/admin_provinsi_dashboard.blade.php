@@ -63,8 +63,8 @@
                         </td>
 
                         <td>
-                            <div class="card bg-primary text-white mb-4"  data-route-name="{{ route('admin_provinsi.manajemen_dps.index') }}">
-                                <div class="number">0</div>
+                            <a href="{{ route('admin_provinsi.manajemen_dps.index') }}" class="card bg-primary text-white mb-4">
+                                <div class="number" id="jumlahAdminDps">{{ session('jumlahAdminDps') }}</div>
                                 <div class="text">DPS</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <span class="small text-white stretched-link">Lihat Detail</span>
@@ -74,7 +74,7 @@
 
                         <td>
                             <div class="card bg-success text-white mb-4" data-route-name="{{ route('admin_provinsi.manajemen_koperasi.index') }}">
-                                <div class="number">0</div>
+                                <div class="number"id="jumlahAdminKoperasi">{{ session('jumlahAdminKoperasi') }}</div>
                                 <div class="text">Koperasi Syariah</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a href="#" class="small text-white stretched-link">Lihat Detail</a>

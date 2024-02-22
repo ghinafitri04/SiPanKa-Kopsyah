@@ -50,9 +50,10 @@ class AuthController extends Controller
                 return redirect()->route('admin_kabupatenkota.dashboard');
                 break;
 
-            case 'koperasi':
-                return redirect()->route('koperasi.dashboard');
-                break;
+                case 'koperasi':
+                    return redirect()->route('dashboard.koperasi');
+                    break;
+    
 
             case 'dps':
                 return redirect()->route('dps.dashboard');

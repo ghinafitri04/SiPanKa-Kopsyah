@@ -1,0 +1,194 @@
+h4 {
+    font-size: 20px !important; /* Gunakan !important untuk memastikan prioritas tertinggi */
+}
+    /* Tambahkan gaya CSS di sini */
+    body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    }
+    .center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 75px; 
+    }
+
+    .center-text img{
+        max-height: 35px;
+        margin-right: 10px;
+    }
+
+    .center-text h2 {
+    font-size: 16px;
+    color: black;
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: left;
+    }
+    /* Style untuk tabel */
+/* Style untuk sel header */
+th, td {
+border: 1px solid #ddd; /* Garis batas untuk sel */
+padding: 20px; /* Sesuaikan dengan padding yang diinginkan */
+text-align: left;
+
+}
+
+.table {
+    width: 100%; /* Atur lebar tabel menjadi 100% */
+}
+
+th:first-child,
+td:first-child {
+    width: 20px; /* Sesuaikan dengan lebar yang diinginkan */
+}
+
+/* Style untuk baris genap */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Warna latar belakang untuk baris genap */
+}
+
+/* Hover efek untuk baris */
+tr:hover {
+    background-color: #e0e0e0; /* Warna latar belakang saat dihover */
+}
+
+.container {
+    margin-top: 1.5cm; /* Sesuaikan margin top pada container */
+    margin-bottom: 30px; /* Sesuaikan margin bottom pada container */
+}
+
+.dashboard-title {
+    font-size: 24px; /* Sesuaikan ukuran font pada judul */
+    margin-top: 0;
+    margin-bottom: 20px; /* Sesuaikan margin bottom pada judul */
+}
+/*POP UP NIHHHHH */ 
+        .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .popup-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .popup-content {
+    width: 400px; /* Sesuaikan dengan lebar yang diinginkan */
+        max-width: 80%; /* Maksimum lebar 80% dari layar */
+        margin: 20px auto;  /* Center the content horizontally */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+    margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+
+    /* Style for the buttons */
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 15px;
+    }
+
+    .btn-container button {
+        margin-left: 10px;
+    }
+
+
+    .containermt-5 {
+margin-left: 60px;
+margin-top: 20px;
+margin-right: 60px;
+}
+
+.mt-3 {
+margin-top: 3cm;
+margin-left: 0;
+margin-right: 0;
+}
+
+.table {
+width: 100%;
+margin-right: 60px;
+}
+
+.table-row {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+}
+
+.table-col {
+flex: 1;
+margin-right: 10px; /* Memberikan ruang antara kolom */
+box-sizing: border-box;
+}
+
+.table-col:last-child {
+margin-right: 0; /* Menghilangkan margin kanan pada elemen terakhir agar tidak berlebihan */
+}
+
+.table-col label {
+display: block;
+margin-bottom: 5px;
+}
+
+.table-col select, .table-col input, .table-col button {
+width: calc(100% - 10px); /* Menyesuaikan lebar dengan margin dan padding */
+padding: 8px;
+box-sizing: border-box;
+margin-bottom: 5px;
+height: 40px;
+}
+
+.table-col select {
+font-size: inherit;
+}
+
+.table-col button {
+width: 70px;
+margin-top: 28px;
+}

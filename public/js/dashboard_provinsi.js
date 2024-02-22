@@ -13,20 +13,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
-    // Mengambil jumlah admin kabupaten/kota
-    fetch("{{ route('admin_provinsi.get_jumlah_admin_kabupaten_kota') }}")
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('jumlahAdminKabupatenKota').textContent = data.jumlah;
-    })
-    .catch(error => console.error('Error:', error));
 });
-
-fetch("{{ route('admin_provinsi.get_jumlah_admin_dps') }}")
-.then(response => response.json())
-.then(data => {
-    document.getElementById('jumlahAdminDps').textContent = data.jumlah;
-})
-.catch(error => console.error('Error:', error));
-
 

@@ -43,10 +43,11 @@
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>Koperasi Aku Nich<br></td>
+                    <td>Koperasi Aku <br></td>
                     <td>Ghina<br></td>
                     <td>
-                      <button class="btn btn-success" onclick="redirectToNextPage(1)">Sudah</button>
+                      <button class="btn btn-success" onclick="window.location.href='/konversi-tahap1'">Sudah</button>
+
                     </td>
                     <td>
                       <button class="btn btn-success" onclick="redirectToNextPage(2)">Sudah</button>
@@ -61,7 +62,7 @@
 
                   <tr>
                       <th scope="row">2</th>
-                      <td>Koperasi Aku Nich<br>
+                      <td>Koperasi Aku <br>
                         <td>Fitri<br>
                         <td><button class="btn btn-danger" onclick="setAsNotDone(1)">Belum</button></td>
                         <td><button class="btn btn-danger" onclick="setAsNotDone(2)">Belum</button></td>

@@ -50,10 +50,6 @@
                     onclick="togglePassword('password')">
             </div>
 
-            <div class="small small-text">
-                <p class="small-text"><a id="lupa" href="#">Lupa Password?</a></p>
-            </div>
-
             <div class="bt-login">
                 <button type="submit" class="btn-login">Login</button>
             </div>

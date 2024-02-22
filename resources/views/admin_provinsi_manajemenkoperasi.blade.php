@@ -57,10 +57,10 @@
                         <a href="{{ route('admin_provinsi.detail_manajemen_koperasi.detail_index', ['id' => $koperasi->id_koperasi]) }}" class="ini-info">
                             <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
                         </a>                        
-                        <form action="{{ route('admin_provinsi.manajemen_koperasi.destroy', ['id' => $koperasi->id_koperasi]) }}" method="POST">
+                        <form action="{{ route('admin_provinsi.manajemen_koperasi.destroy', ['id' => $koperasi->id_koperasi]) }}" method="POST"style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-hapus" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                            <button type="submit" class="btn-hapus" onclick="return confirm('Anda yakin ingin menghapus data ini?')"style="border: none; background: none; padding: 0;">
                                 <img src="/img/Hapus.png" alt="Delete Icon" width="30" height="30">
                             </button>
                         </form>                        

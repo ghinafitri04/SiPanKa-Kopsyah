@@ -67,8 +67,8 @@
                         <tr>
                             <th scope="row">1</th>
                             <td>
-                            <img src="/img/profile-icon.png" alt="Profile Icon" width="15" height="15"> Amallliaaa Sandi Alzhrh<br>
-                            <img src="/img/profile-icon.png" alt="Lock Icon" width="15" height="15">  Ini Amalia yang kedua loh</td>
+                            <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> Amallliaaa Sandi Alzhrh<br>
+                            <img src="/img/Profile Icon.png" alt="Lock Icon" width="15" height="15">  Ini Amalia yang kedua loh</td>
                             <td>20 Januari 2027 - 90 Maret 2080</td>    
                         </tr>
                         <!-- Tambahkan baris lain sesuai kebutuhan -->
