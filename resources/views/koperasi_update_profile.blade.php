@@ -16,163 +16,100 @@
     @include('layouts.koperasi_sidebar')
     @include('layouts.koperasi_navbar')
     <script src="{{asset('js/script_koperasi.js')}}"></script>
+    <script src="{{asset('js/koperasi_updateprofile.js')}}"></script>
 
     <div class="content">
         <!-- Logo Box -->
         <div class="logo-box">
             <h5>Logo Koperasi</h5>
-            <div class="border-gray">
-                <img src="/img/logo_koperasi.png" alt="Profile Image">
+            <div class="border-gray" id="imagePreviewContainer"> 
             </div>
-            <input type="file" id="imageInput" onchange="previewImage(event)">
-<img id="imagePreview" src="#" alt="Preview Image" style="display:none;">
-
+          
             <div class="edit-icon">
-                <!-- Tambahkan id pada tombol Edit untuk referensi JavaScript -->
                 <button id="editButton" class="edit-button" onclick="chooseFile()">
                     <img src="/img/Edit_gambar.png" alt="Edit Icon">
                 </button>
             </div>
         </div>
         
-        
         <div class="main-box">
-            <!-- Box Profile -->
+            <!-- Implementasi -->
             <div class="profile-box">
                 <h5 class="profile-title">Lengkapi Profile</h5>
                 <div class="border-gray"></div> <!-- Border abu-abu di bawah judul -->
 
-           
-                @if($koperasi->id_koperasi)
-                <a href="{{ route('update_profile_koperasi', ['id' => $koperasi->id_koperasi]) }}"></a>
-
-            @else
-                <p>ID koperasi tidak valid.</p>
-            @endif
-            
-
-
-
-
-                @csrf
-
                 @if ($koperasi)
-                
+                <form action="{{ route('koperasi_update_profile.store', ['id' => $koperasi->id_koperasi]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $koperasi->id_koperasi ?? '' }}">
+                    
                     <div class="table-row">
                         <div class="table-col">
                             <label for="adminName">Nama lengkap Admin</label>
-                            <div id="adminName">
-                                {{ $koperasi->nama_admin_koperasi ?? 'Belum diisi' }}
-                            </div>
+                            <div id="adminName">{{ $koperasi->nama_admin_koperasi ?? 'Belum diisi' }}</div>
                         </div>
                         <div class="table-col">
                             <label for="coopName">Nama koperasi:</label>
-                            <div id="coopName">
-                                {{ $koperasi->nama_koperasi ?? 'Belum diisi' }}
-                            </div>
+                            <div id="coopName">{{ $koperasi->nama_koperasi ?? 'Belum diisi' }}</div>
                         </div>
                     </div>
                     
                     <div class="table-row">
                         <div class="table-col">
                             <label for="legalNumber">No Badan Hukum:</label>
-                            <div id="legalNumber">
-                                {{ $koperasi->no_badan_hukum ?? 'Belum diisi'}}
-                            </div>
+                            <input type="text" id="no_badan_hukum" name="no_badan_hukum" value="{{ $koperasi->no_badan_hukum }}">
                         </div>
                         <div class="table-col">
                             <label for="legalDate">Tanggal Badan Hukum:</label>
-                            <div id="legalDate">
-                                {{ $koperasi->tanggal_badan_hukum ?? 'Belum diisi' }}
-                            </div>
+                            <input type="date" id="tanggal_badan_hukum" name="tanggal_badan_hukum" value="{{ $koperasi->tanggal_badan_hukum }}">
                         </div>
                     </div>
                     
                     <div class="table-row">
-                        <div class="table-col full-width">
-                            <label for="address">Alamat:</label>
-                            <div id="address">
-                                {{ $koperasi->alamat ?? 'Belum diisi' }}
-                            </div>
+                        <div class="table-col">
+                            <label for="alamat">Alamat:</label>
+                            <input type="text" id="alamat" name="alamat" value="{{ $koperasi->alamat }}">
                         </div>
                     </div>
                     
                     <div class="table-row">
                         <div class="table-col">
                             <label for="district">Kecamatan:</label>
-                            <div id="district">
-                                {{ $koperasi->kecamatan ?? 'Belum diisi' }}
-                            </div>
+                            <input type="text" id="district" name="kecamatan" value="{{ $koperasi->kecamatan }}">
                         </div>
                         <div class="table-col">
                             <label for="city">Kabupaten/Kota:</label>
-                            <div id="city">
-                                {{ $kabupatenKota->nama_kabupatenkota ?? 'Belum diisi' }}
-                            </div>
+                            <div id="id_admin_kabupatenkota">{{ $kabupatenKota->nama_kabupatenkota ?? 'Belum diisi' }}</div>
                         </div>
                     </div>
                     
                     <div class="table-row">
                         <div class="table-col">
                             <label for="kelurahan">Kelurahan:</label>
-                            <div id="subdistrict">
-                                {{ $koperasi->kelurahan ?? 'Belum diisi' }}
-                            </div>
+                            <input type="text" id="kelurahan" name="kelurahan" value="{{ $koperasi->kelurahan }}">
                         </div>
                         <div class="table-col">
-                            <label for="notelp">No Telp:</label>
-                            <div id="phoneNumber">
-                                {{ $koperasi->no_telp ?? 'Belum diisi'}}
-                            </div>
+                            <label for="phoneNumber">No Telp:</label>
+                            <input type="tel" id="phoneNumber" name="no_telp" value="{{ $koperasi->no_telp }}">
                         </div>
                     </div>
+
+                    <div class="table-row">
+                        <div class="table-col">
+                            <label for="logo">Logo Koperasi:</label>
+                            <input type="file" id="logo" name="logo">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
                 @else
                     <p>Data koperasi tidak ditemukan.</p>
                 @endif
-
-                <button type="submit">Simpan</button>
-
-            
-           
             </div>
-
         </div>
     </div>
-    <script>
-        function chooseFile() {
-            // Fungsi untuk memilih file gambar
-            console.log('Tombol Edit ditekan!');
-            // Temukan input file gambar dan klik secara otomatis saat tombol Edit ditekan
-            document.getElementById('imageInput').click();
-        }
-
-        function previewImage(event) {
-    var imageInput = event.target;
-    var imagePreview = document.getElementById('imagePreview');
-
-    // Pastikan file dipilih
-    if (imageInput.files && imageInput.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block';
-        }
-
-        reader.readAsDataURL(imageInput.files[0]);
-    }
-}
-
-    </script>
-
-    
-    
-    <script>
-        var url = window.location.href;
-        var decodedUrl = decodeURIComponent(url);
-        window.history.replaceState({}, document.title, decodedUrl);
-    </script>
-    
+  
     <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

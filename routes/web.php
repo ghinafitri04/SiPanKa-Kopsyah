@@ -229,7 +229,10 @@ Route::get('/detail-admin-koperasi-kabkota', function () {
 
 Route::middleware(['auth:koperasi'])->group(function () {
     Route::get('/dashboardKoperasi', [AdminKoperasiController::class, 'dashboard'])->name('dashboard.koperasi');
-    Route::get('/update_profile_koperasi/{id}', [KoperasiController::class, 'update_profile_koperasi'])->name('update_profile_koperasi');
+    Route::get('/update_profile_koperasi/{id}', [KoperasiController::class, 'update_profile_koperasi'])->name('koperasi_update_profile.index');
+    Route::post('/update_profile_koperasi/{id}', [KoperasiController::class, 'store'])
+    ->name('koperasi_update_profile.store');
+
 });
 
 
