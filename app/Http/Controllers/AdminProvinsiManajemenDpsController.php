@@ -11,6 +11,8 @@ class AdminProvinsiManajemenDpsController extends Controller
     {
         $dpsList = Dps::all();
         $jumlahAdminDps = \App\Models\Dps::count(); // Hitung jumlah admin kabupaten/kota
+        $admins = Dps::pluck('nama_lengkap', 'id_dps'); // Mengambil daftar admin DPS
+
 
         // Simpan nilai dalam sesi
         session()->put('jumlahAdminDps',  $jumlahAdminDps);
@@ -97,12 +99,6 @@ class AdminProvinsiManajemenDpsController extends Controller
         }
     }
 
-
-
-
-
-
-
     public function edit($id)
     {
         try {
@@ -115,4 +111,6 @@ class AdminProvinsiManajemenDpsController extends Controller
             return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal memuat halaman edit DPS.');
         }
     }
+
+    
 }

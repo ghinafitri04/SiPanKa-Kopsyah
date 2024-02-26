@@ -12,6 +12,8 @@ use App\Http\Controllers\ManajemenKoperasiController;
 use App\Http\Controllers\DpsController;
 use App\Http\Controllers\KoperasiController;
 use App\Http\Controllers\AdminProvinsiManajemenKoperasiController;
+use App\Http\Controllers\PemilihanDpsController;
+
 
 
 // Route untuk halaman login
@@ -225,15 +227,20 @@ Route::get('/detail-admin-koperasi-kabkota', function () {
     return view('admin_kabkota_detailadminkoperasi');
 })->name('admin_kabkota_detailadminkoperasi');
 
-
-
 Route::middleware(['auth:koperasi'])->group(function () {
     Route::get('/dashboardKoperasi', [AdminKoperasiController::class, 'dashboard'])->name('dashboard.koperasi');
     Route::get('/update_profile_koperasi/{id}', [KoperasiController::class, 'update_profile_koperasi'])->name('koperasi_update_profile.index');
     Route::post('/update_profile_koperasi/{id}', [KoperasiController::class, 'store'])
     ->name('koperasi_update_profile.store');
 
+    Route::get('/pemilihan-dps', [PemilihanDpsController::class, 'index'])->name('pemilihan-dps.index');
+
+
+
+
 });
+
+
 
 
 Route::get('/dashboard_koperasi', function () {

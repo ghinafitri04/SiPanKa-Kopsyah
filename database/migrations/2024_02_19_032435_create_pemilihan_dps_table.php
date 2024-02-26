@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('pemilihan_dps', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_koperasi');
+            $table->unsignedBigInteger('id_dps');
+            $table->date('tanggal_dipilih');
             $table->timestamps();
+
+            // Foreign Keys
+            $table->foreign('id_koperasi')->references('id_koperasi')->on('koperasi')->onDelete('cascade');
+            $table->foreign('id_dps')->references('id_dps')->on('dps')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
