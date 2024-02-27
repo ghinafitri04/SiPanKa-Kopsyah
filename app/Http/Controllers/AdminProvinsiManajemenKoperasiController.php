@@ -17,11 +17,10 @@ class AdminProvinsiManajemenKoperasiController extends Controller
             ->pluck('kabupatenkota.nama_kabupatenkota', 'admin_kabupatenkota.id_admin_kabupatenkota')
             ->all();
 
-         // Simpan nilai dalam sesi
-         session()->put('jumlahAdminKoperasi', $jumlahAdminKoperasi);
+        // Simpan nilai dalam sesi
+        session()->put('jumlahAdminKoperasi', $jumlahAdminKoperasi);
 
-        return view('admin_provinsi_manajemenkoperasi', compact('koperasiList', 'kabupatenKotaList','jumlahAdminKoperasi'));
-
+        return view('admin_provinsi_manajemenkoperasi', compact('koperasiList', 'kabupatenKotaList', 'jumlahAdminKoperasi'));
     }
 
     public function detail_index($id)
@@ -33,23 +32,23 @@ class AdminProvinsiManajemenKoperasiController extends Controller
             ->select('kabupatenkota.nama_kabupatenkota as nama_kabupatenkota')
             ->first();
 
-            
+
 
         return view('admin_provinsi_detailadminkoperasi', compact('koperasi', 'kabupatenKota'));
     }
 
     public function showUpdateProfileForm($id)
-{
-    $koperasi = Koperasi::findOrFail($id);
-    $kabupatenKota = AdminKabupatenKota::with('kabupatenKota')
-        ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
-        ->where('admin_kabupatenkota.id_kabupatenkota', $koperasi->adminKabupatenKota->id_kabupatenkota)
-        ->select('kabupatenkota.nama_kabupatenkota as nama_kabupatenkota')
-        ->first();
+    {
+        $koperasi = Koperasi::findOrFail($id);
+        $kabupatenKota = AdminKabupatenKota::with('kabupatenKota')
+            ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
+            ->where('admin_kabupatenkota.id_kabupatenkota', $koperasi->adminKabupatenKota->id_kabupatenkota)
+            ->select('kabupatenkota.nama_kabupatenkota as nama_kabupatenkota')
+            ->first();
 
-    // Kirim data ke tampilan koperasi_update_profile.blade.php
-    return view('koperasi_update_profile', compact('koperasi', 'kabupatenKota'));
-}
+        // Kirim data ke tampilan koperasi_update_profile.blade.php
+        return view('koperasi_update_profile', compact('koperasi', 'kabupatenKota'));
+    }
 
 
     public function store(Request $request)
@@ -121,7 +120,4 @@ class AdminProvinsiManajemenKoperasiController extends Controller
             return redirect()->route('admin_provinsi.manajemen_koperasi.index')->with('error', 'Gagal memperbarui data koperasi.');
         }
     }
-
-    
-    
 }

@@ -41,17 +41,17 @@ class KoperasiController extends Controller
     {
 
         // Validasi data yang diterima dari request
-    $request->validate([
-        'no_badan_hukum' => 'required|string|max:255',
-        'tanggal_badan_hukum' => 'required|date',
-        'alamat' => 'required|string|max:255',
-        'kecamatan' => 'required|string|max:255',
-        'kelurahan' => 'required|string|max:255',
-        'no_telp' => 'required|string|max:255',
-        'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk logo (jenis file gambar)
-        'id_admin_kabupatenkota' => 'required' // Pastikan id_admin_kabupatenkota tidak kosong
-    ]);
-        
+        $request->validate([
+            'no_badan_hukum' => 'required|string|max:255',
+            'tanggal_badan_hukum' => 'required|date',
+            'alamat' => 'required|string|max:255',
+            'kecamatan' => 'required|string|max:255',
+            'kelurahan' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:255',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk logo (jenis file gambar)
+            'id_admin_kabupatenkota' => 'required' // Pastikan id_admin_kabupatenkota tidak kosong
+        ]);
+
         //disinii model model
         $koperasi = new Koperasi();
         $koperasi->no_badan_hukum = $request->no_badan_hukum;
@@ -64,14 +64,14 @@ class KoperasiController extends Controller
         $koperasi->role = 'koperasi';
 
         // Simpan file logo ke server jika diunggah
-    if ($request->hasFile('logo')) {
-        // Simpan file logo ke direktori yang diinginkan di server (misalnya: storage/app/public/logos/)
-        $path = $request->file('logo')->store('public/logos');
-        // Dapatkan nama file yang disimpan
-        $nama_file = basename($path);
-        // Set atribut logo ke nama file yang disimpan
-        $koperasi->logo = $nama_file;
-    }
+        if ($request->hasFile('logo')) {
+            // Simpan file logo ke direktori yang diinginkan di server (misalnya: storage/app/public/logos/)
+            $path = $request->file('logo')->store('public/logos');
+            // Dapatkan nama file yang disimpan
+            $nama_file = basename($path);
+            // Set atribut logo ke nama file yang disimpan
+            $koperasi->logo = $nama_file;
+        }
 
         // Simpan data ke dalam database
         $koperasi->save();
