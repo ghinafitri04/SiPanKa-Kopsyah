@@ -17,7 +17,7 @@ use App\Http\Controllers\PemilihanDpsController;
 
 
 // Route untuk halaman login
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login');
 })->name('login');
 
@@ -32,7 +32,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route untuk halaman dashboard (untuk semua role)
 Route::middleware(['auth:admin_provinsi'])->group(function () {
     Route::get('/dashboardAdminProvinsi', [AdminProvinsiController::class, 'dashboard'])->name('dashboardAdminProvinsi');
-    
+
     // Route untuk manajemen kabupaten/kota
     Route::get('/admin-provinsi/manajemen-kab-kota', [AdminProvinsiManajemenKabKotaController::class, 'index'])
         ->name('admin_provinsi.manajemen_kab_kota.index');
@@ -47,20 +47,20 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
     Route::get('/admin_provinsi/get_jumlah_admin_kabupaten_kota', 'AdminProvinsiManajemenKabKotaController@getJumlahAdminKabupatenKota')
         ->name('admin_provinsi.get_jumlah_admin_kabupaten_kota');
 
-        
-      // Route untuk manajemen DPS
-      Route::get('/admin-provinsi/manajemen-dps', [AdminProvinsiManajemenDpsController::class, 'index'])
-      ->name('admin_provinsi.manajemen_dps.index');
-  Route::post('/admin-provinsi/manajemen-dps', [AdminProvinsiManajemenDpsController::class, 'store'])
-      ->name('admin_provinsi.manajemen_dps.store');
-  Route::get('/admin-provinsi/manajemen-dps/{id}/edit', [AdminProvinsiManajemenDpsController::class, 'edit'])
-      ->name('admin_provinsi.manajemen_dps.edit');
-      Route::delete('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'destroy'])
-      ->name('admin_provinsi.manajemen_dps.destroy');
-  Route::put('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'update'])
-      ->name('admin_provinsi.manajemen_dps.update');
-  Route::get('/sertifikat/{filename}', function ($filename) {
-      $path = storage_path('app/sertifikat/' . $filename);
+
+    // Route untuk manajemen DPS
+    Route::get('/admin-provinsi/manajemen-dps', [AdminProvinsiManajemenDpsController::class, 'index'])
+        ->name('admin_provinsi.manajemen_dps.index');
+    Route::post('/admin-provinsi/manajemen-dps', [AdminProvinsiManajemenDpsController::class, 'store'])
+        ->name('admin_provinsi.manajemen_dps.store');
+    Route::get('/admin-provinsi/manajemen-dps/{id}/edit', [AdminProvinsiManajemenDpsController::class, 'edit'])
+        ->name('admin_provinsi.manajemen_dps.edit');
+    Route::delete('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'destroy'])
+        ->name('admin_provinsi.manajemen_dps.destroy');
+    Route::put('/admin-provinsi/manajemen-dps/{id}', [AdminProvinsiManajemenDpsController::class, 'update'])
+        ->name('admin_provinsi.manajemen_dps.update');
+    Route::get('/sertifikat/{filename}', function ($filename) {
+        $path = storage_path('app/sertifikat/' . $filename);
 
         if (!File::exists($path)) {
             abort(404);
@@ -90,10 +90,10 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
 
 
 
-    // Route sementara (opsional, bisa dihapus jika tidak digunakan)
-    Route::get('/admin-dps', function () {
-        return view('admin_provinsi_admindps');
-    })->name('admindps');
+// Route sementara (opsional, bisa dihapus jika tidak digunakan)
+Route::get('/admin-dps', function () {
+    return view('admin_provinsi_admindps');
+})->name('admindps');
 
 // Route sementara (opsional, bisa dihapus jika tidak digunakan)
 Route::get('/pengawasan-dps', function () {
@@ -155,35 +155,34 @@ Route::get('/adminkabkota-konversi-tahap3', function () {
     return view('admin_kabkota_konversi_koperasi_tahap3');
 })->name('tahap3_konversikoperasikabkota');
 
-    Route::get('/adminkabkota-konversi-tahap4', function () {
-        return view('admin_kabkota_konversi_koperasi_tahap4');
-    })->name('tahap4_konversikoperasikabkota');
+Route::get('/adminkabkota-konversi-tahap4', function () {
+    return view('admin_kabkota_konversi_koperasi_tahap4');
+})->name('tahap4_konversikoperasikabkota');
 
 // Route untuk halaman detail pengawasan DPS
 Route::view('/detail-dps', 'detail_pengawasan_dps')
     ->name('detail_pengawasan_dps');
 
-    // Route untuk halaman dps yaa
-    Route::get('/dps-pengawasandps', function () {
-        return view('dps_riwayat_pengawasan');
-    })->name('dps_riwayat_pengawasan');
+// Route untuk halaman dps yaa
+Route::get('/dps-pengawasandps', function () {
+    return view('dps_riwayat_pengawasan');
+})->name('dps_riwayat_pengawasan');
 
-    Route::get('/dps-informasikoperasi', function () {
-        return view('dps_informasi_koperasi');
-    })->name('dps_informasi_koperasi');
+Route::get('/dps-informasikoperasi', function () {
+    return view('dps_informasi_koperasi');
+})->name('dps_informasi_koperasi');
 
-    Route::get('/dps-konversikoperasi', function () {
-        return view('dps_konversi_koperasi');
-    })->name('dps_konversi_koperasi');
+Route::get('/dps-konversikoperasi', function () {
+    return view('dps_konversi_koperasi');
+})->name('dps_konversi_koperasi');
 
-    Route::get('/detail-pengawasan-dps', function () {
-        return view('dps_detail_pengawasan');
-    })->name('dps_detail_pengawasan');
+Route::get('/detail-pengawasan-dps', function () {
+    return view('dps_detail_pengawasan');
+})->name('dps_detail_pengawasan');
 
 Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
     // Sesuaikan dengan controller dan metodenya
     Route::get('/admin_kabkota_dashboard', [AdminKabupatenKotaController::class, 'dashboard'])->name('admin_kabupatenkota.dashboard');
-    
 });
 
 Route::get('/kabkota-adminkoperasi', function () {
@@ -231,13 +230,9 @@ Route::middleware(['auth:koperasi'])->group(function () {
     Route::get('/dashboardKoperasi', [AdminKoperasiController::class, 'dashboard'])->name('dashboard.koperasi');
     Route::get('/update_profile_koperasi/{id}', [KoperasiController::class, 'update_profile_koperasi'])->name('koperasi_update_profile.index');
     Route::post('/update_profile_koperasi/{id}', [KoperasiController::class, 'store'])
-    ->name('koperasi_update_profile.store');
+        ->name('koperasi_update_profile.store');
 
     Route::get('/pemilihan-dps', [PemilihanDpsController::class, 'index'])->name('pemilihan-dps.index');
-
-
-
-
 });
 
 
@@ -262,4 +257,3 @@ Route::get('/koperasi-hasil-pengawasan', function () {
 Route::get('/koperasi-hasil-pengawasan2', function () {
     return view('koperasi_hasil_pengawasan2');
 })->name('hasil.pengawasan.koperasi2');
-
