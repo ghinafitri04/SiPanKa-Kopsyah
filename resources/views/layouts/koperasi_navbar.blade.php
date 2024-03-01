@@ -30,7 +30,7 @@
                 </div>
 
                 <div id="profilSubMenu" class="profile-dropdown">
-                    <a class="profile-item" href="/update_profile_koperasi/{id}">
+                    <a class="profile-item" href="{{ route('koperasi.profile') }}">
                         <div class="profile-img">
                             <img src='/img/Profile Icon.png' alt="Profile Icon">
                         </div>
@@ -38,7 +38,7 @@
                             Profil
                         </div>
                     </a>
-                        <hr class="dropdown-divider">
+                    <hr class="dropdown-divider">
                     <a class="profile-item" href="#" onclick="logout()">
                         <div class="logout-img">
                             <img src='/img/keluar.png' alt="Logout Icon">
@@ -47,7 +47,7 @@
                             Logout
                         </div>
                     </a>
-                </div>
+                </div>                
             </div>
         </div>
 </nav>

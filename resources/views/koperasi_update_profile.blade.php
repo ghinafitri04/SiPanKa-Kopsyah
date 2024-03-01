@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-K6LH+HiMtlJ4C6r+qOzrnBeFZ7J11fJd3B0/WmARUq3Zcx6JJ86LWl18pNrCJFTZxDyQiOm/ujtB/Z3JSJTRoQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/navbarsidebar_koperasi.css') }}">
     <link rel="stylesheet" href="{{ asset('css/updateprofil.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
@@ -39,7 +39,7 @@
                 <div class="border-gray"></div> <!-- Border abu-abu di bawah judul -->
 
                 @if ($koperasi)
-                <form action="{{ route('koperasi_update_profile.store', ['id' => $koperasi->id_koperasi]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('koperasi.profile.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{ $koperasi->id_koperasi ?? '' }}">
                     
@@ -80,7 +80,7 @@
                         <div class="table-col">
                             <label for="city">Kabupaten/Kota:</label>
                             <div id="id_admin_kabupatenkota">{{ $kabupatenKota->nama_kabupatenkota ?? 'Belum diisi' }}</div>
-                        </div>
+                        </div>                        
                     </div>
                     
                     <div class="table-row">
@@ -91,13 +91,6 @@
                         <div class="table-col">
                             <label for="phoneNumber">No Telp:</label>
                             <input type="tel" id="phoneNumber" name="no_telp" value="{{ $koperasi->no_telp }}">
-                        </div>
-                    </div>
-
-                    <div class="table-row">
-                        <div class="table-col">
-                            <label for="logo">Logo Koperasi:</label>
-                            <input type="file" id="logo" name="logo">
                         </div>
                     </div>
                     

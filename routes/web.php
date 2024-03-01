@@ -8,10 +8,13 @@ use App\Http\Controllers\AdminKabupatenKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenKabKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenDpsController;
 use App\Http\Controllers\AdminProvinsiManajemenKoperasiController;
+
 use App\Http\Controllers\AdminKabupatenKotaManajemenKoperasiController;
 use App\Http\Controllers\AdminKabupatenKotaKonversiKoperasiController;
 use App\Http\Controllers\AdminKabupatenKotaPengawasanDpsController;
+
 use App\Http\Controllers\KoperasiController;
+use App\Http\Controllers\KoperasiProfileController;
 use App\Http\Controllers\ManajemenKoperasiController;
 use App\Http\Controllers\DpsController;
 use App\Http\Controllers\PemilihanDpsController;
@@ -77,7 +80,6 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         return response()->file($path);
     })->name('sertifikat.show');
 
-    // Route untuk manajemen Koperasi
     Route::get('/admin-provinsi/manajemen-koperasi', [AdminProvinsiManajemenKoperasiController::class, 'index'])
         ->name('admin_provinsi.manajemen_koperasi.index');
     Route::post('/admin-provinsi/manajemen-koperasi', [AdminProvinsiManajemenKoperasiController::class, 'store'])
@@ -90,6 +92,8 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         ->name('admin_provinsi.manajemen_koperasi.update');
     Route::get('/admin-provinsi/detail-manajemen-koperasi/{id}', [AdminProvinsiManajemenKoperasiController::class, 'detail_index'])
         ->name('admin_provinsi.detail_manajemen_koperasi.detail_index');
+    Route::get('/admin_provinsi/get_jumlah_koperasi', 'AdminProvinsiManajemenKoperasiController@getJumlahAdminKoperasi')
+        ->name('admin_provinsi.get_jumlah_admin_koperasi');
 });
 
 Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
@@ -114,6 +118,10 @@ Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
 Route::middleware(['auth:koperasi'])->group(function () {
     Route::get('/koperasi/dashboard', [KoperasiController::class, 'dashboard'])
         ->name('koperasi.dashboard');
+    Route::get('/koperasi/profile', [KoperasiProfileController::class, 'showProfile'])
+        ->name('koperasi.profile');
+    Route::post('/koperasi/profile/store', [KoperasiProfileController::class, 'store'])
+        ->name('koperasi.profile.store');
 });
 
 
@@ -208,10 +216,6 @@ Route::get('/detail-pengawasan-dps', function () {
     return view('dps_detail_pengawasan');
 })->name('dps_detail_pengawasan');
 
-Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
-    // Sesuaikan dengan controller dan metodenya
-    Route::get('/admin_kabkota_dashboard', [AdminKabupatenKotaController::class, 'dashboard'])->name('admin_kabupatenkota.dashboard');
-});
 
 Route::get('/kabkota-adminkoperasi', function () {
     return view('admin_kabkota_adminkoperasi');
@@ -254,21 +258,8 @@ Route::get('/detail-admin-koperasi-kabkota', function () {
     return view('admin_kabkota_detailadminkoperasi');
 })->name('admin_kabkota_detailadminkoperasi');
 
-Route::middleware(['auth:koperasi'])->group(function () {
-    Route::get('/dashboardKoperasi', [AdminKoperasiController::class, 'dashboard'])->name('dashboard.koperasi');
-    Route::get('/update_profile_koperasi/{id}', [KoperasiController::class, 'update_profile_koperasi'])->name('koperasi_update_profile.index');
-    Route::post('/update_profile_koperasi/{id}', [KoperasiController::class, 'store'])
-        ->name('koperasi_update_profile.store');
-
-    Route::get('/pemilihan-dps', [PemilihanDpsController::class, 'index'])->name('pemilihan-dps.index');
-});
 
 
-
-
-Route::get('/dashboard_koperasi', function () {
-    return view('koperasi_dashboard');
-})->name('koperasi.dashboard');
 
 Route::get('/koperasi-pemilihan-dps', function () {
     return view('koperasi_pemilihan_dps');

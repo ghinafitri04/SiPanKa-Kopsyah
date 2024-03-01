@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Dps;
@@ -11,7 +12,7 @@ class PemilihanDpsController extends Controller
     {
         // Ambil semua data DPS
         $dps = Dps::all();
-    
+
         // Kirim data DPS ke tampilan
         return view('koperasi_pemilihan_dps', compact('dps'));
     }

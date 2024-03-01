@@ -9,21 +9,21 @@ use App\Models\KabupatenKota;
 class ManajemenKoperasiController extends Controller
 {
     public function index()
-{
-    $koperasiList = Koperasi::all();
-    $kabupatenKotaList = KabupatenKota::all();
-    $jumlahKoperasi = Koperasi::count(); // Hitung jumlah admin kabupaten/kota
+    {
+        $koperasiList = Koperasi::all();
+        $kabupatenKotaList = KabupatenKota::all();
+        $jumlahKoperasi = Koperasi::count(); // Hitung jumlah admin kabupaten/kota
 
-    // Debugging: Check if data is retrieved from KabupatenKota model
-    dd($kabupatenKotaList);
+        // Debugging: Check if data is retrieved from KabupatenKota model
+        dd($kabupatenKotaList);
 
-    // Simpan nilai dalam sesi
-    session()->put('jumlahKoperasi', $jumlahKoperasi);
+        // Simpan nilai dalam sesi
+        session()->put('jumlahKoperasi', $jumlahKoperasi);
 
-    
 
-    return view('admin_provinsi_adminkoperasi', compact('koperasiList', 'kabupatenKotaList', 'jumlahKoperasi'));
-}
+
+        return view('admin_provinsi_adminkoperasi', compact('koperasiList', 'kabupatenKotaList', 'jumlahKoperasi'));
+    }
 
 
     public function store(Request $request)
@@ -66,5 +66,4 @@ class ManajemenKoperasiController extends Controller
     {
         // Tambahkan logika untuk menghapus data koperasi dengan ID tertentu
     }
-
 }

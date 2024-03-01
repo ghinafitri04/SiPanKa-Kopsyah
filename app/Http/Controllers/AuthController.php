@@ -50,10 +50,10 @@ class AuthController extends Controller
                 return redirect()->route('admin_kabupatenkota.dashboard');
                 break;
 
-                case 'koperasi':
-                    return redirect()->route('dashboard.koperasi');
-                    break;
-    
+            case 'koperasi':
+                return redirect()->route('koperasi.dashboard');
+                break;
+
 
             case 'dps':
                 return redirect()->route('dps.dashboard');
@@ -71,4 +71,4 @@ class AuthController extends Controller
         $request->session()->invalidate(); // Mematikan sesi pengguna
         return redirect('/login'); // Mengarahkan pengguna ke halaman login setelah logout
     }
-}    
+}
