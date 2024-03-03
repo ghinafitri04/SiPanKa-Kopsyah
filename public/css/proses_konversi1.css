@@ -281,3 +281,8 @@ text-align: center;
 margin-top: 10px; /* Sesuaikan dengan jarak yang diinginkan */
 color: #555; /* Warna teks caption */
 }
+
+.pdf-preview {
+    position: relative;
+    z-index: 100; /* Set z-index to ensure the PDF preview is above other elements */
+}
