@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminKabKotaManajemenKoperasiController;
 use App\Http\Controllers\ProsesKonversiController;
 
 
+
 // Route untuk halaman login
 Route::get('/login', function () {
     return view('login');
@@ -233,15 +234,48 @@ Route::middleware(['auth:koperasi'])->group(function () {
     Route::get('/pemilihan-dps', [PemilihanDpsController::class, 'index'])->name('pemilihan-dps.index');
 
     //Route untuk koperasi proses konversi
-    Route::post('/proses-tahap-1', [ProsesKonversiController::class, 'prosesTahap1'])->name('prosesTahap1');
+
     Route::get('/pdf/show/{id}', [ProsesKonversiController::class, 'showPdf'])->name('pdf.show');
-    Route::get('/proses-tahap-2', [ProsesKonversiController::class, 'prosesTahap2'])->name('prosesTahap2');
-    Route::post('/proses-tahap-2', [ProsesKonversiController::class, 'prosesTahap2'])->name('prosesTahap2');
-});
+    Route::get('/proses-konversi/tahap-1', [ProsesKonversiController::class, 'showFormTahap1'])->name('prosesTahap1');
+Route::post('/proses-konversi/tahap-1', [ProsesKonversiController::class, 'prosesTahap1'])->name('prosesTahap1Submit');
+Route::get('/proses-konversi/tahap-2', [ProsesKonversiController::class, 'showFormTahap2'])->name('prosesTahap2');
+Route::post('/proses-konversi/tahap-2', [ProsesKonversiController::class, 'prosesTahap2'])->name('prosesTahap2Submit');
+Route::put('/proses-konversi/tahap-3', [ProsesKonversiController::class, 'prosesTahap3'])->name('prosesTahap3Update');
+Route::get('/proses-konversi/tahap-3', [ProsesKonversiController::class, 'showFormTahap3'])->name('prosesTahap3');
+Route::post('/proses-konversi/tahap-3', [ProsesKonversiController::class, 'prosesTahap3'])->name('prosesTahap3Submit');
+Route::get('/proses-konversi/tahap-4', [ProsesKonversiController::class, 'showFormTahap4'])->name('prosesTahap4');
+Route::post('/proses-konversi/tahap-4', [ProsesKonversiController::class, 'prosesTahap4'])->name('prosesTahap4Submit');
+
+Route::get('/rekap-konversi', function () {
+    return view('koperasi_tabel_konversi');
+})->name('koperasi.tabelkonversi');
+
+Route::get('/tahap/{tahap}/preview', function ($tahap) {
+    // Mendapatkan path ke dokumen dari storage
+    $filePath = storage_path("app/upload_tahap_$tahap/document.pdf");
+
+    // Periksa apakah dokumen ada
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+
+    // Mengirimkan dokumen sebagai respons dengan tipe konten yang sesuai
+    return response()->file($filePath, ['Content-Type' => 'application/pdf']);
+})->name('preview.tahap');
+
+    });
 
 Route::get('/dashboard_koperasi', function () {
     return view('koperasi_dashboard');
 })->name('koperasi.dashboard');
+
+Route::get('/teslahplis', function () {
+    return view('koperasi_proses_konversi3');
+})->name('teslahplis');
+
+Route::get('/wkwk', function () {
+    return view('koperasi_proses_konversi4');
+})->name('wkwk');
 
 Route::get('/koperasi-pemilihan-dps', function () {
     return view('koperasi_pemilihan_dps');

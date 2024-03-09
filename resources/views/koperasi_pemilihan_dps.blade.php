@@ -29,14 +29,19 @@
             <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
                 <div class="table-row">
                     <div class="table-col">
-                        <label for="dps1">Pilih DPS 1:</label>
-                        <select id="dps1" name="dps1">
-                            <!-- Isi dropdown sesuai kebutuhan -->
-                            <option value="dps1">DPS 1</option>
-                            <option value="dps2">DPS 2</option>
-                            <!-- ... -->
-                        </select>   
+                        <label for="dps">Pilih DPS:</label>
+                        <select id="dps" name="dps">
+                            @if(!empty($dpsList))
+                                @foreach($dpsList as $dpsItem)
+                                    <option value="{{ $dpsItem->id_dps }}">{{ $dpsItem->nama_lengkap }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                        
+                        
+                        
                     </div>
+                    
             
                     <div class="table-col">
                         <label for="dps2">Masukkan DPS 2:</label>

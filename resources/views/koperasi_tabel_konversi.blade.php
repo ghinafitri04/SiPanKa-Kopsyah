@@ -19,12 +19,16 @@
     <script src="{{asset('js/script_koperasi.js')}}"></script>
 
   <div class="content">
-    <div class="containermt-5">
+    <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
             <h4>Proses Konversi</h4>
           </div>
         </div>
+
+        <div class="mt-3">
+          <iframe id="dokumen-preview" src="" width="100%" height="500px"></iframe>
+      </div>
 
         <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
           <table class="table">
@@ -41,22 +45,22 @@
               </thead>
               <tbody>
                   <tr>
-                      <th scope="row">1</th>
-                      <td class="left-align">Amalll</td>
-                      <td>   
-                        <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                      </i></a>
-                      <td>   
-                        <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                      </i></a>
-                      <td>   
-                        <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                      </i></a> 
-                      <td>   
-                        <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                      </i></a>
-                      <td>   
-                        <a><img src="/img/detail.png" alt="Accepted Icon" width="30" height="30" >
+                    <th scope="row">1</th>
+                    <td class="left-align">Amalll</td>
+                    <td>
+                      <a class="tombol-preview" href="{{ route('preview.tahap', 1) }}" target="_blank">Preview</a>
+                    </td>
+                    <td>
+                        <a class="tombol-preview" href="#" data-src="/path/to/tahap2_document.pdf" target="_blank">Preview</a>
+                    </td>
+                    <td>
+                        <a class="tombol-preview" href="#" data-src="/path/to/tahap3_document.pdf" target="_blank">Preview</a>
+                    </td>
+                    <td>
+                        <a class="tombol-preview" href="#" data-src="/path/to/tahap4_document.pdf" target="_blank">Preview</a>
+                    </td>
+                    <td>
+                        <a><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30" >
                       </i></a>
                   </tr>
 
@@ -64,19 +68,19 @@
                     <th scope="row">2</th>
                     <td class="left-align">Amallliaaa</td>
                     <td>   
-                      <a><img src="/img/iniberhasil.png" alt="Accepted Icon" width="70" height="30" >
+                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
                     </i></a>
                     <td>   
-                      <a><img src="/img/iniberhasil.png" alt="Accepted Icon" width="70" height="30" >
+                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
                     </i></a>
                     <td>   
-                      <a><img src="/img/iniberhasil.png" alt="Accepted Icon" width="70" height="30" >
+                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
                     </i></a> 
                     <td>   
-                      <a><img src="/img/inigagal.png" alt="Accepted Icon" width="70" height="30" >
+                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
                     </i></a>
                     <td>   
-                      <a><img src="/img/detail.png" alt="Accepted Icon" width="30" height="30" >
+                      <a><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30" >
                     </i></a>
                 </tr>
                   <!-- Tambahkan baris lain sesuai kebutuhan -->
@@ -90,5 +94,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Event listener untuk setiap tombol "Preview"
+    document.querySelectorAll('.tombol-preview').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah tindakan default dari tautan
+            var documentUrl = this.getAttribute('data-src');
+            document.getElementById('dokumen-preview').setAttribute('src', documentUrl);
+        });
+    });
+});
+</script>
     </body>
 </html>

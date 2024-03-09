@@ -1,5 +1,5 @@
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Inter', sans-serif;
         margin: 0;
         padding: 0;
     }
@@ -59,7 +59,7 @@
     }
 
     .pencil-icon::before {
-        content: "\270E"; 
+        content: "\270E"; /* Unicode for pencil icon */
     }
 
     .blue-line {
@@ -114,13 +114,13 @@
     .step-label-text {
     font-size: 12px;
     text-align: center;
-    margin-top: 45px;
+    margin-top: 45px; 
     }
 
     .step-label-steps {
     font-size: 12px;
     text-align: center;
-    margin-top: 5px; 
+    margin-top: 5px;
     }
 
     .step-line-between-steps {
@@ -156,13 +156,13 @@
     margin-top: 5px; 
     }   
     .keterangan-tahap span:nth-child(4) {
-    margin-left: -20px; 
+    margin-left: -20px;
     position: relative;
-    left: 7px;
+    left: 7px; 
     }
 
     .keterangan-tahap span:nth-child(2) {
-    margin-right: 30px; 
+    margin-right: 30px;
     }
 
     .keterangan-tahap span:nth-child(3) {
@@ -187,13 +187,12 @@
         font-weight: bold;
         font-size: 18px;
         margin-bottom: 10px;
-        margin-top: 5px;
     }
 
     .berita-acara-content-box {
         flex-grow: 1; 
         margin-left: 20px; 
-        height: 192px;
+        height: 250px;
     }
 
     .berita-acara-content-box-inner {
@@ -225,10 +224,10 @@
     color: #000;
     border: none;
     border-radius: 5px;
-    margin-top: 3px;
+    margin-top: 10px;
     width: 100%; 
     box-sizing: border-box;
-    height: 190px;
+    height: 230px;
     text-align: center;
     }
 
@@ -237,16 +236,20 @@
     }
 
     .footer-buttons {
+        position: relative; /* Tambahkan posisi relatif */
+        bottom: 20px;
+        /* right: 300px; */
         display: flex;
-        justify-content: flex-end; /* Mengatur agar tombol berada di sisi kanan */
-        margin-top: 30px; /* Jarak atas */
+        flex-direction: row-reverse;
+        margin-top: 30px;
     }
     
+
     .footer-button {
         background-color: transparent;
         border: 1px solid #ccc;
         cursor: pointer;
-        margin-left: 10px; /* Sesuaikan margin kiri */
+        /* margin-right: 100px; */
         display: flex;
         align-items: center;
         color: #000;
@@ -254,19 +257,23 @@
         border-radius: 20px;
         padding: 0 15px;
     }
-
-    /* Sesuaikan margin kiri tombol "Sebelumnya" */
-.footer-button-left {
-    margin-left: 0; /* Ubah margin kiri menjadi 0 */
-}
-
-/* Sesuaikan margin kiri tombol "Selanjutnya" */
-.footer-button-next {
-    margin-left: -690px; /* Sesuaikan margin kiri */
-}
+    
 
     .footer-button img {
-    margin-right: 5px;
+        margin-right: 5px;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .footer-button-left {
+        margin-right: 5px; /* Sesuaikan nilai margin sesuai kebutuhan */
+        font-family: 'Poppins', sans-serif;
+    }
+
+    
+   
+    
+    .footer-button-next {
+        margin-left: 10px; /* Sesuaikan dengan nilai margin yang Anda inginkan */
     }
 
     .footer-button:nth-child(1) {
@@ -274,7 +281,6 @@
     color: #000;
     margin-right: 700px; 
     }
-
     .centered-image {
     display: block;
     margin: 0 auto;
@@ -285,21 +291,6 @@
 
     .image-caption {
     text-align: center;
-    margin-top: -17px;
+    margin-top: 10px;
     color: #555; 
-    }
-
-    .inputnamanotaris {
-    display: inline-block;
-    margin: 4px;
-    margin-right: 4px;
-    cursor: pointer;
-    color: #000;
-    border-radius: 5px;
-    border: 1px solid #151515;
-    margin-top: 2px;
-    width: 98%; 
-    box-sizing: border-box;
-    height: 36px;
-    text-align: left;
     }
