@@ -27,7 +27,7 @@
             <ul id="koperasiSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
-                    <a href="{{ route('dps_informasi_koperasi') }}">Informasi Koperasi</a>
+                    <a href="{{ route('dps.informasi.koperasi') }}">Informasi Koperasi</a>
                 </li>
                 
                 <li class="menu-item">

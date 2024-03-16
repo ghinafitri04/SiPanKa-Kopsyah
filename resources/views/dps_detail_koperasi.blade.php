@@ -33,61 +33,60 @@
             
             <!-- Logo Box -->
                 <div class="logo-box">
-                    <img src="/img/gambar_koperasi.png" alt="Profile Image">
+                    <img src="{{ $koperasi->logo }}" alt="Logo Koperasi">
                 </div>
 
                 <div class="table-row">
                     <div class="table-col">
                         <label for="adminName">Nama lengkap admin:</label>
-                        <div id="adminName">John Doe</div>
+                        <div id="adminName">{{ $koperasi->nama_admin_koperasi }}</div>
                     </div>
 
                     <div class="table-col">
                         <label for="coopName">Nama koperasi:</label>
-                        <div id="coopName">Koperasi ABC</div>
+                        <div id="coopName">{{ $koperasi->nama_koperasi }}</div>
                     </div>
                 </div>
 
                 <div class="table-row">
                     <div class="table-col">
                         <label for="legalNumber">No Badan Hukum:</label>
-                        <div id="legalNumber">123456789</div>
+                        <div id="legalNumber">{{ $koperasi->no_badan_hukum }}</div>
                     </div>
 
                     <div class="table-col">
                         <label for="legalDate">Tanggal Badan Hukum:</label>
-                        <div id="legalDate">2022-02-02</div>
+                        <div id="legalDate">{{ $koperasi->tanggal_badan_hukum }}</div>
                     </div>
                 </div>
 
                 <div class="table-row">
                     <div class="table-col full-width">
                         <label for="address">Alamat:</label>
-                        <div id="address">Alamat 1</div>
+                        <div id="address">{{ $koperasi->alamat }}</div>
                     </div>
                 </div>
 
                 <div class="table-row">
                     <div class="table-col">
                         <label for="district">Kecamatan:</label>
-                        <div id="district">Kecamatan A</div>
+                        <div id="district">{{ $koperasi->kecamatan }}</div>
                     </div>
 
                     <div class="table-col">
                         <label for="city">Kabupaten/Kota:</label>
-                        <div id="city">Kota B</div>
+                        <div id="city">{{ $koperasi->adminKabupatenKota->kabupatenKota->nama_kabupatenkota }}</div>
                     </div>
                 </div>
 
-                <!-- Setelah diubah -->
                 <div class="table-row">
                     <div class="table-col">
                         <label for="subdistrict">Kelurahan:</label>
-                        <div id="subdistrict">Nama Kelurahan</div>
+                        <div id="subdistrict">{{ $koperasi->kelurahan }}</div>
                     </div>
                     <div class="table-col">
                         <label for="phoneNumber">No Telp:</label>
-                        <div id="phoneNumber">08123456789</div>
+                        <div id="phoneNumber">{{ $koperasi->no_telp }}</div>
                     </div>
                 </div>
             </div>

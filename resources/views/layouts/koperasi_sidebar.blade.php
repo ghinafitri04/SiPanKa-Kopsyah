@@ -15,7 +15,7 @@
 
         <li class="menu-item">
             <img src='/img/dps.png' alt="Pemilihan DPS"> 
-            <a href="{{ route('pemilihan.dps') }}" >Pemilihan DPS</a>
+            <a href="{{ route('koperasi.pemilihan_dps.index') }}" >Pemilihan DPS</a>
         </li>
         
         <li class="menu-item">

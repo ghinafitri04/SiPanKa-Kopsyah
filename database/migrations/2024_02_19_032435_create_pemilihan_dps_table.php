@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_koperasi');
             $table->unsignedBigInteger('id_dps');
+            $table->string('nama_dps2')->nullable();
             $table->date('tanggal_dipilih');
             $table->timestamps();
 

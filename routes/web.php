@@ -15,11 +15,15 @@ use App\Http\Controllers\AdminKabupatenKotaPengawasanDpsController;
 
 use App\Http\Controllers\KoperasiController;
 use App\Http\Controllers\KoperasiProfileController;
+use App\Http\Controllers\KoperasiPemilihanDpsController;
 use App\Http\Controllers\ManajemenKoperasiController;
 use App\Http\Controllers\DpsController;
 use App\Http\Controllers\PemilihanDpsController;
+
+use App\Http\Controllers\DpsInformasiKoperasiController;
 use App\Models\Koperasi;
 use App\Http\Controllers\AdminKoperasiController;
+use App\Models\PemilihanDps;
 
 // Route default, arahkan ke halaman login
 Route::get('/', function () {
@@ -122,8 +126,22 @@ Route::middleware(['auth:koperasi'])->group(function () {
         ->name('koperasi.profile');
     Route::post('/koperasi/profile/store', [KoperasiProfileController::class, 'store'])
         ->name('koperasi.profile.store');
+
+    //Pemilihan DPS
+    Route::post('/koperasi/pemilihan-dps/store', [KoperasiPemilihanDpsController::class, 'store'])
+        ->name('koperasi.pemilihan_dps.store');
+    Route::get('/koperasi/pemilihan-dps', [KoperasiPemilihanDpsController::class, 'index'])
+        ->name('koperasi.pemilihan_dps.index');
 });
 
+Route::middleware(['auth:dps'])->group(function () {
+    // Sesuaikan dengan controller dan metodenya
+    Route::get('/dps_dashboard', [DpsController::class, 'dashboard'])->name('dps.dashboard');
+    Route::get('/dps-informasi-koperasi', [DpsInformasiKoperasiController::class, 'getKoperasi'])
+        ->name('dps.informasi.koperasi');
+    Route::get('/dps-detail-koperasi/{id}', [DpsInformasiKoperasiController::class, 'show'])
+        ->name('dps.detail');
+});
 
 
 // Route sementara (opsional, bisa dihapus jika tidak digunakan)
@@ -249,21 +267,12 @@ Route::get('/detail-admin-koperasi-kabkota', function () {
     return view('admin_kabkota_detailadminkoperasi');
 })->name('admin_kabkota_detailadminkoperasi');
 
-Route::middleware(['auth:dps'])->group(function () {
-    // Sesuaikan dengan controller dan metodenya
-    Route::get('/dps_dashboard', [DpsController::class, 'dashboard'])->name('dps.dashboard');
-});
 
 Route::get('/detail-admin-koperasi-kabkota', function () {
     return view('admin_kabkota_detailadminkoperasi');
 })->name('admin_kabkota_detailadminkoperasi');
 
 
-
-
-Route::get('/koperasi-pemilihan-dps', function () {
-    return view('koperasi_pemilihan_dps');
-})->name('pemilihan.dps');
 
 Route::get('/koperasi-proses-konversi', function () {
     return view('koperasi_proses_konversi');
