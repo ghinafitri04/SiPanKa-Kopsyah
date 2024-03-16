@@ -38,6 +38,7 @@
                             @endforeach
                         </select>                        
                     </div>
+                    
             
                     <div class="table-col">
                         <label for="dps2">Masukkan DPS 2:</label>

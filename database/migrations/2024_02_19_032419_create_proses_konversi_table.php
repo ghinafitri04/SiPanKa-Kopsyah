@@ -6,14 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('proses_konversi', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_proses_konversi');
+            $table->unsignedBigInteger('id_koperasi');
+            $table->string('rapat_anggota')->nullable();
+            $table->string('perubahan_pad')->nullable();
+            $table->string('nama_notaris')->nullable();
+            $table->string('bukti_notaris')->nullable();
+            $table->string('pengesahan_pad')->nullable();
+            $table->date('tanggal')->nullable();
             $table->timestamps();
+
+            // Menambahkan foreign key constraint
+            $table->foreign('id_koperasi')->references('id_koperasi')->on('koperasi')->onDelete('cascade');
         });
     }
 

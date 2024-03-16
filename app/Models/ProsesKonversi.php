@@ -17,12 +17,46 @@ class ProsesKonversi extends Model implements Authenticatable
 
     protected $fillable = [
         'id_koperasi',
-        'rapat_anggota_pdf_data',
-        'perubahan_akad_pdf_data',
-        'perubahan_pad_gambar_data',
+        'rapat_anggota',
+        'perubahan_pad',
         'nama_notaris',
-        'pengesahan_pad_pdf_data',
+        'pengesahan_pad',
+        'Tanggal',
     ];
+
+    public function koperasi()
+    {
+        return $this->belongsTo(Koperasi::class, 'id_koperasi');
+    }
+
+    // Metode untuk autentikasi
+    public function getAuthIdentifierName()
+    {
+        return 'id';
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRememberToken()
+    {
+        return null; // Jika Anda tidak menggunakan "remember me" token
+    }
+
+    public function setRememberToken($value)
+    {
+        // Jika Anda tidak menggunakan "remember me" token
+    }
+
+    public function getRememberTokenName()
+    {
+        return null; // Jika Anda tidak menggunakan "remember me" token
+    }
 }
-
-

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminProvinsiController;
 use App\Http\Controllers\AdminKabupatenKotaController;
@@ -19,6 +20,8 @@ use App\Http\Controllers\KoperasiPemilihanDpsController;
 use App\Http\Controllers\ManajemenKoperasiController;
 use App\Http\Controllers\DpsController;
 use App\Http\Controllers\PemilihanDpsController;
+use App\Http\Controllers\AdminKabKotaManajemenKoperasiController;
+use App\Http\Controllers\ProsesKonversiController;
 
 use App\Http\Controllers\DpsInformasiKoperasiController;
 use App\Models\Koperasi;
@@ -38,13 +41,11 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-
 // Proses login
 Route::post('/login', [AuthController::class, 'login']);
 
 // Proses logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 
 // Route untuk halaman dashboard (untuk semua role)
 Route::middleware(['auth:admin_provinsi'])->group(function () {
@@ -154,7 +155,6 @@ Route::get('/pengawasan-dps', function () {
     return view('admin_provinsi_pengawasandps');
 })->name('pengawasandps');
 
-// Route sementara (opsional, bisa dihapus jika tidak digunakan)
 Route::get('/konversi-koperasi', function () {
     return view('admin_provinsi_konversiKoperasi');
 })->name('konversikoperasi');
@@ -271,7 +271,6 @@ Route::get('/detail-admin-koperasi-kabkota', function () {
 Route::get('/detail-admin-koperasi-kabkota', function () {
     return view('admin_kabkota_detailadminkoperasi');
 })->name('admin_kabkota_detailadminkoperasi');
-
 
 
 Route::get('/koperasi-proses-konversi', function () {
