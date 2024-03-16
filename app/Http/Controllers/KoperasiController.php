@@ -9,20 +9,23 @@ use Illuminate\Support\Facades\Storage; // Import class Storage untuk mengelola 
 
 class KoperasiController extends Controller
 {
+    public function dashboard()
+    {
+        return view('koperasi_dashboard');
+    }
     public function update_profile_koperasi(Request $request, $id)
     {
-        // Pastikan $id adalah bilangan bulat sebelum digunakan dalam query
+        //Pastikan $id adalah bilangan bulat sebelum digunakan dalam query
         if (!is_numeric($id)) {
-            // Lakukan penanganan kesalahan, contohnya:
             abort(404);
         }
 
-        // Lakukan parameter binding dengan Eloquent untuk mencari koperasi berdasarkan id_koperasi
+        //Lakukan parameter binding dengan Eloquent untuk mencari koperasi berdasarkan id_koperasi
         $koperasi = Koperasi::findOrFail($id);
 
         // Tambahkan penanganan jika koperasi tidak ditemukan
         if (!$koperasi) {
-            return response()->json(['message' => 'Koperasi not found'], 404);
+            return response()->json(['message' => 'Koperasi tidak ditemukan'], 404);
         }
 
         $kabupatenKota = null;
@@ -49,19 +52,11 @@ class KoperasiController extends Controller
             'kelurahan' => 'required|string|max:255',
             'no_telp' => 'required|string|max:255',
             'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk logo (jenis file gambar)
-            'id_admin_kabupatenkota' => 'required' // Pastikan id_admin_kabupatenkota tidak kosong
+            'id_admin_kabupatenkota' => 'required', // Pastikan id_admin_kabupatenkota tidak kosong
         ]);
 
         //disinii model model
-        $koperasi = new Koperasi();
-        $koperasi->no_badan_hukum = $request->no_badan_hukum;
-        $koperasi->tanggal_badan_hukum = $request->tanggal_badan_hukum;
-        $koperasi->alamat = $request->alamat;
-        $koperasi->kecamatan = $request->kecamatan;
-        $koperasi->kelurahan = $request->kelurahan;
-        $koperasi->no_telp = $request->no_telp;
-        $koperasi->id_admin_kabupatenkota = $request->id_admin_kabupatenkota;
-        $koperasi->role = 'koperasi';
+        $koperasi = Koperasi::find($request->id);
 
         // Simpan file logo ke server jika diunggah
         if ($request->hasFile('logo')) {
@@ -73,10 +68,14 @@ class KoperasiController extends Controller
             $koperasi->logo = $nama_file;
         }
 
+        if ($request->fails()) {
+            return redirect()->back()->withErrors($request->validator->errors());
+        }
+
         // Simpan data ke dalam database
         $koperasi->save();
 
         // Redirect pengguna ke halaman yang sesuai atau berikan respons
-        return redirect()->route('koperasi_update_profile.index')->with('success', 'Data koperasi baru berhasil disimpan');
+        return redirect()->route('koperasi_profile.index')->with('success', 'Data koperasi berhasil diperbarui');
     }
 }
