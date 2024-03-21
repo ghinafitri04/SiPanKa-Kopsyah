@@ -16,7 +16,7 @@ class Pengawasan extends Model
         'id_dps',
         'id_koperasi',
         'hasil',
-        'periode',
+        'status',
         'permasalahan',
         'saran',
         'tanggal_pengawasan',

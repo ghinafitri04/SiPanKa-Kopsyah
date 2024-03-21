@@ -47,12 +47,58 @@ class DpsPengawasanKoperasiController extends Controller
 
         return view('dps_konversi_koperasi', compact('prosesKonversi'));
     }
+    // Di dalam kontroler yang memanggil view ini (misalnya DpsPengawasanKoperasiController)
     public function dpsPengawasanKoperasi($id_koperasi)
     {
         // Ambil data riwayat pengawasan DPS berdasarkan ID koperasi yang dipilih
         $riwayatPengawasanDPS = Pengawasan::where('id_koperasi', $id_koperasi)->get();
 
-        // Kembalikan view 'dps_detail_pengawasan.blade.php' dengan data riwayat pengawasan DPS
-        return view('dps_detail_pengawasan', compact('riwayatPengawasanDPS'));
+        // Ambil data koperasi berdasarkan ID koperasi
+        $koperasi = Koperasi::findOrFail($id_koperasi);
+
+        // Kembalikan view 'dps_detail_pengawasan.blade.php' dengan data riwayat pengawasan DPS dan data koperasi
+        return view('dps_detail_pengawasan', compact('riwayatPengawasanDPS', 'koperasi'));
+    }
+
+    public function buatReportBaru($id_koperasi)
+    {
+        $riwayatPengawasanDPS = Pengawasan::where('id_koperasi', $id_koperasi)->get();
+        $koperasi = Koperasi::findOrFail($id_koperasi);
+
+        return view('dps_detail_pengawasan_diterima', compact('koperasi'));
+    }
+
+    public function menambahkanLaporan(Request $request, $id_koperasi)
+    {
+        $request->validate([
+            'hasil' => 'required|string',
+            'permasalahan' => 'required|string',
+            'saran' => 'required|string',
+        ]);
+
+        // Mengambil ID DPS yang sedang login
+        $idDps = auth()->user()->getAuthIdentifier();
+
+        Pengawasan::create([
+            'id_admin_provinsi' => 1, // ID admin provinsi tetap 1
+            'id_dps' => $idDps,
+            'id_koperasi' => $id_koperasi,
+            'tanggal_pengawasan' => now(),
+            'hasil' => $request->input('hasil'),
+            'permasalahan' => $request->input('permasalahan'),
+            'saran' => $request->input('saran'),
+            'status' => false,
+        ]);
+
+        // Menggunakan redirect ke halaman detail pengawasan diterima
+        return redirect()->route('dps_pengawasan_koperasi', ['id_koperasi' => $id_koperasi])->with('success', 'Data pengawasan berhasil disimpan.');
+    }
+    public function menampilkanLaporan($id_pengawasan)
+    {
+        // Ambil data pengawasan berdasarkan ID pengawasan
+        $pengawasan = Pengawasan::findOrFail($id_pengawasan);
+
+        // Kembalikan view 'detail_pengawasan_dpsmenunggu.blade.php' dengan data pengawasan yang sesuai
+        return view('dps_detail_pengawasan_menunggu', compact('pengawasan'));
     }
 }

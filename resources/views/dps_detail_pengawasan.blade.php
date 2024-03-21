@@ -21,7 +21,8 @@
           <div class="dashboard-title">
             <strong>Riwayat Pengawasan DPS</strong>
           </div>
-          <a href="#" class="btn btn-primary">Buat Laporan Baru</a>
+          <a href="{{ route('buat_laporan_baru', ['id_koperasi' => $koperasi->id_koperasi]) }}" class="btn btn-primary">Buat Laporan Baru</a>
+
         </div>
 
         <div class="mt-3">
@@ -40,19 +41,17 @@
                       <th scope="row">{{ $key + 1 }}</th>
                       <td>{{ $pengawasan->tanggal_pengawasan }}</td>
                       <td>
-                        @if($pengawasan->hasil == 'Diterima')
+                        @if($pengawasan->status)
                           <img src="/img/accepted.png" alt="Accepted Icon">
-                        @elseif($pengawasan->hasil == 'Menunggu')
-                          <img src="/img/pending.png" alt="Pending Icon">
                         @else
-                          <img src="/img/rejected.png" alt="Rejected Icon">
+                          <img src="/img/pending.png" alt="Pending Icon">
                         @endif
                       </td>
                       <td>
-                        <a href="{{ $pengawasan->hasil == 'Diterima' ? '/detail-pengawasan-dpsditerima' : '/detail-pengawasan-dpsmenunggu' }}">
-                          <img src="/img/info.png" alt="Info Icon" width="30" height="30">
+                        <a href="{{ route('dps.pengawasan_laporan', ['id_pengawasan' => $pengawasan->id]) }}">
+                            <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
                         </a>
-                      </td>
+                    </td>                                        
                   </tr>
                   @endforeach
               </tbody>

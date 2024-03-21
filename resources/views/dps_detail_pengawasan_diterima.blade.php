@@ -27,61 +27,36 @@
         </div>
     </div>
 
-<!-- Box untuk Laporan Hasil Pengawasan DPS -->
-<div class="dashboard-box" style="padding: 20px; border: 1px solid #d3d3d3; border-radius: 10px; max-height: 460px; overflow: auto;"> <!-- Tambahkan max-height untuk mengatur tinggi maksimal dan overflow: auto; untuk membuat scroll jika kontennya panjang -->
+<!-- Form untuk Laporan Hasil Pengawasan DPS -->
+<div class="dashboard-box" style="padding: 20px; border: 1px solid #d3d3d3; border-radius: 10px;">
     <h2 style="text-align: center; font-weight: bold; margin-top: 0; margin-bottom: 20px;">Formulir Laporan Hasil Pengawasan DPS</h2>
     
-    <!-- Tanggal Pengawasan dan Kolomnya -->
-    <div style="display: flex; justify-content: space-between;">
-      <div style="width: 48%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa;"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Tanggal Pengawasan:</p>
-        <p style="margin: 0;">Data dari Database</p>
-      </div>
-      
-      <!-- Periode dan Kolomnya (untuk menampilkan data) -->
-      <div style="width: 48%; float: right; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; "> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Periode:</p>
-        <p style="margin: 0;">Data dari Database</p>
-      </div>
-    </div>
+    <form action="{{ route('dps.menambahkan-laporan', ['id_koperasi' => $koperasi->id_koperasi]) }}" method="post">
+        @csrf <!-- Laravel CSRF Protection -->
+        <!-- Hasil -->
+        <div class="form-group">
+            <label for="hasil">Hasil:</label>
+            <textarea class="form-control" id="hasil" name="hasil" rows="3"></textarea>
+        </div>
 
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Hasil:</p>
-        <p style="margin: 0;">Data dari Database</p>
-    </div>
+        <!-- Permasalahan -->
+        <div class="form-group">
+            <label for="permasalahan">Permasalahan:</label>
+            <textarea class="form-control" id="permasalahan" name="permasalahan" rows="3"></textarea>
+        </div>
 
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Permasalahan:</p>
-        <p style="margin: 0;">Data dari Database</p>
-    </div>
+        <!-- Saran -->
+        <div class="form-group">
+            <label for="saran">Saran:</label>
+            <textarea class="form-control" id="saran" name="saran" rows="3"></textarea>
+        </div>
 
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Saran:</p>
-        <p style="margin: 0;">Data dari Database</p>
-    </div>
+        <!-- Tombol Submit -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
-
-<!-- Kolom untuk Komentar Pengguna -->
-<div class="user-comment-column" style="padding: 20px; border: 1px solid #d3d3d3; border-radius: 10px; max-height: 200px; overflow: auto;">
-  <h2 style="font-size: 18px; color: #07170b; margin-bottom: 10px;">Komentar Pengguna</h2>
-
-  <!-- Textarea for Adding New Comment -->
-  <div class="comment-box" style="width: 100%; display: flex; align-items: center; float: left; padding: 0px; margin-bottom: 20px;">
-    <textarea placeholder="Tambahkan komentar/saran" style="width: 100%; height: 50px; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; margin-right: 10px; resize: none;"></textarea>
-    <img src="/img/Send Icon.png" width="20" height="20" alt="Kirim" style="cursor: pointer; margin-top: 5px;">
-  </div>
-  
-  <!-- Sample User Comment (replace with dynamic content from the backend) -->
-  <hr style="border: 1px solid #d3d3d3; margin: 10px 0;">
-  <div class="comment-info">
-    <p style="font-size: 14px; font-weight: bold; margin: 5px 0;">Pengguna Satu | <span style="font-size: 13px;">21 Januari 2024</span></p>
-    <p style="font-size: 14px; margin: 0;">Ini komentar dari pengguna satu</p>
-  </div>
-</div>
-</div>
-
-<!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
+<!-- jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

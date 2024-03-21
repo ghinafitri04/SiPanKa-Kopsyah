@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_dps');
             $table->unsignedBigInteger('id_koperasi');
             $table->text('hasil');
-            $table->text('periode')->nullable();
+            $table->boolean('status')->nullable();
             $table->text('permasalahan');
             $table->text('saran');
             $table->date('tanggal_pengawasan');
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sarans');
+        Schema::dropIfExists('pengawasan');
     }
 };

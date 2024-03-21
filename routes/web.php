@@ -188,6 +188,10 @@ Route::middleware(['auth:dps'])->group(function () {
     Route::get('/dps-konversikoperasi/{id}', [DpsPengawasanKoperasiController::class, 'index'])
         ->name('dps_konversi_koperasi');
     Route::get('/dps_pengawasan_koperasi/{id_koperasi}', [DpsPengawasanKoperasiController::class, 'dpsPengawasanKoperasi'])->name('dps_pengawasan_koperasi');
+    Route::get('/dps_detail_pengawasan_diterima/{id_koperasi}', [DpsPengawasanKoperasiController::class, 'buatReportBaru'])->name('buat_laporan_baru');
+    Route::post('/menambahkan-laporan/{id_koperasi}', [DpsPengawasanKoperasiController::class, 'menambahkanLaporan'])->name('dps.menambahkan-laporan');
+    Route::get('/dps-pengawasan-laporan/{id_pengawasan}', [DpsPengawasanKoperasiController::class, 'menampilkanLaporan'])
+        ->name('dps.pengawasan_laporan');
 });
 
 

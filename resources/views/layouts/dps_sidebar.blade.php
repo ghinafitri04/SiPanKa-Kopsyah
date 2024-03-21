@@ -12,11 +12,11 @@
             <img src='/img/tabler_home.png' alt="Home Icon"> 
             <a href="{{ route('dps.dashboard') }}" >Dashboard</a>
         </li>
-
+{{-- 
         <li class="menu-item">
             <img src='/img/dps.png' alt="Riwayat Pengawasan"> 
             <a href="{{ route('dps_riwayat_pengawasan') }}" >Riwayat Pengawasan</a>
-        </li>
+        </li> --}}
         
         <li class="menu-item">
             <img src='/img/dps.png' alt="Pengawasan"> 

@@ -13,55 +13,52 @@
 
 <body>
 @include('layouts.dps_sidebar')
-    @include('layouts.dps_navbar')
-  <script src="{{asset('js/script_dps.js')}}"></script>
-  
-  <div class="content">
+@include('layouts.dps_navbar')
+<script src="{{asset('js/script_dps.js')}}"></script>
+
+<div class="content">
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
-          <div class="dashboard-title">
-            <strong>Riwayat Pengawasan</strong>
-            <div class="dashboard-subtitle">
-                <p><strong>Nama Koperasi :</strong> Koperasi Budi Luhur</p>
+            <div class="dashboard-title">
+                <strong>Riwayat Pengawasan</strong>
+                <div class="dashboard-subtitle">
+                    <p><strong>Nama Koperasi :</strong> {{ $pengawasan->koperasi->nama_koperasi }}</p>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Box untuk Laporan Hasil Pengawasan DPS -->
+    <div class="dashboard-box" style="padding: 20px; border: 1px solid #d3d3d3; border-radius: 10px; max-height: 460px; overflow: auto;"> <!-- Tambahkan max-height untuk mengatur tinggi maksimal dan overflow: auto; untuk membuat scroll jika kontennya panjang -->
+        <h2 style="text-align: center; font-weight: bold; margin-top: 0; margin-bottom: 20px;">Formulir Laporan Hasil Pengawasan DPS</h2>
+        
+        <!-- Tanggal Pengawasan dan Kolomnya -->
+        <div style="display: flex; justify-content: space-between;">
+            <div style="width: 48%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa;"> <!-- Ganti background color sesuai kebutuhan -->
+                <p style="font-weight: bold; margin-bottom: 5px;">Tanggal Pengawasan:</p>
+                <p style="margin: 0;">{{ $pengawasan->tanggal_pengawasan }}</p>
+            </div>
+            <div style="width: 48%; float: right; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: {{ $pengawasan->status ? '#d4edda' : '#f8d7da' }}; "> <!-- Ganti background color sesuai kebutuhan -->
+              <p style="font-weight: bold; margin-bottom: 5px;">Status:</p>
+              <p style="margin: 0;">{{ $pengawasan->status ? 'Diterima' : 'Menunggu' }}</p>
           </div>
         </div>
-      </div>
 
-<!-- Box untuk Laporan Hasil Pengawasan DPS -->
-<div class="dashboard-box" style="padding: 20px; border: 1px solid #d3d3d3; border-radius: 10px; max-height: 460px; overflow: auto;"> <!-- Tambahkan max-height untuk mengatur tinggi maksimal dan overflow: auto; untuk membuat scroll jika kontennya panjang -->
-    <h2 style="text-align: center; font-weight: bold; margin-top: 0; margin-bottom: 20px;">Formulir Laporan Hasil Pengawasan DPS</h2>
-    
-    <!-- Tanggal Pengawasan dan Kolomnya -->
-    <div style="display: flex; justify-content: space-between;">
-      <div style="width: 48%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa;"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Tanggal Pengawasan:</p>
-        <p style="margin: 0;">Data dari Database</p>
-      </div>
-      
-      <!-- Periode dan Kolomnya (untuk menampilkan data) -->
-      <div style="width: 48%; float: right; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; "> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Periode:</p>
-        <p style="margin: 0;">Data dari Database</p>
-      </div>
+        <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
+            <p style="font-weight: bold; margin-bottom: 5px;">Hasil:</p>
+            <p style="margin: 0;">{{ $pengawasan->hasil }}</p>
+        </div>
+
+        <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
+            <p style="font-weight: bold; margin-bottom: 5px;">Permasalahan:</p>
+            <p style="margin: 0;">{{ $pengawasan->permasalahan }}</p>
+        </div>
+
+        <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
+            <p style="font-weight: bold; margin-bottom: 5px;">Saran:</p>
+            <p style="margin: 0;">{{ $pengawasan->saran }}</p>
+        </div>
     </div>
-
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Hasil:</p>
-        <p style="margin: 0;">Data dari Database</p>
-    </div>
-
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Permasalahan:</p>
-        <p style="margin: 0;">Data dari Database</p>
-    </div>
-
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Saran:</p>
-        <p style="margin: 0;">Data dari Database</p>
-    </div>
-</div>
-
 </div>
 
 <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
