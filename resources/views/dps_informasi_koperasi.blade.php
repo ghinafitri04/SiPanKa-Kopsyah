@@ -33,7 +33,9 @@
         <thead>
           <tr>
             <th scope="col">Nama Koperasi</th>
-            <th scope="col">Detail</th>
+            <th scope="col">Profil</th>
+            <th scope="col">Proses Konversi</th>
+            <th scope="col">Pengawasan</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +43,8 @@
           <tr>
             <td>{{ $k->nama_koperasi }}</td>
             <td><a href="/dps-detail-koperasi/{{ $k->id_koperasi }}" class="detail-button">Detail</a></td>
+            <td><a href="{{ route('dps_konversi_koperasi', $k->id_koperasi) }}" class="detail-button">Proses Konversi</a></td>
+            <td><a href="{{ route('dps_pengawasan_koperasi', $k->id_koperasi) }}" class="detail-button">Pengawasan</a></td>
           </tr>
           @endforeach
         </tbody>

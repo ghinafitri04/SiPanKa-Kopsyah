@@ -88,7 +88,7 @@
     background: linear-gradient(to top, #147167 0%, #147167 100%);
     color: white;
     padding: 5px 16px;
-    margin-left: auto;
+    width: 50%;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;

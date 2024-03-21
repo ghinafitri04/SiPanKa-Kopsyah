@@ -12,18 +12,25 @@ class KoperasiPemilihanDPSController extends Controller
 {
     public function index()
     {
-        // Mendapatkan DPS yang belum dipilih sebagai DPS 2
+        // Mendapatkan ID koperasi yang sedang login
         $id_koperasi = Auth::id();
+
+        // Mendapatkan DPS yang belum dipilih sebagai DPS 2 untuk koperasi yang sedang login
         $dps1 = Dps::all();
 
-        // Mendapatkan data riwayat pemilihan DPS dari database
-        $riwayatPemilihan = PemilihanDps::with(['dps', 'koperasi'])->orderBy('created_at', 'desc')->get();
+        // Mendapatkan data riwayat pemilihan DPS dari database untuk koperasi yang sedang login
+        $riwayatPemilihan = PemilihanDps::where('id_koperasi', $id_koperasi)
+            ->with(['dps', 'koperasi'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('koperasi_pemilihan_dps', [
             'dps1' => $dps1,
             'riwayatPemilihan' => $riwayatPemilihan
         ]);
     }
+
+
 
     public function store(Request $request)
     {

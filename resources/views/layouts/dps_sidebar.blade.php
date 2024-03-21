@@ -18,7 +18,12 @@
             <a href="{{ route('dps_riwayat_pengawasan') }}" >Riwayat Pengawasan</a>
         </li>
         
-        <li class="parent-menu">
+        <li class="menu-item">
+            <img src='/img/dps.png' alt="Pengawasan"> 
+            <a href="{{ route('dps.informasi.koperasi') }}" >Pengawasan</a>
+        </li>
+        
+        {{-- <li class="parent-menu">
             <li class="menu-item">
                 <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
                 <a href="#" onclick="toggleSubMenu('koperasiSubMenu')">Manajemen Koperasi <span class="arrow">&#11167;</span></a>
@@ -36,7 +41,7 @@
                 </li>
 
             </ul>
-        </li>
+        </li> --}}
     
     </ul>
 

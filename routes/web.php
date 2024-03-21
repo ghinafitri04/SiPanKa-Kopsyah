@@ -24,6 +24,7 @@ use App\Http\Controllers\AdminKabKotaManajemenKoperasiController;
 use App\Http\Controllers\ProsesKonversiController;
 
 use App\Http\Controllers\DpsInformasiKoperasiController;
+use App\Http\Controllers\DpsPengawasanKoperasiController;
 use App\Models\Koperasi;
 use App\Http\Controllers\AdminKoperasiController;
 use App\Models\PemilihanDps;
@@ -133,15 +134,10 @@ Route::middleware(['auth:koperasi'])->group(function () {
         ->name('koperasi.pemilihan_dps.store');
     Route::get('/koperasi/pemilihan-dps', [KoperasiPemilihanDpsController::class, 'index'])
         ->name('koperasi.pemilihan_dps.index');
-});
 
-Route::middleware(['auth:dps'])->group(function () {
-    // Sesuaikan dengan controller dan metodenya
-    Route::get('/dps_dashboard', [DpsController::class, 'dashboard'])->name('dps.dashboard');
-    Route::get('/dps-informasi-koperasi', [DpsInformasiKoperasiController::class, 'getKoperasi'])
-        ->name('dps.informasi.koperasi');
-    Route::get('/dps-detail-koperasi/{id}', [DpsInformasiKoperasiController::class, 'show'])
-        ->name('dps.detail');
+    //Route untuk koperasi proses konversi
+
+    Route::get('/pdf/show/{id}', [ProsesKonversiController::class, 'showPdf'])->name('pdf.show');
     Route::get('/proses-konversi/tahap-1', [ProsesKonversiController::class, 'showFormTahap1'])->name('prosesTahap1');
     Route::post('/proses-konversi/tahap-1', [ProsesKonversiController::class, 'prosesTahap1'])->name('prosesTahap1Submit');
     Route::get('/proses-konversi/tahap-2', [ProsesKonversiController::class, 'showFormTahap2'])->name('prosesTahap2');
@@ -151,6 +147,7 @@ Route::middleware(['auth:dps'])->group(function () {
     Route::post('/proses-konversi/tahap-3', [ProsesKonversiController::class, 'prosesTahap3'])->name('prosesTahap3Submit');
     Route::get('/proses-konversi/tahap-4', [ProsesKonversiController::class, 'showFormTahap4'])->name('prosesTahap4');
     Route::post('/proses-konversi/tahap-4', [ProsesKonversiController::class, 'prosesTahap4'])->name('prosesTahap4Submit');
+
     Route::get('/rekap-konversi', function () {
         return view('koperasi_tabel_konversi');
     })->name('koperasi.tabelkonversi');
@@ -167,6 +164,30 @@ Route::middleware(['auth:dps'])->group(function () {
         // Mengirimkan dokumen sebagai respons dengan tipe konten yang sesuai
         return response()->file($filePath, ['Content-Type' => 'application/pdf']);
     })->name('preview.tahap');
+    Route::get('/tahap/{tahap}/preview', function ($tahap) {
+        // Mendapatkan path ke dokumen dari storage
+        $filePath = storage_path("app/upload_tahap_$tahap/document.pdf");
+
+        // Periksa apakah dokumen ada
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+
+        // Mengirimkan dokumen sebagai respons dengan tipe konten yang sesuai
+        return response()->file($filePath, ['Content-Type' => 'application/pdf']);
+    })->name('preview.tahap');
+});
+
+Route::middleware(['auth:dps'])->group(function () {
+    // Sesuaikan dengan controller dan metodenya
+    Route::get('/dps_dashboard', [DpsController::class, 'dashboard'])->name('dps.dashboard');
+    Route::get('/dps-informasi-koperasi', [DpsInformasiKoperasiController::class, 'getKoperasi'])
+        ->name('dps.informasi.koperasi');
+    Route::get('/dps-detail-koperasi/{id}', [DpsInformasiKoperasiController::class, 'show'])
+        ->name('dps.detail');
+    Route::get('/dps-konversikoperasi/{id}', [DpsPengawasanKoperasiController::class, 'index'])
+        ->name('dps_konversi_koperasi');
+    Route::get('/dps_pengawasan_koperasi/{id_koperasi}', [DpsPengawasanKoperasiController::class, 'dpsPengawasanKoperasi'])->name('dps_pengawasan_koperasi');
 });
 
 
@@ -251,9 +272,7 @@ Route::get('/dps-informasikoperasi', function () {
     return view('dps_informasi_koperasi');
 })->name('dps_informasi_koperasi');
 
-Route::get('/dps-konversikoperasi', function () {
-    return view('dps_konversi_koperasi');
-})->name('dps_konversi_koperasi');
+
 
 Route::get('/detail-pengawasan-dps', function () {
     return view('dps_detail_pengawasan');
