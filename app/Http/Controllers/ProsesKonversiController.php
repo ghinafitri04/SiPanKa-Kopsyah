@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProsesKonversi;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class ProsesKonversiController extends Controller
 {
@@ -16,31 +16,20 @@ class ProsesKonversiController extends Controller
     public function prosesTahap1(Request $request)
     {
         // Validasi file jika ada
-        if ($request->hasFile('rapat_anggota')) {
-            $request->validate([
-                'rapat_anggota' => 'file|mimes:pdf|max:2048', // Maksimum 2MB
-            ]);
+        $request->validate([
+            'rapat_anggota' => 'required|file|mimes:pdf|max:2048', // Maksimum 2MB
+        ]);
 
-            // Simpan file ke dalam sistem file (contoh: folder "uploads")
-            $file = $request->file('rapat_anggota');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads_tahap_1', $fileName);
-        } else {
-            $filePath = null; // Tidak ada file yang diunggah
-        }
+        // Simpan file ke dalam sistem file (contoh: folder "uploads")
+        $filePath = $request->file('rapat_anggota')->store('rapat_anggota');
 
-        // Simpan data proses konversi tahap 1 ke dalam sesi
-        Session::put('prosesKonversiTahap1', $filePath);
+        // Simpan data proses konversi tahap 1 ke dalam database
+        ProsesKonversi::updateOrCreate(
+            ['id_koperasi' => Auth::user()->id_koperasi],
+            ['rapat_anggota' => $filePath]
+        );
 
-        // Jika terdapat file yang diunggah, simpan data ke database
-        if ($filePath) {
-            ProsesKonversi::create([
-                'id_koperasi' => auth()->user()->id_koperasi,
-                'rapat_anggota' => $filePath,
-            ]);
-        }
-
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Dokumen rapat anggota berhasil diunggah.');
     }
 
     public function showFormTahap2()
@@ -51,33 +40,20 @@ class ProsesKonversiController extends Controller
     public function prosesTahap2(Request $request)
     {
         // Validasi file jika ada
-        if ($request->hasFile('perubahan_pad')) {
-            $request->validate([
-                'perubahan_pad' => 'file|mimes:pdf|max:2048', // Maksimum 2MB
-            ]);
+        $request->validate([
+            'perubahan_pad' => 'required|file|mimes:pdf|max:2048', // Maksimum 2MB
+        ]);
 
-            // Simpan file ke dalam sistem file (contoh: folder "uploads")
-            $file = $request->file('perubahan_pad');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads_tahap_2', $fileName);
-        } else {
-            $filePath = null; // Tidak ada file yang diunggah
-        }
+        $filePath = $request->file('perubahan_pad')->store('perubahan_pad');
 
-        // Perbarui data proses konversi dengan data tahap 2
-        Session::put('prosesKonversiTahap2', $filePath);
+        // Simpan data proses konversi tahap 2 ke dalam database
+        ProsesKonversi::updateOrCreate(
+            ['id_koperasi' => Auth::user()->id_koperasi],
+            ['perubahan_pad' => $filePath]
+        );
 
-        // Jika terdapat file yang diunggah, simpan data ke database
-        if ($filePath) {
-            ProsesKonversi::where('id_koperasi', auth()->user()->id_koperasi)->update([
-                'perubahan_pad' => $filePath,
-            ]);
-        }
-
-        // Redirect kembali ke tahap 2
-        return redirect()->route('prosesTahap2')->with('success', 'Dokumen Perubahan PAD berhasil diunggah.');
+        return redirect()->back()->with('success', 'Dokumen perubahan PAD berhasil diunggah.');
     }
-
 
     public function showFormTahap3()
     {
@@ -87,33 +63,23 @@ class ProsesKonversiController extends Controller
     public function prosesTahap3(Request $request)
     {
         // Validasi file jika ada
-        if ($request->hasFile('bukti_notaris')) {
-            $request->validate([
-                'nama_notaris' => 'required|string|max:255',
-                'bukti_notaris' => 'file|mimes:png,jpg,jpeg|max:2048', // Maksimum 2MB, dan hanya untuk gambar
-            ]);
+        $request->validate([
+            'nama_notaris' => 'required|string|max:255',
+            'bukti_notaris' => 'required|file|mimes:png,jpg,jpeg|max:2048', // Maksimum 2MB, dan hanya untuk gambar
+        ]);
 
-            // Simpan file ke dalam sistem file (contoh: folder "uploads")
-            $file = $request->file('bukti_notaris');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads_tahap_3', $fileName);
-        } else {
-            $filePath = null; // Tidak ada file yang diunggah
-        }
+        $filePath = $request->file('bukti_notaris')->store('bukti_notaris');
 
-        // Perbarui data proses konversi dengan data tahap 2
-        Session::put('prosesKonversiTahap3', $filePath);
-
-        // Jika terdapat file yang diunggah, update data ke database
-        if ($filePath) {
-            ProsesKonversi::where('id_koperasi', auth()->user()->id_koperasi)->update([
+        // Simpan data proses konversi tahap 3 ke dalam database
+        ProsesKonversi::updateOrCreate(
+            ['id_koperasi' => Auth::user()->id_koperasi],
+            [
                 'nama_notaris' => $request->input('nama_notaris'),
-                'bukti_notaris' => $filePath,
-            ]);
-        }
+                'bukti_notaris' => $filePath
+            ]
+        );
 
-        // Redirect kembali ke tahap 3
-        return redirect()->route('prosesTahap3')->with('success', 'Data nama notaris dan bukti notaris berhasil diunggah.');
+        return redirect()->back()->with('success', 'Data nama notaris dan bukti notaris berhasil diunggah.');
     }
 
     public function showFormTahap4()
@@ -124,30 +90,19 @@ class ProsesKonversiController extends Controller
     public function prosesTahap4(Request $request)
     {
         // Validasi file jika ada
-        if ($request->hasFile('pengesahan_pad')) {
-            $request->validate([
-                'pengesahan_pad' => 'file|mimes:pdf|max:2048', // Maksimum 2MB
-            ]);
+        $request->validate([
+            'pengesahan_pad' => 'required|file|mimes:pdf|max:2048', // Maksimum 2MB
+        ]);
 
-            // Simpan file ke dalam sistem file (contoh: folder "uploads")
-            $file = $request->file('pengesahan_pad');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads_tahap_4', $fileName);
-        } else {
-            $filePath = null; // Tidak ada file yang diunggah
-        }
+        // Simpan file ke dalam sistem file (contoh: folder "uploads")
+        $filePath = $request->file('pengesahan_pad')->store('pengesahan_pad');
 
-        // Perbarui data proses konversi dengan data tahap 2
-        Session::put('prosesKonversiTahap4', $filePath);
+        // Simpan data proses konversi tahap 4 ke dalam database
+        ProsesKonversi::updateOrCreate(
+            ['id_koperasi' => Auth::user()->id_koperasi],
+            ['pengesahan_pad' => $filePath]
+        );
 
-        // Jika terdapat file yang diunggah, simpan data ke database
-        if ($filePath) {
-            ProsesKonversi::where('id_koperasi', auth()->user()->id_koperasi)->update([
-                'pengesahan_pad' => $filePath,
-            ]);
-        }
-
-        // Redirect kembali ke tahap 2
-        return redirect()->route('prosesTahap4')->with('success', 'Dokumen Perubahan PAD berhasil diunggah.');
+        return redirect()->back()->with('success', 'Dokumen pengesahan PAD berhasil diunggah.');
     }
 }

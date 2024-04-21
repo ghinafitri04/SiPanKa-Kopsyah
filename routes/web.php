@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminKabupatenKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenKabKotaController;
 use App\Http\Controllers\AdminProvinsiManajemenDpsController;
 use App\Http\Controllers\AdminProvinsiManajemenKoperasiController;
+use App\Http\Controllers\AdminProvinsiPengawasanController;
 
 use App\Http\Controllers\AdminKabupatenKotaManajemenKoperasiController;
 use App\Http\Controllers\AdminKabupatenKotaKonversiKoperasiController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\DpsInformasiKoperasiController;
 use App\Http\Controllers\DpsPengawasanKoperasiController;
 use App\Models\Koperasi;
 use App\Http\Controllers\AdminKoperasiController;
+use App\Models\AdminProvinsi;
 use App\Models\PemilihanDps;
 
 // Route default, arahkan ke halaman login
@@ -100,6 +102,43 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         ->name('admin_provinsi.detail_manajemen_koperasi.detail_index');
     Route::get('/admin_provinsi/get_jumlah_koperasi', 'AdminProvinsiManajemenKoperasiController@getJumlahAdminKoperasi')
         ->name('admin_provinsi.get_jumlah_admin_koperasi');
+
+    Route::get('/admin/provinsi/pengawasan', [AdminProvinsiPengawasanController::class, 'menampilkanDataPengawasan'])->name('admin.provinsi.pengawasan');
+    Route::get('/konversi-koperasi', [AdminProvinsiPengawasanController::class, 'proses_konversi'])->name('konversikoperasi');
+    // Route::get('/{filename}', [AdminProvinsiPengawasanController::class, 'showPDF'])->name('show.pdf');
+    Route::get('/rapat_anggota/{filename}', function ($filename) {
+        $path = storage_path('app/rapat_anggota/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('rapat_anggota.pdf');
+    Route::get('/perubahan_pad/{filename}', function ($filename) {
+        $path = storage_path('app/perubahan_pad/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('perubahan_pad.pdf');
+    Route::get('/bukti_notaris/{filename}', function ($filename) {
+        $path = storage_path('app/bukti_notaris/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('bukti_notaris.img');
+
+    Route::get('/pengesahan_pad/{filename}', function ($filename) {
+        $path = storage_path('app/pengesahan_pad/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('pengesahan_pad.pdf');
 });
 
 Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
@@ -134,7 +173,6 @@ Route::middleware(['auth:koperasi'])->group(function () {
         ->name('koperasi.pemilihan_dps.store');
     Route::get('/koperasi/pemilihan-dps', [KoperasiPemilihanDpsController::class, 'index'])
         ->name('koperasi.pemilihan_dps.index');
-
     //Route untuk koperasi proses konversi
 
     Route::get('/pdf/show/{id}', [ProsesKonversiController::class, 'showPdf'])->name('pdf.show');
@@ -200,14 +238,7 @@ Route::get('/admin-dps', function () {
     return view('admin_provinsi_admindps');
 })->name('admindps');
 
-// Route sementara (opsional, bisa dihapus jika tidak digunakan)
-Route::get('/pengawasan-dps', function () {
-    return view('admin_provinsi_pengawasandps');
-})->name('pengawasandps');
 
-Route::get('/konversi-koperasi', function () {
-    return view('admin_provinsi_konversiKoperasi');
-})->name('konversikoperasi');
 
 Route::get('/detail-pengawasankoperasi', function () {
     return view('detail_pengawasandps_koperasi');
@@ -272,10 +303,6 @@ Route::get('/dps-pengawasandps', function () {
     return view('dps_riwayat_pengawasan');
 })->name('dps_riwayat_pengawasan');
 
-Route::get('/dps-informasikoperasi', function () {
-    return view('dps_informasi_koperasi');
-})->name('dps_informasi_koperasi');
-
 
 
 Route::get('/detail-pengawasan-dps', function () {
@@ -321,9 +348,7 @@ Route::get('/detail-admin-koperasi-kabkota', function () {
 })->name('admin_kabkota_detailadminkoperasi');
 
 
-Route::get('/koperasi-proses-konversi', function () {
-    return view('koperasi_proses_konversi');
-})->name('proses.konversi.koperasi');
+
 
 Route::get('/koperasi-hasil-pengawasan', function () {
     return view('koperasi_hasil_pengawasan');

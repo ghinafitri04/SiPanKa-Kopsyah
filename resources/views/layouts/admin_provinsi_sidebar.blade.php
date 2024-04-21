@@ -38,7 +38,7 @@
 
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('pengawasandps') }}">Pengawasan DPS</a>
+                    <a href="{{ route('admin.provinsi.pengawasan') }}">Pengawasan DPS</a>
                 </li>
             </ul>
         </li>

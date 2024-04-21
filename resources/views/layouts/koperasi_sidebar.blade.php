@@ -20,7 +20,7 @@
         
         <li class="menu-item">
             <img src='/img/koperasi.png' alt="Proses Konversi">
-            <a href="{{ route('proses.konversi.koperasi') }}" >Proses Konversi</a>
+            <a href="{{ route('prosesTahap1') }}" >Proses Konversi</a>
         </li>
 
         <li class="menu-item">

@@ -61,8 +61,8 @@
                     @endif
                 </td>
                 <td>
-                    @if($proses->nama_notaris)
-                        <a href="{{ asset($proses->nama_notaris) }}" target="_blank" class="btn btn-success">Sudah</a>
+                    @if($proses->bukti_notaris)
+                        <a href="{{ asset($proses->bukti_notaris) }}" target="_blank" class="btn btn-success">Sudah</a>
                     @else
                         <button class="btn btn-danger" onclick="setAsNotDone(3)">Belum</button>
                     @endif

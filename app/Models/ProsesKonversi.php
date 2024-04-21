@@ -4,59 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-class ProsesKonversi extends Model implements Authenticatable
+class ProsesKonversi extends Model
 {
-    use HasFactory, AuthenticatableTrait;
+    use HasFactory;
+
+    protected $primaryKey = 'id_proses_konversi'; // Menyesuaikan dengan nama kolom kunci utama Anda
 
     protected $table = 'proses_konversi';
-    protected $primaryKey = 'id_proses_konversi';
-    public $timestamps = true;
 
     protected $fillable = [
         'id_koperasi',
         'rapat_anggota',
         'perubahan_pad',
         'nama_notaris',
+        'bukti_notaris',
         'pengesahan_pad',
-        'Tanggal',
+        'tanggal',
     ];
 
+    // Define relationship with the Koperasi model
     public function koperasi()
     {
         return $this->belongsTo(Koperasi::class, 'id_koperasi');
-    }
-
-    // Metode untuk autentikasi
-    public function getAuthIdentifierName()
-    {
-        return 'id';
-    }
-
-    public function getAuthIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getAuthPassword()
-    {
-        return $this->password;
-    }
-
-    public function getRememberToken()
-    {
-        return null; // Jika Anda tidak menggunakan "remember me" token
-    }
-
-    public function setRememberToken($value)
-    {
-        // Jika Anda tidak menggunakan "remember me" token
-    }
-
-    public function getRememberTokenName()
-    {
-        return null; // Jika Anda tidak menggunakan "remember me" token
     }
 }

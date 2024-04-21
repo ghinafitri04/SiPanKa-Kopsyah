@@ -40,10 +40,10 @@ class DpsPengawasanKoperasiController extends Controller
         // Kembalikan view 'dps_detail_koperasi.blade.php' dengan data koperasi
         return view('dps_detail_koperasi', compact('koperasi'));
     }
-    public function index()
+    public function index($id)
     {
         // Ambil data proses konversi koperasi
-        $prosesKonversi = ProsesKonversi::all();
+        $prosesKonversi = ProsesKonversi::where('id_koperasi', $id)->get();
 
         return view('dps_konversi_koperasi', compact('prosesKonversi'));
     }
