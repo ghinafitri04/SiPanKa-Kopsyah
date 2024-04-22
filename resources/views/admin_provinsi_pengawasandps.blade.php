@@ -39,7 +39,7 @@
                         <td>{{ $dpsData->nama_lengkap }}</td>
                         <td>{{ isset($jumlahKoperasi[$dpsData->id_dps]) ? $jumlahKoperasi[$dpsData->id_dps] : 0 }}</td>
                         <td>
-                            <a href="{{ route('detail_pengawasan_dps', ['id' => $dpsData->id_dps]) }}">
+                          <a href="{{ route('provinsi_pengawasan_koperasi', ['id' => $dpsData->id_dps]) }}">
                                 <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
                             </a>
                         </td>

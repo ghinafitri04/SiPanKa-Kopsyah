@@ -25,63 +25,40 @@
 
         <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
           <table class="table">
-              <thead class="table-light">
-                  <tr>
-                      <th scope="col">No</th>
-                      <th scope="col">Nama Koperasi</th>
-                      <th scope="col">Kabupaten/Kota</th>
-                      <th scope="col">Tanggal Pengawasan</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Tindakan</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <th scope="row">1</th>
-                      <td>Koperasi A Loh Ini </td>
-                      <td>Kota Padang</td>
-                      <td>20 Januari 2024</td>
-                      <td>   
-                        <a><img src="/img/accepted.png" alt="Accepted Icon" >
-                      </i></a>
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Koperasi</th>
+                    <th scope="col">Kabupaten/Kota</th>
+                    <th scope="col">Tanggal Pengawasan</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($pemilihanDps as $index => $data)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $data->koperasi->nama }}</td>
+                    <td>{{ $data->koperasi->kabupaten_kota }}</td>
+                    <td>{{ $data->tanggal_dipilih }}</td>
+                    <td>
+                        @if($data->status === 'accepted')
+                        <img src="/img/accepted.png" alt="Accepted Icon">
+                        @elseif($data->status === 'pending')
+                        <img src="/img/pending.png" alt="Pending Icon">
+                        @elseif($data->status === 'rejected')
+                        <img src="/img/rejected.png" alt="Rejected Icon">
+                        @endif
                     </td>
                     <td class="text-center">
-                      <a href="/detail-dpsditerima"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
-                      </i></a>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Koperasi B Loh Ini </td>
-                    <td>Kota Banda Aceh</td>
-                    <td>80 Januari 2084</td>
-                    <td>   
-                      <a><img src="/img/pending.png" alt="Accepted Icon" >
-                    </i></a>
-                  </td>
-                </td>
-                <td class="text-center">
-                  <a href="/detail-dpsmenunggu"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
-                </i></a>
-            </tr>
-                
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Koperasi C Loh Ini </td>
-                  <td>Kota Padang</td>
-                  <td>20 Januari 2024</td>
-                  <td>   
-                    <a><img src="/img/rejected.png" alt="Accepted Icon" >
-                  </i></a>
-                </td>
-            </td>
-            <td class="text-center">
-              <a href="/detail-dpsditolak"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
-            </i></a>
-        </tr>
-                  <!-- Tambahkan baris lain sesuai kebutuhan -->
-              </tbody>
-          </table>
+                        <a href="/detail-dps{{ $data->status }}"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        
       </div>
 </div>
 

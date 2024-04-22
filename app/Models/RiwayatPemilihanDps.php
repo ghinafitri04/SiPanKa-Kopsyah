@@ -5,21 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PemilihanDps extends Model
+class RiwayatPemilihanDps extends Model
 {
     use HasFactory;
 
-    protected $table = 'pemilihan_dps';
+    protected $table = 'riwayat_pemilihan_dps';
     public $timestamps = true;
 
     protected $fillable = [
+        'id_pemilihan_dps',
         'id_koperasi',
-        'nama_dps2',
         'id_dps',
-        'tanggal_dipilih',
+        'nama_dps2',
+        'tanggal_pemilihan',
     ];
 
-    protected $primaryKey = 'id_pemilihan_dps'; // Atur primary key sesuai dengan kolom 'id'
+    protected $primaryKey = 'id_riwayat'; // Atur primary key sesuai dengan kolom 'id'
+
+    // Relasi dengan model PemilihanDps
+    public function pemilihanDps()
+    {
+        return $this->belongsTo(PemilihanDps::class, 'id_pemilihan_dps');
+    }
 
     // Relasi dengan model Koperasi
     public function koperasi()

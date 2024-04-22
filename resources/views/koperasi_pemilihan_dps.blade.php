@@ -24,6 +24,34 @@
                 <h4 class="dashboard-title">Pemilihan DPS</h4>
             </div>
         </div>
+        <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
+            <h4 class="text-primary">DPS Sekarang:</h4>
+            <div class="card">
+                <div class="card-body">
+                    @foreach($pemilihanDps as $riwayat)
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="font-weight-bold">DPS 1:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" value="{{ $riwayat->dps ? $riwayat->dps->nama_lengkap : $riwayat->nama_dps2 }}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="font-weight-bold">DPS 2:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" value="{{ $riwayat->dps ? $riwayat->nama_dps2 : '' }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        
+        
+
 
         <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
             <form method="POST" action="{{ route('koperasi.pemilihan_dps.store') }}">
@@ -83,7 +111,7 @@
                                 {{ $riwayat->nama_dps2 }}
                             @endif
                         </td>
-                        <td>{{ $riwayat->tanggal_dipilih }}</td>
+                        <td>{{ $riwayat->tanggal_pemilihan }}</td>
                     </tr>
                     @endforeach
                     <!-- Tambahkan baris lain sesuai kebutuhan -->

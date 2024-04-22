@@ -35,4 +35,16 @@ class AdminProvinsiPengawasanController extends Controller
 
         return view('admin_provinsi_konversikoperasi', compact('prosesKonversi'));
     }
+    public function menampilkanDataPengawasanKoperasi($id_dps)
+    {
+        // Ambil data koperasi yang memilih DPS dari model PemilihanDps berdasarkan ID DPS yang diklik
+        $pemilihanDps = PemilihanDps::with(['koperasi' => function ($query) {
+            $query->select('id_koperasi', 'nama_koperasi', 'kabupaten_kota');
+        }])
+            ->where('id_dps', $id_dps)
+            ->orderBy('tanggal_dipilih', 'desc') // Urutkan berdasarkan tanggal pemilihan terbaru
+            ->get();
+
+        return view('detail_pengawasandps_koperasi', compact('pemilihanDps'));
+    }
 }
