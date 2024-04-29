@@ -1,6 +1,8 @@
 // Fungsi untuk mengubah konten
 function changeContent(content) {
-    document.getElementById("dashboardContent").innerHTML = `<h1>${content}</h1>`;
+    document.getElementById(
+        "dashboardContent"
+    ).innerHTML = `<h1>${content}</h1>`;
 }
 
 // Fungsi untuk menangani toggle sidebar dan submenu
@@ -18,17 +20,23 @@ function toggleSidebar() {
     document.body.classList.toggle("body-shifted");
 
     // Tambahkan kelas 'black' pada navbar untuk mengubah warna latar belakang
-    navbar.classList.toggle("black", navbar.classList.contains("navbar-shifted"));
+    navbar.classList.toggle(
+        "black",
+        navbar.classList.contains("navbar-shifted")
+    );
 
     // Tambahkan atau hapus class 'collapsed' pada sidebar header tergantung dari kondisi saat ini
     var sidebarHeader = document.querySelector(".sidebar-header");
-    sidebarHeader.classList.toggle("collapsed", sidebar.classList.contains("collapsed"));
+    sidebarHeader.classList.toggle(
+        "collapsed",
+        sidebar.classList.contains("collapsed")
+    );
 }
 
 // Fungsi untuk menangani toggle submenu
 function toggleSubMenu(submenuId) {
     var submenu = document.getElementById(submenuId);
-    submenu.classList.toggle('show');
+    submenu.classList.toggle("show");
 }
 
 // Fungsi untuk logout (sesuaikan dengan kebutuhan Anda)
@@ -44,18 +52,19 @@ if (sidebar && sidebar.classList.contains("collapsed")) {
 }
 
 function changeContent(content) {
-    console.log('Content changed:', content);
-    document.getElementById("dashboardContent").innerHTML = `<h1>${content}</h1>`;
+    console.log("Content changed:", content);
+    document.getElementById(
+        "dashboardContent"
+    ).innerHTML = `<h1>${content}</h1>`;
 }
-
 
 // Fungsi untuk menangani klik pada link di sidebar
 function handleSidebarLinkClick(event) {
     event.preventDefault();
     // toggleSidebar(); // Sementara dihapus
     event.stopPropagation();
-    console.log('Handle Sidebar Link Click function called');
-    changeContent('Dashboard');
+    console.log("Handle Sidebar Link Click function called");
+    changeContent("Dashboard");
 }
 
 function handleOtherClicks(event) {
@@ -72,10 +81,22 @@ function toggleProfileMenu(menuId) {
     }
 }
 
-document.addEventListener('click', function (event) {
-    var profileContainer = document.querySelector('.profile-container');
-    var profilePopup = document.getElementById('profilSubMenu');
-    if (event.target !== profileContainer && !profileContainer.contains(event.target)) {
-        profilePopup.style.display = 'none';
+document.addEventListener("click", function (event) {
+    var profileContainer = document.querySelector(".profile-container");
+    var profilePopup = document.getElementById("profilSubMenu");
+    if (
+        event.target !== profileContainer &&
+        !profileContainer.contains(event.target)
+    ) {
+        profilePopup.style.display = "none";
     }
 });
+
+function updateFileName() {
+    const fileInput = document.getElementById("fileUpload");
+    const fileNameInput = document.getElementById("fileName");
+    const file = fileInput.files[0];
+    if (file) {
+        fileNameInput.value = file.name;
+    }
+}

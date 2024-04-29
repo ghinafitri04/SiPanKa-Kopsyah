@@ -14,12 +14,12 @@
     <ul>
         <li class="menu-item">
             <img src='/img/tabler_home.png' alt="Home Icon"> 
-            <a href="{{ route('admin_kabupatenkota.dashboard') }}">Dashboard</a>
+            <a href="{{ route('admin_kabkota.dashboard') }}">Dashboard</a>
         </li>
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="{{ route('admin_kabkota.pengawasan_dps.index') }}">Pengawasan DPS</a>
+            <a href="{{ route('admin.kabkota.pengawasan') }}">Pengawasan DPS</a>
         </li>
     
         <li class="parent-menu">

@@ -46,9 +46,15 @@
     </ul>
 
     <div class="logout">
-        <a href="#" onclick="logout()">
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
             <img src='/img/keluar.png' alt="Logout Icon">
             Keluar
         </a>
+        <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf <!-- Tambahkan token CSRF -->
+            <!-- Tambahkan input tambahan atau apa pun yang diperlukan di dalam form jika diperlukan -->
+        </form>
     </div>
+    
 </aside>
+

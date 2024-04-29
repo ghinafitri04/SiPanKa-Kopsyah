@@ -39,7 +39,7 @@ class AdminProvinsiPengawasanController extends Controller
     {
         // Ambil data koperasi yang memilih DPS dari model PemilihanDps berdasarkan ID DPS yang diklik
         $pemilihanDps = PemilihanDps::with(['koperasi' => function ($query) {
-            $query->select('id_koperasi', 'nama_koperasi', 'kabupaten_kota');
+            $query->select('id_koperasi', 'nama_koperasi', 'id_admin_kabupatenkota');
         }])
             ->where('id_dps', $id_dps)
             ->orderBy('tanggal_dipilih', 'desc') // Urutkan berdasarkan tanggal pemilihan terbaru

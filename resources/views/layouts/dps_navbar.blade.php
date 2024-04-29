@@ -30,24 +30,29 @@
                 </div>
 
                 <div id="profilSubMenu" class="profile-dropdown">
-                    <a class="profile-item" href="/dps-update-profil">
+                    <a class="profile-item" href="{{ route('dps_profile') }}">
                         <div class="profile-img">
-                            <img src='/img/profile.png' alt="Profile Icon">
-                        </div>
-                        <div class="profile-text">
-                            Profil
+                            <img src='/img/Profile Icon.png' alt="Profile Icon">
+                            Profile DPS
                         </div>
                     </a>
-                        <hr class="dropdown-divider">
-                    <a class="profile-item" href="#" onclick="logout()">
+                    
+                    <hr class="dropdown-divider">
+                    <a class="profile-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
                         <div class="logout-img">
-                            <img src='/img/logout.png' alt="Logout Icon">
+                            <img src='/img/keluar.png' alt="Logout Icon">
                         </div>
                         <div class="logout-text">
                             Logout
                         </div>
                     </a>
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf <!-- Tambahkan token CSRF -->
+                        <!-- Tambahkan input tambahan atau apa pun yang diperlukan di dalam form jika diperlukan -->
+                    </form>
+                    
                 </div>
             </div>
         </div>
 </nav>
+

@@ -40,11 +40,14 @@
                     </a>
                     <hr class="dropdown-divider">
                     <a class="profile-item" href="#" onclick="logout()">
-                        <div class="logout-img">
-                            <img src='/img/keluar.png' alt="Logout Icon">
-                        </div>
-                        <div class="logout-text">
-                            Logout
+                        <div class="logout">
+                            <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                                @csrf <!-- Tambahkan token CSRF -->
+                                <button type="submit" >
+                                    <img src='/img/keluar.png' alt="Logout Icon">
+                                    Keluar
+                                </button>
+                            </form>
                         </div>
                     </a>
                 </div>                

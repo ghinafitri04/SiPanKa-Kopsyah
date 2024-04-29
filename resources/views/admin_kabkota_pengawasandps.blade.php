@@ -34,18 +34,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Ghina Fitri</td>
-                <td>100</td>
-                <td>
-                    <a href="{{ route('detailpengawasandpskabkota', ['id' => 1]) }}">
-                        <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
-                    </a>
-                </td>
-            </tr>
-            <!-- Tambahkan baris lain sesuai kebutuhan -->
+            @foreach($dps as $index => $dpsData)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $dpsData->nama_lengkap }}</td>
+                    <td>{{ isset($jumlahKoperasi[$dpsData->id_dps]) ? $jumlahKoperasi[$dpsData->id_dps] : 0 }}</td>
+                    <td>
+                        <a href="{{ route('detailpengawasandpskabkota', ['id' => $dpsData->id_dps]) }}">
+                            <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
+        
     </table>
 </div>
 </div>
