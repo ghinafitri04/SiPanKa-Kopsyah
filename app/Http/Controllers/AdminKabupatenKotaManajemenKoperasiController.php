@@ -6,26 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\Koperasi;
 use App\Models\AdminKabupatenKota;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminKabupatenKotaManajemenKoperasiController extends Controller
 {
     public function index()
-    {
-        // Mendapatkan id_admin_kabupatenkota yang sedang login
-        $id_admin_kabupatenkota = Auth::id();
+{
+    // Mendapatkan id_admin_kabupatenkota yang sedang login
+    $id_admin_kabupatenkota = Auth::id();
 
-        // Mengambil daftar koperasi yang memiliki id_admin_kabupatenkota sesuai dengan admin yang sedang login
-        $koperasiList = Koperasi::where('id_admin_kabupatenkota', $id_admin_kabupatenkota)->get();
+    // Mengambil daftar koperasi yang memiliki id_admin_kabupatenkota sesuai dengan admin yang sedang login
+    $koperasiList = Koperasi::where('id_admin_kabupatenkota', $id_admin_kabupatenkota)->get();
 
-        // Mengambil daftar kabupaten/kota yang terkait dengan admin yang sedang login
-        $kabupatenKotaList = AdminKabupatenKota::with('kabupatenKota')
-            ->where('id_admin_kabupatenkota', $id_admin_kabupatenkota)
-            ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
-            ->pluck('kabupatenkota.nama_kabupatenkota', 'admin_kabupatenkota.id_admin_kabupatenkota')
-            ->all();
+    // Mengambil jumlah admin koperasi yang terdaftar
+    $jumlahAdminKoperasi = Koperasi::where('id_admin_kabupatenkota', $id_admin_kabupatenkota)->count();
 
-        return view('admin_kabkota_adminkoperasi', compact('koperasiList', 'kabupatenKotaList'));
-    }
+    // Mengambil daftar kabupaten/kota yang terkait dengan admin yang sedang login
+    $kabupatenKotaList = AdminKabupatenKota::with('kabupatenKota')
+        ->where('id_admin_kabupatenkota', $id_admin_kabupatenkota)
+        ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
+        ->pluck('kabupatenkota.nama_kabupatenkota', 'admin_kabupatenkota.id_admin_kabupatenkota')
+        ->all();
+
+    return view('admin_kabkota_adminkoperasi', compact('koperasiList', 'kabupatenKotaList', 'jumlahAdminKoperasi'));
+}
+
+
     public function store(Request $request)
     {
 

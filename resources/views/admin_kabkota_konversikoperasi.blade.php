@@ -27,50 +27,60 @@
         </div>
       </div>
 
+
+
         <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
             <table class="table">
                 <thead class="table-light">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Koperasi</th>
-                        <th scope="col">Nama DPS</th>
-                        <th scope="col">Proses 1</th>
-                        <th scope="col">Proses 2</th>
-                        <th scope="col">Proses 3</th>
-                        <th scope="col">Proses 4</th>
-                    </tr>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Koperasi</th>
+                    <th scope="col">Rapat Anggota</th>
+                    <th scope="col">Perubahan PAD</th>
+                    <th scope="col">Bukti Notaris</th>
+                    <th scope="col">Pengesahan PAD</th>
+                </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Koperasi Aku Nich<br></td>
-                    <td>Ghina<br></td>
-                    <td>
-                      <button class="btn btn-success" onclick="redirectToNextPage(1)">Sudah</button>
-                    </td>
-                    <td>
-                      <button class="btn btn-success" onclick="redirectToNextPage(2)">Sudah</button>
-                    </td>
-                    <td>
-                      <button class="btn btn-success" onclick="redirectToNextPage(3)">Sudah</button>
-                    </td>
-                    <td>
-                      <button class="btn btn-success" onclick="redirectToNextPage(4)">Sudah</button>
-                    </td> 
-                  </tr>
-
-                  <tr>
-                      <th scope="row">2</th>
-                      <td>Koperasi Aku Nich<br>
-                        <td>Fitri<br>
-                        <td><button class="btn btn-danger" onclick="setAsNotDone(1)">Belum</button></td>
-                        <td><button class="btn btn-danger" onclick="setAsNotDone(2)">Belum</button></td>
-                        <td><button class="btn btn-danger" onclick="setAsNotDone(3)">Belum</button></td>
-                        <td><button class="btn btn-danger" onclick="setAsNotDone(4)">Belum</button></td> 
-                  </tr>
-                    <!-- Tambahkan baris lain sesuai kebutuhan -->
-                </tbody>
-            </table>
+          <tbody>
+            @php
+                $no = 1;
+            @endphp
+           @foreach($prosesKonversiList as $proses)
+           <tr>
+               <th scope="row">{{ $loop->iteration }}</th>
+               <td>{{ $proses->koperasi->nama_koperasi }}</td>
+               <td>
+                   @if($proses->rapat_anggota)
+                       <a href="{{ route('rapat_anggota.pdf', ['filename' => basename( $proses->rapat_anggota)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                   @else
+                       <button class="btn btn-danger" onclick="setAsNotDone(1)">Belum</button>
+                   @endif
+               </td>
+               <td>
+                   @if($proses->perubahan_pad)
+                       <a href="{{ route('perubahan_pad.pdf', ['filename' => basename( $proses->perubahan_pad)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                   @else
+                       <button class="btn btn-danger" onclick="setAsNotDone(2)">Belum</button>
+                   @endif
+               </td>
+               <td>
+                   @if($proses->nama_notaris)
+                       <a href="{{ route('bukti_notaris.img', ['filename' => basename( $proses->bukti_notaris)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                   @else
+                       <button class="btn btn-danger" onclick="setAsNotDone(3)">Belum</button>
+                   @endif
+               </td>
+               <td>
+                   @if($proses->pengesahan_pad)
+                       <a href="{{ route('pengesahan_pad.pdf', ['filename' => basename( $proses->pengesahan_pad)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                   @else
+                       <button class="btn btn-danger" onclick="setAsNotDone(4)">Belum</button>
+                   @endif
+               </td>
+           </tr>
+           @endforeach                 
+        </tbody>
+      </table>
         </div>
       </div>
 </div>
