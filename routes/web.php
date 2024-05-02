@@ -403,3 +403,7 @@ Route::get('/koperasi-hasil-pengawasan', function () {
 Route::get('/koperasi-hasil-pengawasan2', function () {
     return view('koperasi_hasil_pengawasan2');
 })->name('hasil.pengawasan.koperasi2');
+
+Route::get('/laporan-coba', function () {
+    return view('admin_provinsi_laporandps');
+})->name('admin.provinsi.laporandps');
