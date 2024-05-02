@@ -103,7 +103,6 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         ->name('admin_provinsi.detail_manajemen_koperasi.detail_index');
     Route::get('/admin_provinsi/get_jumlah_koperasi', 'AdminProvinsiManajemenKoperasiController@getJumlahAdminKoperasi')
         ->name('admin_provinsi.get_jumlah_admin_koperasi');
-    //khusus admin provinsi menu pengawasan
     Route::get('/admin-provinsi/pengawasan', [AdminProvinsiPengawasanController::class, 'menampilkanDataPengawasan'])->name('admin.provinsi.pengawasan');
     Route::get('/konversi-koperasi', [AdminProvinsiPengawasanController::class, 'proses_konversi'])->name('konversikoperasi');
     // Route::get('/{filename}', [AdminProvinsiPengawasanController::class, 'showPDF'])->name('show.pdf');
@@ -142,6 +141,8 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
     })->name('pengesahan_pad.pdf');
     Route::get('/admin-provinsi/pengawasan/koperasi/{id}', [AdminProvinsiPengawasanController::class, 'menampilkanDataPengawasanKoperasi'])
         ->name('provinsi_pengawasan_koperasi');
+    Route::get('/admin-provinsi/pengawasan/file/{id}', [AdminProvinsiPengawasanController::class, 'menampilkanFilePengawasan'])
+        ->name('provinsi_file_pengawasan');
 });
 
 Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
@@ -164,42 +165,41 @@ Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
         ->name('admin.kabkota.pengawasan');
     Route::get('/admin-kabkota/konversi', [AdminKabupatenKotaPengawasanDpsController::class, 'prosesKonversiKabKota'])
         ->name('admin.kabkota.konversi');
-        Route::get('/rapat_anggota/{filename}', function ($filename) {
-            $path = storage_path('app/rapat_anggota/' . $filename);
-    
-            if (!File::exists($path)) {
-                abort(404);
-            }
-            return response()->file($path);
-        })->name('rapat_anggota.pdf');
-        Route::get('/perubahan_pad/{filename}', function ($filename) {
-            $path = storage_path('app/perubahan_pad/' . $filename);
-    
-            if (!File::exists($path)) {
-                abort(404);
-            }
-            return response()->file($path);
-        })->name('perubahan_pad.pdf');
-        Route::get('/bukti_notaris/{filename}', function ($filename) {
-            $path = storage_path('app/bukti_notaris/' . $filename);
-    
-            if (!File::exists($path)) {
-                abort(404);
-            }
-            return response()->file($path);
-        })->name('bukti_notaris.img');
-    
-        Route::get('/pengesahan_pad/{filename}', function ($filename) {
-            $path = storage_path('app/pengesahan_pad/' . $filename);
-    
-            if (!File::exists($path)) {
-                abort(404);
-            }
-            return response()->file($path);
-        })->name('pengesahan_pad.pdf');
-    
-    });
-    
+    Route::get('/rapat_anggota/{filename}', function ($filename) {
+        $path = storage_path('app/rapat_anggota/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('rapat_anggota.pdf');
+    Route::get('/perubahan_pad/{filename}', function ($filename) {
+        $path = storage_path('app/perubahan_pad/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('perubahan_pad.pdf');
+    Route::get('/bukti_notaris/{filename}', function ($filename) {
+        $path = storage_path('app/bukti_notaris/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('bukti_notaris.img');
+
+    Route::get('/pengesahan_pad/{filename}', function ($filename) {
+        $path = storage_path('app/pengesahan_pad/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('pengesahan_pad.pdf');
+});
+
 
 
 Route::middleware(['auth:koperasi'])->group(function () {
@@ -274,7 +274,6 @@ Route::middleware(['auth:dps'])->group(function () {
         ->name('dps.pengawasan_laporan');
     Route::get('/profile-dps', [DpsProfileController::class, 'showProfile'])->name('dps_profile');
     Route::post('/update-profile', [DpsProfileController::class, 'updateProfile'])->name('update_dps_profile');
-
 });
 
 
