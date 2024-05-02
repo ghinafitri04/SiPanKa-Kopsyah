@@ -139,10 +139,13 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         }
         return response()->file($path);
     })->name('pengesahan_pad.pdf');
+    Route::get('/admin-provinsi/pengawasan/daftar-koperasi/{id}', [AdminProvinsiPengawasanController::class, 'menampilkanDataKoperasi'])
+        ->name('provinsi_pengawasan_daftar_koperasi');
     Route::get('/admin-provinsi/pengawasan/koperasi/{id}', [AdminProvinsiPengawasanController::class, 'menampilkanDataPengawasanKoperasi'])
         ->name('provinsi_pengawasan_koperasi');
     Route::get('/admin-provinsi/pengawasan/file/{id}', [AdminProvinsiPengawasanController::class, 'menampilkanFilePengawasan'])
         ->name('provinsi_file_pengawasan');
+    Route::get('/pengawasan/{id}/terima-laporan', [AdminProvinsiPengawasanController::class, 'terimaLaporan'])->name('pengawasan_terima');
 });
 
 Route::middleware(['auth:admin_kabupatenkota'])->group(function () {

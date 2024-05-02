@@ -50,8 +50,15 @@ class DpsPengawasanKoperasiController extends Controller
     // Di dalam kontroler yang memanggil view ini (misalnya DpsPengawasanKoperasiController)
     public function dpsPengawasanKoperasi($id_koperasi)
     {
-        // Ambil data riwayat pengawasan DPS berdasarkan ID koperasi yang dipilih
-        $riwayatPengawasanDPS = Pengawasan::where('id_koperasi', $id_koperasi)->get();
+        // Mendapatkan ID DPS yang sedang login
+        $idDps = auth()->user()->getAuthIdentifier();
+
+        // Ambil data riwayat pengawasan DPS berdasarkan ID koperasi yang dipilih dan ID DPS yang sedang login
+        $riwayatPengawasanDPS = Pengawasan::where('id_koperasi', $id_koperasi)
+            ->whereHas('dps', function ($query) use ($idDps) {
+                $query->where('id', $idDps);
+            })
+            ->get();
 
         // Ambil data koperasi berdasarkan ID koperasi
         $koperasi = Koperasi::findOrFail($id_koperasi);
@@ -59,6 +66,8 @@ class DpsPengawasanKoperasiController extends Controller
         // Kembalikan view 'dps_detail_pengawasan.blade.php' dengan data riwayat pengawasan DPS dan data koperasi
         return view('dps_detail_pengawasan', compact('riwayatPengawasanDPS', 'koperasi'));
     }
+
+
 
     public function buatReportBaru($id_koperasi)
     {
