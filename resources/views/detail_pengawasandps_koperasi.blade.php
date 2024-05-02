@@ -29,31 +29,33 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Nama Koperasi</th>
-                    <th scope="col">Kabupaten/Kota</th>
                     <th scope="col">Tanggal Pengawasan</th>
                     <th scope="col">Status</th>
                     <th scope="col">Tindakan</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($pemilihanDps as $index => $data)
+                @foreach($pengawasan as $index => $data)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $data->koperasi->nama }}</td>
-                    <td>{{ $data->koperasi->kabupaten_kota }}</td>
-                    <td>{{ $data->tanggal_dipilih }}</td>
+                    <td>{{ $data->koperasi->nama_koperasi }}</td>
+                    <td>{{ $data->tanggal_pengawasan }}</td>
                     <td>
-                        @if($data->status === 'accepted')
-                        <img src="/img/accepted.png" alt="Accepted Icon">
-                        @elseif($data->status === 'pending')
-                        <img src="/img/pending.png" alt="Pending Icon">
-                        @elseif($data->status === 'rejected')
-                        <img src="/img/rejected.png" alt="Rejected Icon">
-                        @endif
-                    </td>
-                    <td class="text-center">
-                        <a href="/detail-dps{{ $data->status }}"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
-                    </td>
+                      @if($data->status === true)
+                          <img src="/img/accepted.png" alt="Accepted Icon">
+                      @elseif($data->status === false)
+                      <img src="/img/pending.png" alt="Pending Icon">
+                      @else
+                      <img src="/img/rejected.png" alt="Rejected Icon">
+                      @endif
+                  </td>
+                  
+                  <td class="text-center">
+                    <a href="{{ route('provinsi_file_pengawasan', ['id' => $data->id]) }}">
+                        <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
+                    </a>
+                </td>
+                
                 </tr>
                 @endforeach
             </tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dps;
 use App\Models\PemilihanDps;
+use App\Models\Pengawasan;
 use Illuminate\Http\Request;
 use App\Models\ProsesKonversi;
 use Illuminate\Support\Facades\File;
@@ -37,14 +38,21 @@ class AdminProvinsiPengawasanController extends Controller
     }
     public function menampilkanDataPengawasanKoperasi($id_dps)
     {
-        // Ambil data koperasi yang memilih DPS dari model PemilihanDps berdasarkan ID DPS yang diklik
-        $pemilihanDps = PemilihanDps::with(['koperasi' => function ($query) {
-            $query->select('id_koperasi', 'nama_koperasi', 'id_admin_kabupatenkota');
+        // Ambil data pengawasan koperasi berdasarkan ID DPS yang diklik
+        $pengawasan = Pengawasan::with(['koperasi' => function ($query) {
+            $query->select('id_koperasi', 'nama_koperasi');
         }])
             ->where('id_dps', $id_dps)
-            ->orderBy('tanggal_dipilih', 'desc') // Urutkan berdasarkan tanggal pemilihan terbaru
-            ->get();
+            ->orderBy('tanggal_pengawasan', 'desc') // Urutkan berdasarkan tanggal pengawasan terbaru
+            ->get(['id_dps', 'id_koperasi', 'status', 'tanggal_pengawasan', 'id']); // Pilih atribut yang sesuai
 
-        return view('detail_pengawasandps_koperasi', compact('pemilihanDps'));
+        return view('detail_pengawasandps_koperasi', compact('pengawasan'));
+    }
+    public function menampilkanFilePengawasan($id)
+    {
+        // Ambil semua data pengawasan
+        $pengawasan = Pengawasan::all();
+
+        return view('admin_provinsi_laporandps', compact('pengawasan'));
     }
 }

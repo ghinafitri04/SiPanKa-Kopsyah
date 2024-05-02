@@ -21,6 +21,7 @@ class Pengawasan extends Model
         'saran',
         'tanggal_pengawasan',
     ];
+    protected $primaryKey = 'id';
 
     // Relasi dengan admin_provinsi
     public function adminProvinsi()
