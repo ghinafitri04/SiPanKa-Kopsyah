@@ -163,6 +163,41 @@ Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
         ->name('admin_kabkota.konversi_koperasi.index');
     Route::get('/admin-kabkota/pengawasan-dps', [AdminKabupatenKotaPengawasanDpsController::class, 'menampilkanDataPengawasan'])
         ->name('admin.kabkota.pengawasan');
+    Route::get('/admin-kabkota/konversi', [AdminKabupatenKotaPengawasanDpsController::class, 'prosesKonversiKabKota'])
+        ->name('admin.kabkota.konversi');
+    Route::get('/rapat_anggota/{filename}', function ($filename) {
+        $path = storage_path('app/rapat_anggota/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('rapat_anggota.pdf');
+    Route::get('/perubahan_pad/{filename}', function ($filename) {
+        $path = storage_path('app/perubahan_pad/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('perubahan_pad.pdf');
+    Route::get('/bukti_notaris/{filename}', function ($filename) {
+        $path = storage_path('app/bukti_notaris/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('bukti_notaris.img');
+
+    Route::get('/pengesahan_pad/{filename}', function ($filename) {
+        $path = storage_path('app/pengesahan_pad/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    })->name('pengesahan_pad.pdf');
 });
 
 

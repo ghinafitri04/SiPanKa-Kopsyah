@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Dps;
 use App\Models\PemilihanDps;
 use App\Models\ProsesKonversi;
+use App\Models\AdminKabupatenKota;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminKabupatenKotaPengawasanDpsController extends Controller
 {
@@ -27,6 +29,22 @@ class AdminKabupatenKotaPengawasanDpsController extends Controller
         return view('admin_kabkota_pengawasandps', compact('dps', 'jumlahKoperasi'));
     }
 
+    public function prosesKonversiKabKota()
+{
+    // Mendapatkan id_admin_kabupatenkota yang sedang login
+    $id_admin_kabupatenkota = Auth::id();
+
+    // Mengambil daftar proses konversi koperasi berdasarkan id_admin_kabupatenkota
+    $prosesKonversiList = ProsesKonversi::whereHas('koperasi', function ($query) use ($id_admin_kabupatenkota) {
+        $query->where('id_admin_kabupatenkota', $id_admin_kabupatenkota);
+    })->get();
+
+    // $prosesKonversi = ProsesKonversi::all();
+
+
+    return view('admin_kabkota_konversikoperasi', compact('prosesKonversiList'));
+    // return view('cobaangga', compact('prosesKonversi'));
+}
  
 }
 

@@ -31,12 +31,13 @@
     </ul>
 
     <div class="logout">
-        <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
+            <img src='/img/keluar.png' alt="Logout Icon">
+            Keluar
+        </a>
+        <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf <!-- Tambahkan token CSRF -->
-            <button type="submit" >
-                <img src='/img/keluar.png' alt="Logout Icon">
-                Keluar
-            </button>
+            <!-- Tambahkan input tambahan atau apa pun yang diperlukan di dalam form jika diperlukan -->
         </form>
     </div>
     

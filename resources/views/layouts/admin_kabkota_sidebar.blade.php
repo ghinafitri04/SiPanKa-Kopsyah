@@ -36,7 +36,7 @@
     
                 <li class="menu-item">
                     <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('admin_kabkota.konversi_koperasi.index') }}">Konversi Koperasi</a>
+                    <a href="{{ route('admin.kabkota.konversi') }}">Konversi Koperasi</a>
                 </li>
             </ul>
         </li>
