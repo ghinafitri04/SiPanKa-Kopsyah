@@ -12,20 +12,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="/img/logo_sumbar.png"> 
-            Sipanka KopSyah
-            </a>
-            <button class="navbar-toggler" 
-            type="button" data-bs-toggle="collapse" 
-            data-bs-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
+  @include('layouts.admin_provinsi_sidebar')
+    @include('layouts.admin_provinsi_navbar')
+    <script src="{{asset('js/script.js')}}"></script>
       
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
