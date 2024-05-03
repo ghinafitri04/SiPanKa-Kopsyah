@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-K6LH+HiMtlJ4C6r+qOzrnBeFZ7J11fJd3B0/WmARUq3Zcx6JJ86LWl18pNrCJFTZxDyQiOm/ujtB/Z3JSJTRoQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{{ asset('css/navbarsidebar_koperasi.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/hasil_pengawasan2.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/laporandps.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <title>Sipanka KopSyah - Hasil Pengawasan</title>
@@ -24,7 +24,7 @@
           <div class="dashboard-title">
             <h4>Hasil Pengawasan</h4>
             <div class="dashboard-subtitle">
-                <p><strong>Nama:</strong> Ghina</p>
+              <p><strong>DPS:  </strong> {{ $nama_lengkap }}</p>
               </div>
             </div>  
         </div>
@@ -61,19 +61,29 @@
         <p>Saran:</p>
         <p-child>{{ $pengawasan->saran }}</p>
     </div>
-
-    <div class="coment-column6">
-      <p>Komentar Admin Provinsi:</p>
-      <p-child>Ini Komentar Untuk Provinsi</p-child>
-    </div>
-
-    <div class="coment-column7">
-      <p>Komentar Admin Kabupaten:</p>
-      <p-child>Ini Komentar Untuk Kabupaten</p-child>
-    </div>
-
 </div>
-    </div>
+
+<div class="user-comment-column">
+  <h2 style="font-size: 18px; color: #07170b; margin-bottom: 10px;">Komentar Pengguna</h2>
+
+  <!-- Box untuk menampilkan komentar -->
+  <div class="comment-list">
+      <!-- Tampilkan daftar komentar di sini -->
+      @forelse ($komentars->reverse() as $komentar)
+          <div class="comment-item">
+              <div class="comment-header">
+                  <p class="comment-username"><strong>{{ $komentar->username }}</strong> - {{ $komentar->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }}</p>
+              </div>
+              <div class="comment-content">
+                  <p class="comment-text">{{ $komentar->komentar }}</p>
+              </div>
+          </div>
+          <!-- Box untuk memisahkan komentar -->
+          <div class="comment-divider"></div>
+      @empty
+          <p>Tidak ada komentar.</p>
+      @endforelse
+  </div>
 </div>
 
 <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->

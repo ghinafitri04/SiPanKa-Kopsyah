@@ -72,18 +72,28 @@ class AdminProvinsiPengawasanController extends Controller
     public function menampilkanFilePengawasan($id)
     {
         // Ambil data pengawasan beserta relasi dengan DPS berdasarkan id
-        $pengawasan = Pengawasan::with('dps')->find($id);
+        $pengawasan = Pengawasan::with('dps', 'koperasi')->find($id);
         $nama_lengkap = null;
+        $nama_koperasi = null;
 
         // Jika data pengawasan ditemukan
         if ($pengawasan) {
-            // Ambil entri Dps yang sesuai dengan id_dps dalam pengawasan
+            // Ambil entri DPS yang sesuai dengan id_dps dalam pengawasan
             $dps = Dps::find($pengawasan->id_dps);
 
-            // Jika entri Dps ditemukan
+            // Jika entri DPS ditemukan
             if ($dps) {
-                // Set $nama_lengkap ke nilai dari atribut nama_lengkap dari entri Dps
+                // Set $nama_lengkap ke nilai dari atribut nama_lengkap dari entri DPS
                 $nama_lengkap = $dps->nama_lengkap;
+            }
+
+            // Ambil nama koperasi dari entri Koperasi yang terkait dengan pengawasan
+            $koperasi = $pengawasan->koperasi;
+
+            // Jika entri Koperasi ditemukan
+            if ($koperasi) {
+                // Set $nama_koperasi ke nilai dari atribut nama_koperasi dari entri Koperasi
+                $nama_koperasi = $koperasi->nama_koperasi;
             }
 
             // Mengambil semua komentar untuk pengawasan tertentu
@@ -92,8 +102,9 @@ class AdminProvinsiPengawasanController extends Controller
             $komentars = collect(); // Jika tidak ada pengawasan, set komentar kosong
         }
 
-        return view('admin_provinsi_laporandps', compact('pengawasan', 'nama_lengkap', 'komentars'));
+        return view('admin_provinsi_laporandps', compact('pengawasan', 'nama_lengkap', 'nama_koperasi', 'komentars'));
     }
+
 
 
 

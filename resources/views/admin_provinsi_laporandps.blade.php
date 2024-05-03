@@ -20,7 +20,8 @@
           <div class="dashboard-title">
               <h4>Dashboard / Manajemen DPS / Pengawasan DPS</h4>
               <div class="dashboard-subtitle">
-                  <p><strong>Nama:</strong> {{ $nama_lengkap }}</p>
+                  <p><strong>Koperasi:  </strong> {{ $nama_koperasi }}</p>
+                  <p><strong>DPS:  </strong> {{ $nama_lengkap }}</p>
                   @if($pengawasan)
                       <p><strong>Status:</strong>
                           @if($pengawasan->status === true)
