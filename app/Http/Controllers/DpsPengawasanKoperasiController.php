@@ -54,11 +54,12 @@ class DpsPengawasanKoperasiController extends Controller
         $idDps = auth()->user()->getAuthIdentifier();
 
         // Ambil data riwayat pengawasan DPS berdasarkan ID koperasi yang dipilih dan ID DPS yang sedang login
-        $riwayatPengawasanDPS = Pengawasan::where('id_koperasi', $id_koperasi)
-            ->whereHas('dps', function ($query) use ($idDps) {
-                $query->where('id', $idDps);
-            })
-            ->get();
+        $riwayatPengawasanDPS = Pengawasan::with(['koperasi' => function ($query) {
+            $query->select('id_koperasi', 'nama_koperasi');
+        }])
+            ->where('id_koperasi', $id_koperasi)
+            ->orderBy('tanggal_pengawasan', 'desc') // Urutkan berdasarkan tanggal pengawasan terbaru
+            ->get(['id_dps', 'id_koperasi', 'status', 'tanggal_pengawasan', 'id']);
 
         // Ambil data koperasi berdasarkan ID koperasi
         $koperasi = Koperasi::findOrFail($id_koperasi);
