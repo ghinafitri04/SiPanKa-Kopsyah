@@ -8,6 +8,7 @@ use App\Models\Pengawasan;
 use Illuminate\Http\Request;
 use App\Models\ProsesKonversi;
 use App\Models\Koperasi;
+use App\Models\Komentar;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -84,10 +85,16 @@ class AdminProvinsiPengawasanController extends Controller
                 // Set $nama_lengkap ke nilai dari atribut nama_lengkap dari entri Dps
                 $nama_lengkap = $dps->nama_lengkap;
             }
+
+            // Mengambil semua komentar untuk pengawasan tertentu
+            $komentars = Komentar::where('id_pengawasan', $pengawasan->id)->get();
+        } else {
+            $komentars = collect(); // Jika tidak ada pengawasan, set komentar kosong
         }
 
-        return view('admin_provinsi_laporandps', compact('pengawasan', 'nama_lengkap'));
+        return view('admin_provinsi_laporandps', compact('pengawasan', 'nama_lengkap', 'komentars'));
     }
+
 
 
     public function terimaLaporan(Request $request, $id)
@@ -100,5 +107,28 @@ class AdminProvinsiPengawasanController extends Controller
         }
 
         return redirect()->back();
+    }
+    public function komentarProvinsi(Request $request)
+    {
+        // Validasi data yang diterima dari request
+        $request->validate([
+            'id_pengawasan' => 'required|exists:pengawasan,id',
+            'komentar' => 'required|string',
+        ]);
+
+        // Buat komentar baru
+        Komentar::create([
+            'id_pengawasan' => $request->id_pengawasan,
+            'username' => auth()->user()->username,
+            'komentar' => $request->komentar,
+        ]);
+
+        // Ambil semua komentar terbaru setelah menambahkan komentar baru
+        $komentars = Komentar::where('id_pengawasan', $request->id_pengawasan)
+            ->orderBy('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara descending (dari yang terbaru)
+            ->get();
+
+        // Redirect atau berikan respons sukses
+        return redirect()->back()->with('success', 'Komentar berhasil dikirim')->with('komentars', $komentars);
     }
 }

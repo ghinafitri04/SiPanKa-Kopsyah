@@ -65,21 +65,44 @@
     </div>
     
 
-<div class="user-comment-column">
-
-  <h2 style="font-size: 18px; color: #07170b; margin-bottom: 10px;">Komentar Pengguna</h2>
-
-  <div class="comment-box">
-    <textarea placeholder="Tambahkan komentar/saran"></textarea>
-    <img src="/img/Send Icon.png" width="20" height="20" alt="Kirim" >
+    <div class="user-comment-column">
+      <h2 style="font-size: 18px; color: #07170b; margin-bottom: 10px;">Komentar Pengguna</h2>
+  
+      <!-- Box untuk menampilkan komentar -->
+      <div class="comment-list">
+          <!-- Tampilkan daftar komentar di sini -->
+          @forelse ($komentars->reverse() as $komentar)
+              <div class="comment-item">
+                  <div class="comment-header">
+                      <p class="comment-username"><strong>{{ $komentar->username }}</strong> - {{ $komentar->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }}</p>
+                  </div>
+                  <div class="comment-content">
+                      <p class="comment-text">{{ $komentar->komentar }}</p>
+                  </div>
+              </div>
+              <div class="comment-divider"></div>
+          @empty
+              <p>Tidak ada komentar.</p>
+          @endforelse
+      </div>
   </div>
   
-  <hr>
-  <div class="comment-info">
-    <p>Nama: Pengguna Satu | <span>21 Januari 2024</span></p>
-    <p>Ini komentar dari pengguna satu</p>
-  </div>
-</div>
+  
+  
+  
+  
+  <div class="user-comment-column">
+      <h2 style="font-size: 18px; color: #07170b; margin-bottom: 10px;">Tambahkan Komentar</h2>
+      
+      <form action="{{ route('komentar.kabkota') }}" method="POST" class="comment-form">
+        @csrf
+        <input type="hidden" name="id_pengawasan" value="{{ $pengawasan->id }}">
+        <div class="comment-box">
+          <textarea name="komentar" placeholder="Tambahkan komentar/saran"></textarea>
+          <button type="submit"><img src="/img/Send Icon.png" width="20" height="20" alt="Kirim"></button>
+        </div>
+      </form>
+    </div>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
