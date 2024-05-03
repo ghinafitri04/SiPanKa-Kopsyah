@@ -16,42 +16,41 @@
   <script src="{{asset('js/script.js')}}"></script>
 
   <div class="content">
-    <div class="containermt-5">
+    <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
             <strong>Manajemen DPS / Pengawasan DPS</strong>
+          </div>
         </div>
-    </div>
       
-   <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
-    <table class="table">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama DPS</th>
-                <th scope="col">Jumlah Koperasi</th>
-                <th scope="col">Tindakan</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($dps as $index => $dpsData)
+       <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
+        <table class="table">
+            <thead class="table-light">
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $dpsData->nama_lengkap }}</td>
-                    <td>{{ isset($jumlahKoperasi[$dpsData->id_dps]) ? $jumlahKoperasi[$dpsData->id_dps] : 0 }}</td>
-                    <td>
-                        <a href="{{ route('detailpengawasandpskabkota', ['id' => $dpsData->id_dps]) }}">
-                            <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
-                        </a>
-                    </td>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama DPS</th>
+                    <th scope="col">Jumlah Koperasi</th>
+                    <th scope="col">Tindakan</th>
                 </tr>
-            @endforeach
-        </tbody>
-        
-    </table>
-</div>
-</div>
-
+            </thead>
+            <tbody>
+                @foreach($dps as $index => $dpsData)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $dpsData->nama_lengkap }}</td>
+                        <td>{{ isset($jumlahKoperasi[$dpsData->id_dps]) ? $jumlahKoperasi[$dpsData->id_dps] : 0 }}</td>
+                        <td>
+                          <a href="{{ route('kabkota_pengawasan_koperasi', ['id' => $dpsData->id_dps]) }}">
+                                <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
 <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

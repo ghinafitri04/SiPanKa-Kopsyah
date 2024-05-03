@@ -201,6 +201,13 @@ Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
         }
         return response()->file($path);
     })->name('pengesahan_pad.pdf');
+
+    Route::get('/admin-kabkota/pengawasan/daftar-koperasi/{id}', [AdminKabupatenKotaPengawasanDpsController::class, 'menampilkanDataKoperasi'])
+        ->name('kabkota_pengawasan_daftar_koperasi');
+    Route::get('/admin-kabkota/pengawasan/koperasi/{id}', [AdminKabupatenKotaPengawasanDpsController::class, 'menampilkanDataPengawasanKoperasi'])
+        ->name('kabkota_pengawasan_koperasi');
+    Route::get('/admin-kabkota/pengawasan/file/{id}', [AdminKabupatenKotaPengawasanDpsController::class, 'menampilkanFilePengawasan'])
+        ->name('kabkota_file_pengawasan');
 });
 
 

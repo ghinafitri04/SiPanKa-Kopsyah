@@ -19,43 +19,35 @@
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center">
         <div class="dashboard-title">
-          <strong>Manajemen DPS / Pengawasan DPS</strong>
+          <strong> Manajemen Koperasi / Informasi Koperasi </strong>
           <div class="dashboard-subtitle">
-            <p><strong>Nama:</strong> Amaliaaaaaaaa</p>
             <p>Daftar Koperasi</p>
           </div>
         </div>
       </div>
-
-      <!-- Kotak-kotak kumpulan -->
+  
+      <!-- Tabel untuk daftar koperasi -->
       <div class="container">
-        <!-- Kotak pertama -->
-        <div class="box">
-          <img src="/img/gambar_koperasi.png" alt="Koperasi A" class="custom-image">
-          <div class="details">
-            <h5>Koperasi Budi Luhur</h5>
-            <a href="/detail-kabkotapengawasankoperasi" class="detail-button">Detail</a>
-          </div>
-        </div>
-
-        <!-- Kotak kedua -->
-        <div class="box">
-          <img src="/img/gambar_koperasi.png" alt="Koperasi B" class="custom-image">
-          <div class="details">
-            <h5>Koperasi Budi Luhur</h5>
-            <a href="/detail-kabkotapengawasankoperasi" class="detail-button">Detail</a>
-          </div>
-        </div>
-
-        <!-- Kotak ketiga -->
-        <div class="box">
-          <img src="/img/gambar_koperasi.png" alt="Koperasi C" class="custom-image">
-          <div class="details">
-            <h5>Koperasi Budi Luhur</h5>
-            <a href="/detail-kabkotapengawasankoperasi" class="detail-button">Detail</a>
-          </div>
-        </div>
-        
+        @if(count($koperasi) > 0)
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nama Koperasi</th>
+              <th scope="col">Pengawasan</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($koperasi as $k)
+            <tr>
+              <td>{{ $k->nama_koperasi }}</td>
+              <td><a href="{{ route('kabkota_pengawasan_daftar_koperasi', $k->id_koperasi) }}" class="detail-button">Pengawasan</a></td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+        @else
+        <p>Tidak ada koperasi yang tersedia.</p>
+        @endif
       </div>
     </div>
   </div>

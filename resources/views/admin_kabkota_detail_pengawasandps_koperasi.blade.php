@@ -14,7 +14,6 @@
   @include('layouts.admin_kabkota_sidebar')
   @include('layouts.admin_kabkota_navbar')
   <script src="{{asset('js/script.js')}}"></script>
-
   <div class="content">
     <div class="containermt-5">
         <div class="d-flex justify-content-between align-items-center">
@@ -25,63 +24,42 @@
 
         <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
           <table class="table">
-              <thead class="table-light">
-                  <tr>
-                      <th scope="col">No</th>
-                      <th scope="col">Nama Koperasi</th>
-                      <th scope="col">Kabupaten/Kota</th>
-                      <th scope="col">Tanggal Pengawasan</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Tindakan</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <th scope="row">1</th>
-                      <td>Koperasi A Loh Ini </td>
-                      <td>Kota Padang</td>
-                      <td>20 Januari 2024</td>
-                      <td>   
-                        <a><img src="/img/accepted.png" alt="Accepted Icon" >
-                      </i></a>
-                    </td>
-                    <td class="text-center">
-                      <a href="/detail-kabkota-dpsditerima"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
-                      </i></a>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Koperasi B Loh Ini </td>
-                    <td>Kota Banda Aceh</td>
-                    <td>80 Januari 2084</td>
-                    <td>   
-                      <a><img src="/img/pending.png" alt="Accepted Icon" >
-                    </i></a>
-                  </td>
-                </td>
-                <td class="text-center">
-                  <a href="/detail-kabkota-dpsmenunggu"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
-                </i></a>
-            </tr>
-                
+            <thead class="table-light">
                 <tr>
-                  <th scope="row">3</th>
-                  <td>Koperasi C Loh Ini </td>
-                  <td>Kota Padang</td>
-                  <td>20 Januari 2024</td>
-                  <td>   
-                    <a><img src="/img/rejected.png" alt="Accepted Icon" >
-                  </i></a>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Koperasi</th>
+                    <th scope="col">Tanggal Pengawasan</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($pengawasan as $index => $data)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $data->koperasi->nama_koperasi }}</td>
+                    <td>{{ $data->tanggal_pengawasan }}</td>
+                    <td>
+                      @if($data->status === true)
+                          <img src="/img/accepted.png" alt="Accepted Icon">
+                      @elseif($data->status === false)
+                      <img src="/img/pending.png" alt="Pending Icon">
+                      @else
+                      <img src="/img/rejected.png" alt="Rejected Icon">
+                      @endif
+                  </td>
+                  
+                  <td class="text-center">
+                    <a href="{{ route('kabkota_file_pengawasan', ['id' => $data->id]) }}">
+                        <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
+                    </a>
                 </td>
-            </td>
-            <td class="text-center">
-              <a href="/detail-kabkota-dpsditolak"><img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30"></a>
-            </i></a>
-        </tr>
-                  <!-- Tambahkan baris lain sesuai kebutuhan -->
-              </tbody>
-          </table>
+                
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        
       </div>
 </div>
 
