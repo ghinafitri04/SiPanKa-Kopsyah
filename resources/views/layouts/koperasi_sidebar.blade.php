@@ -25,7 +25,7 @@
 
         <li class="menu-item">
             <img src='/img/dps.png' alt="Hasil Pengawasan"> 
-            <a href="{{ route('hasil.pengawasan.koperasi') }}" >Hasil Pengawasan</a>
+            <a href="{{ route('koperasi.hasil_pengawasan.index') }}" >Hasil Pengawasan</a>
         </li>
     
     </ul>

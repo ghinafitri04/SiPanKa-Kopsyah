@@ -33,34 +33,32 @@
                       <th scope="col" style="width: 1cm;">No</th>
                       <th scope="col" >Tanggal Pengawasan</th>
                       <th scope="col">Nama DPS</th>
-                      <th scope="col" >Periode</th>
+                      <th scope="col" >Status</th>
                       <th scope="col" style="width: 3cm;">Tindakan</th>
                   </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <th scope="row">1</th>
-                      <td class="left-align">100 Januari 5020</td>
-                      <td class="left-align">Amalia Sandi Alzahraaahh</td>
-                      <td>Januari</td>
-                      <td>   
-                        <a href="{{ route('hasil.pengawasan.koperasi2') }}"><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30"></a>
-                      </i></a>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">2</th>
-                    <td class="left-align">100 Januari 5020</td>
-                    <td class="left-align">Amalia Sandi Alzahraaahh</td>
-                    <td>Januari</td>
+                @foreach($pengawasan as $hasil)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td class="left-align">{{ $hasil->tanggal_pengawasan }}</td>
+                    <td class="left-align">{{ $hasil->dps->nama_lengkap }}</td>
+                    <td>
+                      @if ($hasil->status === true)
+                          <img src="{{ asset('img/accepted.png') }}" alt="">
+                      @elseif($hasil->status === false)
+                        <img src="{{ asset('img/rejected.png') }}" alt="">  
+                      @endif
+                    </td>
                     <td>   
-                      <a><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30" >
-                    </i></a>
+                        <a href="{{ route('hasil.pengawasan.koperasi2', ['id' => $hasil->id]) }}">
+                            <img src="/img/Info Icon.png" alt="Detail Icon" width="30" height="30">
+                        </a>
+                    </td>
                 </tr>
-
-              
-                  <!-- Tambahkan baris lain sesuai kebutuhan -->
-              </tbody>
+                @endforeach
+            </tbody>
+            
           </table>
       </div>
 </div>

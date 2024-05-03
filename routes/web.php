@@ -27,6 +27,7 @@ use App\Http\Controllers\ProsesKonversiController;
 use App\Http\Controllers\DpsInformasiKoperasiController;
 use App\Http\Controllers\DpsPengawasanKoperasiController;
 use App\Http\Controllers\DpsProfileController;
+use App\Http\Controllers\KoperasiHasilPengawasanController;
 use App\Models\Koperasi;
 use App\Http\Controllers\AdminKoperasiController;
 use App\Models\AdminProvinsi;
@@ -225,6 +226,9 @@ Route::middleware(['auth:koperasi'])->group(function () {
         ->name('koperasi.pemilihan_dps.store');
     Route::get('/koperasi/pemilihan-dps', [KoperasiPemilihanDpsController::class, 'index'])
         ->name('koperasi.pemilihan_dps.index');
+
+    //Menampilkan hasil pengawasan
+    Route::get('/koperasi/hasil-pengawasan', [KoperasiHasilPengawasanController::class, 'index'])->name('koperasi.hasil_pengawasan.index');
     //Route untuk koperasi proses konversi
 
     Route::get('/pdf/show/{id}', [ProsesKonversiController::class, 'showPdf'])->name('pdf.show');
@@ -409,9 +413,11 @@ Route::get('/koperasi-hasil-pengawasan', function () {
     return view('koperasi_hasil_pengawasan');
 })->name('hasil.pengawasan.koperasi');
 
-Route::get('/koperasi-hasil-pengawasan2', function () {
-    return view('koperasi_hasil_pengawasan2');
-})->name('hasil.pengawasan.koperasi2');
+// Route::get('/koperasi-hasil-pengawasan2', function () {
+//     return view('koperasi_hasil_pengawasan2');
+// })->name('hasil.pengawasan.koperasi2');
+
+Route::get('/koperasi-hasil-pengawasan2/{id}', [KoperasiHasilPengawasanController::class, 'show'])->name('hasil.pengawasan.koperasi2');
 
 Route::get('/laporan-coba', function () {
     return view('admin_provinsi_laporandps');

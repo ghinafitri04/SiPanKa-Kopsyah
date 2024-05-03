@@ -26,49 +26,56 @@
             <div class="dashboard-subtitle">
                 <p><strong>Nama:</strong> Ghina</p>
               </div>
-          </div>
-
-          
+            </div>  
         </div>
 
-        
-    <!-- Box untuk Laporan Hasil Pengawasan DPS -->
-<div class="dashboard-box" style="padding: 20px; border: 1px solid #d3d3d3; border-radius: 10px; max-height: 460px; overflow: auto;"> <!-- Tambahkan max-height untuk mengatur tinggi maksimal dan overflow: auto; untuk membuat scroll jika kontennya panjang -->
-    <h2 style="text-align: center; font-weight: bold; margin-top: 0; margin-bottom: 20px;">Laporan Hasil Pengawasan DPS</h2>
+<div class="dashboard-box">
+    <h2 >Laporan Hasil Pengawasan DPS</h2>
     
-    <!-- Tanggal Pengawasan dan Kolomnya -->
-    <div style="display: flex; justify-content: space-between;">
-      <div style="width: 48%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa;"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Tanggal Pengawasan:</p>
-        <p style="margin: 0;">Data dari Database</p>
+    <div class= "coment-column">
+      <div class=box-coment> 
+        <p>Tanggal Pengawasan:</p>
+        <p-child>{{ $pengawasan->tanggal_pengawasan }}</p-child>
       </div>
       
-      <!-- Periode dan Kolomnya (untuk menampilkan data) -->
-      <div style="width: 48%; float: right; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; "> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Periode:</p>
-        <p style="margin: 0;">Data dari Database </p>
+    <dic class="coment-column2">
+      <div class=box-coment>
+        <p>Saran:</p>
+        <p-child>{{ $pengawasan->saran }}</p>
       </div>
     </div>
 
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Hasil:</p>
-        <p style="margin: 0;">Data dari Database</p>
+    <div class="coment-column3">
+        <p>Hasil:</p>
+        <p-child>{{ $pengawasan->hasil }}</p-child>
     </div>
 
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Permasalahan:</p>
-        <p style="margin: 0;">Data dari Database</p>
+    <div class="coment-column4">
+        <p>Permasalahan:</p>
+        <p-child>{{ $pengawasan->permasalahan }}</p-child>
     </div>
 
-    <div style="width: 100%; float: left; padding: 10px; border: 1px solid #d3d3d3; border-radius: 5px; background-color: #f8f9fa; margin-top: 20px"> <!-- Ganti background color sesuai kebutuhan -->
-        <p style="font-weight: bold; margin-bottom: 5px;">Saran:</p>
-        <p style="margin: 0;">Data dari Database</p>
+    <div class="coment-column5">
+        <p>Status:</p>
+        @if ($pengawasan->status === true)   
+        <img src="{{ asset("img/accepted.png") }}" alt="">
+        @elseif($pengawasan->status === false)
+        <img src="{{ asset("img/rejected.png") }}" alt="">
+        @endif
     </div>
+
+    <div class="coment-column6">
+      <p>Komentar Admin Provinsi:</p>
+      <p-child>Ini Komentar Untuk Provinsi</p-child>
+    </div>
+
+    <div class="coment-column7">
+      <p>Komentar Admin Kabupaten:</p>
+      <p-child>Ini Komentar Untuk Kabupaten</p-child>
+    </div>
+
 </div>
     </div>
-
-
-
 </div>
 
 <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
