@@ -229,6 +229,7 @@ Route::middleware(['auth:koperasi'])->group(function () {
 
     //Menampilkan hasil pengawasan
     Route::get('/koperasi/hasil-pengawasan', [KoperasiHasilPengawasanController::class, 'index'])->name('koperasi.hasil_pengawasan.index');
+    Route::get('/koperasi-hasil-pengawasan2/{id}', [KoperasiHasilPengawasanController::class, 'show'])->name('hasil.pengawasan.koperasi2');
     //Route untuk koperasi proses konversi
 
     Route::get('/pdf/show/{id}', [ProsesKonversiController::class, 'showPdf'])->name('pdf.show');
@@ -417,7 +418,6 @@ Route::get('/koperasi-hasil-pengawasan', function () {
 //     return view('koperasi_hasil_pengawasan2');
 // })->name('hasil.pengawasan.koperasi2');
 
-Route::get('/koperasi-hasil-pengawasan2/{id}', [KoperasiHasilPengawasanController::class, 'show'])->name('hasil.pengawasan.koperasi2');
 
 Route::get('/laporan-coba', function () {
     return view('admin_provinsi_laporandps');
