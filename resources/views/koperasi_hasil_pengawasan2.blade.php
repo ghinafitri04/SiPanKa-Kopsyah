@@ -39,10 +39,12 @@
       </div>
       
     <dic class="coment-column2">
-      <div class=box-coment>
-        <p>Saran:</p>
-        <p-child>{{ $pengawasan->saran }}</p>
-      </div>
+      <p-child>Status:</p>
+      @if ($pengawasan->status === true)   
+      <img src="{{ asset("img/accepted.png") }}" alt="">
+      @elseif($pengawasan->status === false)
+      <img src="{{ asset("img/rejected.png") }}" alt="">
+      @endif
     </div>
 
     <div class="coment-column3">
@@ -56,12 +58,8 @@
     </div>
 
     <div class="coment-column5">
-        <p>Status:</p>
-        @if ($pengawasan->status === true)   
-        <img src="{{ asset("img/accepted.png") }}" alt="">
-        @elseif($pengawasan->status === false)
-        <img src="{{ asset("img/rejected.png") }}" alt="">
-        @endif
+        <p>Saran:</p>
+        <p-child>{{ $pengawasan->saran }}</p>
     </div>
 
     <div class="coment-column6">
