@@ -14,79 +14,76 @@
 </head>
 
 <body>
-    @include('layouts.koperasi_sidebar')
-    @include('layouts.koperasi_navbar')
-    <script src="{{asset('js/script_koperasi.js')}}"></script>
 
-  <div class="content">
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="dashboard-title">
-            <h4>Proses Konversi</h4>
-          </div>
+  @include('layouts.koperasi_sidebar')
+  @include('layouts.koperasi_navbar')
+  <script src="{{asset('js/script_koperasi.js')}}"></script>
+<div class="content">
+  <div class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="dashboard-title">
+          <strong> konversi Koperasi</strong>
         </div>
-
-        <div class="mt-3">
-          <iframe id="dokumen-preview" src="" width="100%" height="500px"></iframe>
+        
       </div>
+    </div>
 
-        <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
+
+
+      <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
           <table class="table">
               <thead class="table-light">
-                  <tr>
-                      <th scope="col" style="width: 1cm;">No</th>
-                      <th scope="col" class="left-align">Nama DPS</th>
-                      <th scope="col">Tahap 1</th>
-                      <th scope="col">Tahap 2</th>
-                      <th scope="col">Tahap 3</th>
-                      <th scope="col">Tahap 4</th>
-                      <th scope="col">Tindakan</th>
-                  </tr>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Koperasi</th>
+                  <th scope="col">Rapat Anggota</th>
+                  <th scope="col">Perubahan PAD</th>
+                  <th scope="col">Bukti Notaris</th>
+                  <th scope="col">Pengesahan PAD</th>
+              </tr>
               </thead>
-              <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td class="left-align">Amalll</td>
-                    <td>
-                      <a class="tombol-preview" href="{{ route('preview.tahap', 1) }}" target="_blank">Preview</a>
-                    </td>
-                    <td>
-                        <a class="tombol-preview" href="#" data-src="/path/to/tahap2_document.pdf" target="_blank">Preview</a>
-                    </td>
-                    <td>
-                        <a class="tombol-preview" href="#" data-src="/path/to/tahap3_document.pdf" target="_blank">Preview</a>
-                    </td>
-                    <td>
-                        <a class="tombol-preview" href="#" data-src="/path/to/tahap4_document.pdf" target="_blank">Preview</a>
-                    </td>
-                    <td>
-                        <a><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30" >
-                      </i></a>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">2</th>
-                    <td class="left-align">Amallliaaa</td>
-                    <td>   
-                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                    </i></a>
-                    <td>   
-                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                    </i></a>
-                    <td>   
-                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                    </i></a> 
-                    <td>   
-                      <a><img src="/img/inisudah.png" alt="Accepted Icon" width="70" height="30" >
-                    </i></a>
-                    <td>   
-                      <a><img src="/img/Info Icon.png" alt="Accepted Icon" width="30" height="30" >
-                    </i></a>
-                </tr>
-                  <!-- Tambahkan baris lain sesuai kebutuhan -->
-              </tbody>
-          </table>
+        <tbody>
+          @php
+              $no = 1;
+          @endphp
+         @foreach($prosesKonversi as $proses)
+         <tr>
+             <th scope="row">{{ $loop->iteration }}</th>
+             <td>{{ $proses->koperasi->nama_koperasi }}</td>
+             <td>
+                 @if($proses->rapat_anggota)
+                     <a href="{{ route('rapat_anggota.pdf', ['filename' => basename( $proses->rapat_anggota)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                 @else
+                     <button class="btn btn-danger" onclick="setAsNotDone(1)">Belum</button>
+                 @endif
+             </td>
+             <td>
+                 @if($proses->perubahan_pad)
+                     <a href="{{ route('perubahan_pad.pdf', ['filename' => basename( $proses->perubahan_pad)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                 @else
+                     <button class="btn btn-danger" onclick="setAsNotDone(2)">Belum</button>
+                 @endif
+             </td>
+             <td>
+                 @if($proses->nama_notaris)
+                     <a href="{{ route('bukti_notaris.img', ['filename' => basename( $proses->bukti_notaris)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                 @else
+                     <button class="btn btn-danger" onclick="setAsNotDone(3)">Belum</button>
+                 @endif
+             </td>
+             <td>
+                 @if($proses->pengesahan_pad)
+                     <a href="{{ route('pengesahan_pad.pdf', ['filename' => basename( $proses->pengesahan_pad)]) }}" target="_blank" class="btn btn-success">Sudah</a>
+                 @else
+                     <button class="btn btn-danger" onclick="setAsNotDone(4)">Belum</button>
+                 @endif
+             </td>
+         </tr>
+         @endforeach                 
+      </tbody>
+    </table>
       </div>
+    </div>
 </div>
 
 <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
@@ -94,17 +91,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Event listener untuk setiap tombol "Preview"
-    document.querySelectorAll('.tombol-preview').forEach(function(button) {
-        button.addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah tindakan default dari tautan
-            var documentUrl = this.getAttribute('data-src');
-            document.getElementById('dokumen-preview').setAttribute('src', documentUrl);
-        });
-    });
-});
-</script>
-    </body>
+  </body>
 </html>
