@@ -246,9 +246,9 @@ Route::middleware(['auth:koperasi'])->group(function () {
     Route::get('/proses-konversi/tahap-4', [ProsesKonversiController::class, 'showFormTahap4'])->name('prosesTahap4');
     Route::post('/proses-konversi/tahap-4', [ProsesKonversiController::class, 'prosesTahap4'])->name('prosesTahap4Submit');
 
-    Route::get('/rekap-konversi',[AdminKoperasiController::class, 'proses_konversi']) ->name('koperasi.tabelkonversi');
+    Route::get('/rekap-konversi', [AdminKoperasiController::class, 'proses_konversi'])->name('koperasi.tabelkonversi');
 
-    Route::get('/rapat_anggota/{filename}', function ($filename) {
+    Route::get('/rapat_anggota_koperasi/{filename}', function ($filename) {
         $path = storage_path('app/rapat_anggota/' . $filename);
 
         if (!File::exists($path)) {
@@ -256,7 +256,7 @@ Route::middleware(['auth:koperasi'])->group(function () {
         }
         return response()->file($path);
     })->name('rapat_anggota.pdf');
-    Route::get('/perubahan_pad/{filename}', function ($filename) {
+    Route::get('/perubahan_pad_koperasi/{filename}', function ($filename) {
         $path = storage_path('app/perubahan_pad/' . $filename);
 
         if (!File::exists($path)) {
@@ -264,7 +264,7 @@ Route::middleware(['auth:koperasi'])->group(function () {
         }
         return response()->file($path);
     })->name('perubahan_pad.pdf');
-    Route::get('/bukti_notaris/{filename}', function ($filename) {
+    Route::get('/bukti_notaris_koperasi/{filename}', function ($filename) {
         $path = storage_path('app/bukti_notaris/' . $filename);
 
         if (!File::exists($path)) {
@@ -273,7 +273,7 @@ Route::middleware(['auth:koperasi'])->group(function () {
         return response()->file($path);
     })->name('bukti_notaris.img');
 
-    Route::get('/pengesahan_pad/{filename}', function ($filename) {
+    Route::get('/pengesahan_pad_koperasi/{filename}', function ($filename) {
         $path = storage_path('app/pengesahan_pad/' . $filename);
 
         if (!File::exists($path)) {
@@ -324,7 +324,7 @@ Route::middleware(['auth:dps'])->group(function () {
         ->name('dps.pengawasan_laporan');
     Route::get('/profile-dps', [DpsProfileController::class, 'showProfile'])->name('dps_profile');
     Route::post('/update-profile', [DpsProfileController::class, 'updateProfile'])->name('update_dps_profile');
-    Route::get('/rapat_anggota/{filename}', function ($filename) {
+    Route::get('/rapat_anggota_dps/{filename}', function ($filename) {
         $path = storage_path('app/rapat_anggota/' . $filename);
 
         if (!File::exists($path)) {
@@ -332,7 +332,7 @@ Route::middleware(['auth:dps'])->group(function () {
         }
         return response()->file($path);
     })->name('rapat_anggota.pdf');
-    Route::get('/perubahan_pad/{filename}', function ($filename) {
+    Route::get('/perubahan_pad_dps/{filename}', function ($filename) {
         $path = storage_path('app/perubahan_pad/' . $filename);
 
         if (!File::exists($path)) {
@@ -340,7 +340,7 @@ Route::middleware(['auth:dps'])->group(function () {
         }
         return response()->file($path);
     })->name('perubahan_pad.pdf');
-    Route::get('/bukti_notaris/{filename}', function ($filename) {
+    Route::get('/bukti_notaris_dps/{filename}', function ($filename) {
         $path = storage_path('app/bukti_notaris/' . $filename);
 
         if (!File::exists($path)) {
@@ -349,7 +349,7 @@ Route::middleware(['auth:dps'])->group(function () {
         return response()->file($path);
     })->name('bukti_notaris.img');
 
-    Route::get('/pengesahan_pad/{filename}', function ($filename) {
+    Route::get('/pengesahan_pad_dps/{filename}', function ($filename) {
         $path = storage_path('app/pengesahan_pad/' . $filename);
 
         if (!File::exists($path)) {

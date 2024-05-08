@@ -19,7 +19,7 @@
     <script src="{{asset('js/koperasi_updateprofile.js')}}"></script>
 
     <div class="content">
-        <!-- Logo Box -->
+        {{-- <!-- Logo Box -->
         <div class="logo-box">
             <h5>Logo Koperasi</h5>
             <div class="border-gray" id="imagePreviewContainer"> 
@@ -30,7 +30,7 @@
                     <img src="/img/Edit_gambar.png" alt="Edit Icon">
                 </button>
             </div>
-        </div>
+        </div> --}}
         
         <div class="main-box">
             <!-- Implementasi -->
