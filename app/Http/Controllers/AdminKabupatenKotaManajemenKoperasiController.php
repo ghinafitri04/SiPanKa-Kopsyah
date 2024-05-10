@@ -12,25 +12,25 @@ use Illuminate\Support\Facades\DB;
 class AdminKabupatenKotaManajemenKoperasiController extends Controller
 {
     public function index()
-{
-    // Mendapatkan id_admin_kabupatenkota yang sedang login
-    $id_admin_kabupatenkota = Auth::id();
+    {
+        // Mendapatkan id_admin_kabupatenkota yang sedang login
+        $id_admin_kabupatenkota = Auth::id();
 
-    // Mengambil daftar koperasi yang memiliki id_admin_kabupatenkota sesuai dengan admin yang sedang login
-    $koperasiList = Koperasi::where('id_admin_kabupatenkota', $id_admin_kabupatenkota)->get();
+        // Mengambil daftar koperasi yang memiliki id_admin_kabupatenkota sesuai dengan admin yang sedang login
+        $koperasiList = Koperasi::where('id_admin_kabupatenkota', $id_admin_kabupatenkota)->get();
 
-    // Mengambil jumlah admin koperasi yang terdaftar
-    $jumlahAdminKoperasi = Koperasi::where('id_admin_kabupatenkota', $id_admin_kabupatenkota)->count();
+        // Mengambil jumlah admin koperasi yang terdaftar
+        $jumlahAdminKoperasi = Koperasi::where('id_admin_kabupatenkota', $id_admin_kabupatenkota)->count();
 
-    // Mengambil daftar kabupaten/kota yang terkait dengan admin yang sedang login
-    $kabupatenKotaList = AdminKabupatenKota::with('kabupatenKota')
-        ->where('id_admin_kabupatenkota', $id_admin_kabupatenkota)
-        ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
-        ->pluck('kabupatenkota.nama_kabupatenkota', 'admin_kabupatenkota.id_admin_kabupatenkota')
-        ->all();
+        // Mengambil daftar kabupaten/kota yang terkait dengan admin yang sedang login
+        $kabupatenKotaList = AdminKabupatenKota::with('kabupatenKota')
+            ->where('id_admin_kabupatenkota', $id_admin_kabupatenkota)
+            ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
+            ->pluck('kabupatenkota.nama_kabupatenkota', 'admin_kabupatenkota.id_admin_kabupatenkota')
+            ->all();
 
-    return view('admin_kabkota_adminkoperasi', compact('koperasiList', 'kabupatenKotaList', 'jumlahAdminKoperasi'));
-}
+        return view('admin_kabkota_adminkoperasi', compact('koperasiList', 'kabupatenKotaList', 'jumlahAdminKoperasi'));
+    }
 
 
     public function store(Request $request)
@@ -92,5 +92,32 @@ class AdminKabupatenKotaManajemenKoperasiController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('admin_kabkota.manajemen_koperasi.index')->with('error', 'Gagal memperbarui data koperasi.');
         }
+    }
+    public function detailIndex($id)
+    {
+        // Mendapatkan id_admin_kabupatenkota yang sedang login
+        $id_admin_kabupatenkota = Auth::id();
+
+        // Mengambil koperasi berdasarkan ID yang dipilih
+        $koperasi = Koperasi::where('id_koperasi', $id)
+            ->where('id_admin_kabupatenkota', $id_admin_kabupatenkota)
+            ->first();
+
+        // Periksa apakah koperasi ditemukan
+        if (!$koperasi) {
+            // Jika tidak ditemukan, mungkin menampilkan pesan kesalahan atau mengarahkan pengguna ke halaman lain
+            return redirect()->route('halaman_tidak_ditemukan');
+        }
+
+        // Mengambil daftar kabupaten/kota yang terkait dengan admin yang sedang login
+        $kabupatenKotaList = AdminKabupatenKota::with('kabupatenKota')
+            ->where('id_admin_kabupatenkota', $id_admin_kabupatenkota)
+            ->join('kabupatenkota', 'admin_kabupatenkota.id_kabupatenkota', '=', 'kabupatenkota.id_kabupatenkota')
+            ->pluck('kabupatenkota.nama_kabupatenkota', 'admin_kabupatenkota.id_admin_kabupatenkota')
+            ->all();
+
+        // Anda mungkin tidak perlu lagi menyertakan $koperasiList dan $jumlahAdminKoperasi dalam compact()
+
+        return view('admin_kabkota_detailadminkoperasi', compact('koperasi', 'kabupatenKotaList'));
     }
 }

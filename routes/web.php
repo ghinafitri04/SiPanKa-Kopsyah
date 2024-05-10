@@ -156,6 +156,8 @@ Route::middleware(['auth:admin_kabupatenkota'])->group(function () {
         ->name('admin_kabkota.dashboard');
     Route::get('/admin-kabkota/manajemen-koperasi', [AdminKabupatenKotaManajemenKoperasiController::class, 'index'])
         ->name('admin_kabkota.manajemen_koperasi.index');
+    Route::get('/admin-kabkota/manajemen-koperasi/{id}', [AdminKabupatenKotaManajemenKoperasiController::class, 'detailIndex'])
+        ->name('admin_kabkota.manajemen_koperasi.detail');
     Route::post('/admin-kabkota/manajemen-koperasi/store', [AdminKabupatenKotaManajemenKoperasiController::class, 'store'])
         ->name('admin_kabkota.manajemen_koperasi.store');
     Route::delete('/admin-kabkota/manajemen-koperasi/{id}', [AdminKabupatenKotaManajemenKoperasiController::class, 'destroy'])
