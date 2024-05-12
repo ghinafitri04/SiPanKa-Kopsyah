@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Dps;
 use Illuminate\Http\Request;
 
@@ -115,6 +116,90 @@ class AdminProvinsiManajemenDpsController extends Controller
         } catch (\Exception $e) {
             // Tangani kesalahan dengan menampilkan pesan gagal
             return redirect()->route('admin_provinsi.manajemen_dps.index')->with('error', 'Gagal memuat halaman edit DPS.');
+=======
+use Illuminate\Http\Request;
+use App\Models\Admin;
+use App\Models\Role;
+
+class AdminProvinsiManajemenDpsController extends Controller
+{
+    public function manajemenDps()
+    {
+        $admins = Admin::where('id_role', 4)->get();
+        return view('admin_provinsi_admindps', ['admins' => $admins]);
+    }
+
+    public function tambahDataAdminDps(Request $request)
+    {
+        $request->validate([
+            'namaLengkap' => 'required|string',
+            'username' => 'required|string',
+            'password' => 'required|string',
+            'kabupatenKota' => 'required|string',
+        ]);
+
+        $role = Role::where('role_name', 'Admin DPS')->first();
+
+        if ($role) {
+            $admin = new Admin([
+                'id_role' => $role->id,
+                'nama_instansi' => $request->input('namaLengkap'),
+                'username' => $request->input('username'),
+                'password' => bcrypt($request->input('password')),
+                'region' => $request->input('kabupatenKota'),
+            ]);
+
+            $admin->save();
+
+            return redirect()->route('admin.manajemenDps')->with('success', 'Data admin berhasil ditambahkan');
+        } else {
+            return redirect()->route('admin.manajemenDps')->with('error', 'Role tidak ditemukan');
+        }
+    }
+
+    public function hapusDataAdminDps($id)
+    {
+        $admin = Admin::find($id);
+
+        if ($admin) {
+            $admin->delete();
+            return redirect()->route('admin.manajemenDps')->with('success', 'Data admin berhasil dihapus');
+        } else {
+            return redirect()->route('admin.manajemenDps')->with('error', 'Data admin tidak ditemukan');
+        }
+    }
+
+    public function editDataAdminDps($id)
+    {
+        $admin = Admin::find($id);
+
+        if ($admin) {
+            return view('edit_admin', ['admin' => $admin]);
+        } else {
+            return redirect()->route('admin.manajemenDps')->with('error', 'Data admin tidak ditemukan');
+        }
+    }
+
+    public function updateDataAdminDps(Request $request, $id)
+    {
+        $request->validate([
+            'editNamaLengkap' => 'required|string',
+            'editUsername' => 'required|string',
+            'editKabKota' => 'required|string',
+        ]);
+
+        $admin = Admin::find($id);
+
+        if ($admin) {
+            $admin->nama_instansi = $request->input('editNamaLengkap');
+            $admin->username = $request->input('editUsername');
+            $admin->region = $request->input('editKabKota');
+            $admin->save();
+
+            return redirect()->route('admin.manajemenDps')->with('success', 'Data admin berhasil diperbarui');
+        } else {
+            return redirect()->route('admin.manajemenDps')->with('error', 'Data admin tidak ditemukan');
+>>>>>>> 7632a471b6255411866ed234802fdf6842fc262c
         }
     }
 }

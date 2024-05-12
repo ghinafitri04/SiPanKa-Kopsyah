@@ -20,7 +20,7 @@
         
         <li class="menu-item">
             <img src='/img/manajemen_kab.png' alt="Manajemen Kab"> 
-            <a href="{{ route('admin_provinsi.manajemen_kab_kota.index') }}">Manajemen Kab Kota</a>
+            <a href="{{ route('admin.manajemenKabKota') }}">Manajemen Kab/Kota</a>
         </li>
         
 
@@ -32,8 +32,8 @@
 
             <ul id="dpsSubMenu" class="submenu">
                 <li class="menu-item">
-                    <img src='/img/dps.png' alt="Manajemen dps"> 
-                    <a href="{{ route('admin_provinsi.manajemen_dps.index') }}">Admin DPS</a>
+                    <img src='/img/dps.png' alt="Manajemen DPS"> 
+                    <a href="{{ route('admin.manajemenDps') }}">Admin DPS</a>
                 </li>
 
                 <li class="menu-item">
@@ -52,8 +52,8 @@
             <ul id="koperasiSubMenu" class="submenu">
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi"> 
-                    <a href="{{ route('admin_provinsi.manajemen_koperasi.index') }}">Admin Koperasi</a>
-                </li>                
+                    <a href="{{ route('admin.manajemenKoperasi') }}">Admin Koperasi</a>
+                </li>
                 
                 <li class="menu-item">
                     <img src='/img/koperasi.png' alt="Manajemen Koperasi">

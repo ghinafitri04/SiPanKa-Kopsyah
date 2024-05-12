@@ -27,132 +27,121 @@
     </div>
 
     <div class="overlay" id="overlay"></div>
-    <div class="popup-container" id="popupContainer">
-        <span class="close-icon" onclick="togglePopup()">
-            <img src="/img/close.png" alt="Close Icon" width="15" height="15">
-        </span>
-        
-        <div class="popup-content" id="formTambahAdminContainer">
-            <div class="popup-title">Data Admin Kab/Kota</div>
-            <form method="POST" action="{{ route('admin_provinsi.manajemen_kab_kota.store') }}">
-                @csrf        
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Masukkan Username" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Masukkan Password" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="kabupatenKota">Kabupaten/Kota</label>
-                    <select id="kabupatenKota" name="kabupatenKota" class="form-control" required>
-                        <option value="">Pilih Kabupaten/Kota</option>
-                        @foreach($kabupatenKotaList as $kabupatenKota)
-                            <option value="{{ $kabupatenKota->id_kabupatenkota }}">{{ $kabupatenKota->nama_kabupatenkota }}</option>
-                        @endforeach
-                    </select>                               
-                </div>
-                
-                <div class="btn-container">
-                    <button type="submit" class="btn btn-success">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="mt-3" style="margin-left: 4.5cm; margin-right: 4cm;">
-        <table class="table">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">Kabupaten/Kota</th>
-                    <th scope="col">Tindakan</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                @if(isset($adminKabupatenKota) && count($adminKabupatenKota) > 0)
-                    @foreach ($adminKabupatenKota as $admin)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $admin->username }}</td>
-                            <td>{{ $admin->password_text }}</td>
-                            <td data-kabupaten-kota="{{ $admin->kabupatenKota->id_kabupatenkota }}">
-                                {{ $admin->kabupatenKota->nama_kabupatenkota }}
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="#" class="btn-edit" data-id="{{ $admin->id_admin_kabupatenkota }}">
-                                        <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
-                                    </a>
-                                    <form id="form-hapus" action="{{ route('admin_provinsi.manajemen_kab_kota.destroy', ['id' => $admin->id_admin_kabupatenkota]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="delete-btn-container">
-                                            <a href="#" class="btn-hapus" data-id="{{ $admin->id_admin_kabupatenkota }}">
-                                                <img src="/img/Hapus.png" alt="Hapus" style="width: 30px; height: 30px;">
-                                            </a>
-                                            <button type="submit" style="display:none;" id="btn-hapus"></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </td>                        
-                        </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="5">Tidak ada data yang tersedia</td>
-                    </tr>
-                @endif
-            </tbody>
-        </table>        
-    </div>
-    
-    <div class="editz-form" style="display: none;">
-        <span class="close-icon" onclick="closeEditForm()">
-            <img src="/img/close.png" alt="Close Icon" width="15" height="15">
-        </span>
-        
-        <form method="POST" id="editForm" action="{{ route('admin_provinsi.manajemen_kab_kota.update', ['id' => 'admin_id']) }}">
+<div class="popup-container" id="popupContainer">
+    <span class="close-icon" onclick="togglePopup()">X</span>
+    <div class="popup-content">
+        <div class="popup-title">Data Admin Kab/Kota</div>
+        <form action="{{ route('admin.tambahDataAdmin') }}" method="post">
             @csrf
-            @method('PUT')
-            <div class="popup-title">Edit Data Admin Kab/Kota</div>
-            
             <div class="form-group">
-                <label for="editUsername">Username</label>
-                <div class="edit-fields">
-                    <input type="text" id="editUsername" name="username">
-                </div>
+                <label for="namaLengkap">Nama Lengkap:</label>
+                <input type="text" id="namaLengkap" name="namaLengkap">
             </div>
-            
+
             <div class="form-group">
-                <label for="editPassword">Password</label>
-                <div class="edit-fields">
-                    <input type="text" id="editPassword" name="password">
-                </div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
             </div>
-            
+
             <div class="form-group">
-                <label for="editKabupatenKota">Kabupaten/Kota</label>
-                <div class="edit-fields">
-                    <select id="editKabupatenKota" name="kabupatenKota">
-                        @foreach($kabupatenKotaList as $kabupatenKota)
-                            <option value="{{ $kabupatenKota->id_kabupatenkota }}">{{ $kabupatenKota->nama_kabupatenkota }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
             </div>
-            
+
+            <div class="form-group">
+                <label for="kabupatenKota">Kabupaten/Kota:</label>
+                <input type="text" id="kabupatenKota" name="kabupatenKota">
+            </div>
             <div class="btn-container">
-                <button type="button" class="btn btn-danger btn-batal-edit" onclick="cancelEdit()">Batal</button>
-                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="button" class="btn btn-danger" onclick="togglePopup()">Batal</button>
+                <button type="submit" class="btn btn-success">Tambah</button>
             </div>
         </form>
+    </div>
+</div>
+
+        <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
+            <table class="table">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama Lengkap</th>
+                        <th scope="col">Akses Login</th>
+                        <th scope="col">Kabupaten/Kota</th>
+                        <th scope="col">Tindakan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($admins as $admin)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $admin->nama_instansi }}</td>
+                        <td>
+                            <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> {{ $admin->username }}<br>
+                            <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> {{ $admin->password }}
+                        </td>
+                        <td>{{ $admin->region }}</td>
+                        <td>
+                            <!-- Icon Edit dengan Modal -->
+                            <a data-toggle="modal" data-target="#editModal{{ $admin->id }}">
+                                <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
+                            </a>
+            
+                            <!-- Modal Edit -->
+                            <div class="modal fade" id="editModal{{ $admin->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalLabel">Edit Data Admin</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Tempatkan formulir edit di sini -->
+                                            <form action="{{ route('admin.updateDataAdmin', ['id' => $admin->id]) }}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                            
+                                                <div class="form-group">
+                                                    <label for="editNamaLengkap">Nama Lengkap:</label>
+                                                    <input type="text" id="editNamaLengkap" name="editNamaLengkap" value="{{ $admin->nama_instansi }}">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="editUsername">Username:</label>
+                                                    <input type="text" id="editUsername" name="editUsername" value="{{ $admin->username }}">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="editKabKota">Kabupaten/Kota:</label>
+                                                    <input type="text" id="editKabKota" name="editKabKota" value="{{ $admin->region }}">
+                                                </div>
+                                            
+                                                <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <a href="{{ route('admin.hapusDataAdmin', ['id' => $admin->id]) }}"
+                                onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('hapus-form-{{ $admin->id }}').submit(); }">
+                                <img src="/img/Hapus.png" alt="Hapus Icon" width="30" height="30">
+                             </a>
+                             
+                             <form id="hapus-form-{{ $admin->id }}" action="{{ route('admin.hapusDataAdmin', ['id' => $admin->id]) }}" method="POST" style="display: none;">
+                                 @csrf
+                                 @method('DELETE')
+                             </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
+        </div>
     </div>
     
   </div>
