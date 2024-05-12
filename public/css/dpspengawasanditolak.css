@@ -1,0 +1,95 @@
+.dashboard-title {
+  font-size: 20px; 
+  font-family: 'Poppins', sans-serif;
+  margin-left: 120px; 
+  margin-top: -30px;
+  color: #147167;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-subtitle {
+  font-size: 16px; 
+  margin-top: 5px; 
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+.dashboard-subtitle strong {
+  font-weight: bold; 
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-box {
+    background-color: #ffffff; 
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 10px; 
+    margin-left: 255px;
+    margin-right: 2cm;
+    border: 1px solid rgba(128, 128, 128, 0.3); 
+    height: 545px;
+}
+
+.dashboard-box h2 {
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  color: #07170b; 
+  margin-bottom: 10px;
+}
+
+.additional-info {
+  margin-top: 3cm; 
+  font-family: 'Poppins', sans-serif;
+}
+
+.comment-box {
+    width: 100%;
+    float: left;
+    font-family: 'Poppins', sans-serif;
+    padding: 0px;
+} */
+
+.comment-info {
+    font-size: 14px;
+    margin-top: 20px; 
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 3px;
+}
+
+.comment-name {
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    margin: 5px 0;
+}
+
+.comment-date {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.comment-content {
+    margin: 5px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.comment-divider {
+    border: 1px solid #d3d3d3;
+    font-family: 'Poppins', sans-serif;
+    margin: 10px 0;
+}
+
+.user-comment-column {
+    background-color: #ffffff; 
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    margin-top: 10px; 
+    margin-left: 255px;
+    margin-right: 2cm;
+    border: 1px solid rgba(128, 128, 128, 0.3); 
+    height: 545px; 
+}

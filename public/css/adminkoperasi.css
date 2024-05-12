@@ -1,123 +1,462 @@
-h4 {
-    font-size: 20px !important; /* Gunakan !important untuk memastikan prioritas tertinggi */
-  }
-
 .dashboard-title {
-    font-size: 8px; /* Sesuaikan dengan ukuran yang diinginkan */
-    margin-left: 120px; /* Sesuaikan dengan margin kiri yang diinginkan */
-  }
+    font-size: 20px; 
+    margin-left: 100px;
+    font-family: 'Poppins', sans-serif;
+    color: #147167;
+}
 
-    /* Tambahkan gaya CSS di sini */
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-   
-
-    /* Style untuk tabel */
-   /* Style untuk tabel */
-   table {
-  border-collapse: collapse;
-    width: 80%; /* Sesuaikan dengan lebar yang diinginkan */
-    margin: 5px; /* Sesuaikan dengan margin yang diinginkan */
-    border-radius: 8px; /* Menambahkan sudut melengkung pada tabel */
-    overflow: hidden; /* Memastikan border-radius bekerja dengan baik */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Efek bayangan pada tabel */
+table {
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    width: 80%; 
+    margin: 5px; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
 }
 
 /* Style untuk sel header */
-th, td {
-  border: 1px solid #ddd; /* Garis batas untuk sel */
-    padding: 10px; /* Sesuaikan dengan padding yang diinginkan */
+    th, td {
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    font-family: 'Poppins', sans-serif;
     text-align: left;
 }
 
 th:first-child,
 td:first-child {
-    width: 20px; /* Sesuaikan dengan lebar yang diinginkan */
+    width: 20px; 
 }
 
 /* Style untuk baris genap */
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Warna latar belakang untuk baris genap */
+    background-color: #f2f2f2; 
 }
 
 /* Hover efek untuk baris */
 tr:hover {
-    background-color: #e0e0e0; /* Warna latar belakang saat dihover */
+    background-color: #e0e0e0; 
 }
 
-/*POP UP NIHHHHH */ 
-        .popup-container {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        z-index: 2;
-    }
+.popup-container {
+    display: none;
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
 
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-    }
+.overlay {
+    display: none;
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
 
-    .close-icon {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-    }
+.close-icon {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+}
 
-    .popup-title {
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+.popup-title {
+    font-weight: 600;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+}
 
-    .popup-content {
-      width: 400px; /* Sesuaikan dengan lebar yang diinginkan */
-        max-width: 80%; /* Maksimum lebar 80% dari layar */
-        margin: 20px auto;  /* Center the content horizontally */
-        display: flex;
-        flex-direction: column;
-    }
+.popup-content {
+    width: 400px; 
+    max-width: 80%; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin: 20px auto;  
+    display: flex;
+    flex-direction: column;
+}
 
-    .form-group {
-      margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-    }
+.tambah-admin{
+    font-weight: normal;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #147167; 
+    color: white;
+    border: none;
+    padding: 7px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+}
 
-    .form-group label {
-        margin-bottom: 5px;
-    }
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-    .form-group input,
-    .form-group select {
-        padding: 8px;
-        margin-bottom: 8px;
-    }
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.selected-option {
+    display: inline-block;
+    background-color: #ffffff;
+    cursor: pointer;
+    width: 287px; 
+}
+
+.options {
+    display: none;
+    position: absolute;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-height: 70px;
+    overflow-y: auto;
+    border: 1px solid #ffffff;
+    top: 0;
+    left: 0;
+    background-color: #fff; 
+}
+
+.options li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.options li:hover {
+    background-color: #f3f3f3;
+}
 
 
-    /* Style for the buttons */
-    .btn-container {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 15px;
-    }
+.btn-container {
+    display: flex;
+    justify-content: flex-end; 
+    font-family: 'Poppins', sans-serif;
+}
 
-    .btn-container button {
-        margin-left: 10px;
-    }
+.btn-container button {
+    font-size: 14px; 
+    padding: 5px 14px; 
+}
+
+.btn-container .btn-batal {
+    margin-right: 16px;
+    font-size: 14px; 
+    padding: 5px 25px; 
+}
+
+.form-group {
+    margin-bottom: 8px; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group label {
+    width: 120px;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 5px;
+    font-weight: bold; 
+}
+
+.input-fields {
+    width: calc(100% - 120px); 
+    display: inline-block;
+}
+
+.input-fields input[type="text"],
+.input-fields input[type="password"] {
+    width: 160%; 
+    padding: 7px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.success-popup-container {
+    width: 30%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+}
+
+.success-popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.success-popup-content img {
+    margin-bottom: 20px;
+}
+
+.success-popup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.success-popup-container button {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+
+.success-popup-title img {
+    position: absolute;
+    top: -5px; 
+    left: 10px;
+}
+
+body.popup-open {
+    overflow: hidden;
+}
+
+.success-popup-container,
+.confirmation-popup-container,
+.editz-form {
+    z-index: 1000; 
+}
+
+#overlay, #popupContainer, #successPopup, #formTambahAdminContainer, #confirmationPopup, #successPopup,  #hapusPopup{
+display: none;
+}
+
+.confirmation-popup-container {
+    display: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.confirmation-popup-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.confirmation-popup-content {
+    padding: 20px;
+}
+
+.confirmation-popup-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.confirmation-popup-content p {
+    margin-bottom: 15px;
+}
+
+.btn-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.btn-container button {
+    font-size: 14px;
+    padding: 5px 14px;
+    margin: 0 10px;
+    margin-left: 10px;
+}
+
+.btn-batal-hapus, .btn-success-hapus {
+    font-size: 14px;
+    padding: 5px 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    margin-top: 10px; 
+}
+
+.btn-batal-hapus {
+    background-color: #6c757d; 
+    color: #000000;
+}
+
+.btn-success-hapus {
+    background-color: #dc3545; 
+    color: #fff; 
+}
+
+.editz-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    display: flex; 
+}
+
+.editz-form .input-fields input[type="text"],
+.editz-form .input-fields input[type="password"] {
+    width: 132%; 
+    padding: 7px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.editz-form .form-group {
+    margin-bottom: 8px; 
+}
+
+.editz-form .form-group label {
+    width: 160px;
+    display: inline-block;
+}
+
+.editz-form .btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.editz-form .btn-container button {
+    margin-left: 10px; 
+}
+
+.edit-popup-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.edit-popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-popup-content img {
+    margin-bottom: 20px;
+}
+
+.edit-popup-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 400px; 
+    padding: 30px;
+}
+
+.edit-popup-container button {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+
+.edit-popup-title img {
+    position: absolute;
+    top: -5px;
+    left: 10px;
+}
+
+
+.hapus-popup-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.hapus-popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hapus-popup-content img {
+    margin-bottom: 20px;
+}
+
+.hapus-popup-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 400px;
+    padding: 30px;
+}
+
+.hapus-popup-container button {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+
+.hapus-popup-title img {
+    position: absolute;
+    top: -5px;
+    left: 10px;
+}

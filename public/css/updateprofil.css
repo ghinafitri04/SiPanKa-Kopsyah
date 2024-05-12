@@ -1,0 +1,174 @@
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .content {
+    display: flex;
+  }
+
+  .logo-box {
+    width: 25%;
+    height: 460px;    
+    margin: 30px 8px; /* Menambahkan margin atas dan bawah */
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+    position: relative; /* Menambahkan position: relative untuk membuat ikon edit menjadi absolute terhadap logo-box */
+  }
+
+  .logo-box h5 {
+      margin-top: 3px;
+      font-size: 18px;
+      font-weight: bold;
+  }
+
+  .logo-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid #ddd; /* Border abu-abu */
+  }
+
+  .edit-icon {
+    position: absolute;
+    bottom: 8px; /* Menyesuaikan posisi ikon edit */
+    right: 8px; /* Menyesuaikan posisi ikon edit */
+    text-align: center;
+  }
+
+  .edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Menghapus padding */
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .edit-button img {
+    width: 50px; /* Memperbesar ukuran ikon edit */
+    height: 50px; /* Memperbesar ukuran ikon edit */
+    border: none; /* Menghapus border pada ikon edit */
+  }
+
+  .main-box {
+    flex: 1;
+    margin: 30px 8px; /* Menambahkan margin atas dan bawah */
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  /* Tambahkan gaya CSS di sini */
+
+.profile-box {
+margin-top: 3px;
+}
+
+.profile-title {
+  margin-top: 3px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+}
+
+.border-gray {
+height: 1px;
+background-color: #ddd;
+margin-bottom: 10px;
+}
+
+
+.profile-box h5 {
+font-size: 18px;
+margin-bottom: 10px;
+}
+
+.table-row {
+display: flex;
+justify-content: space-between;
+margin-bottom: 15px;
+}
+
+.table-col {
+flex: 1;
+margin-right: 10px;
+}
+
+.table-col label {
+display: block;
+margin-bottom: 5px;
+}
+
+.table-col input {
+width: 100%;
+padding: 8px;
+box-sizing: border-box;
+border: 1px solid #ddd;
+border-radius: 5px;
+}
+
+.table-col input[type="date"] {
+padding: 8px;
+box-sizing: border-box;
+border: 1px solid #ddd;
+border-radius: 5px;
+width: calc(100% - 2px); /* Adjust for border */
+}
+
+/* Tambahkan gaya CSS di sini */
+
+.table-col.full-width {
+flex: 2; /* Kolom yang mengisi 2 dari 3 bagian lebar */
+}
+
+.table-col select{
+  width: 100%; /* Lebar penuh */
+padding: 8px;
+box-sizing: border-box;
+border: 1px solid #ddd;
+border-radius: 5px;
+margin-bottom: 5px;
+}
+
+.table-col input[type="password"] {
+width: 50%; /* Lebar penuh */
+padding: 8px;
+box-sizing: border-box;
+border: 1px solid #ddd;
+border-radius: 5px;
+margin-bottom: 5px;
+}
+
+/* Gaya tombol Simpan */
+.save-button {
+background-color: #28a745; /* Warna hijau */
+color: #fff; /* Warna teks putih */
+padding: 10px 20px; /* Padding tombol */
+border: none; /* Tanpa border */
+border-radius: 5px; /* Sudut melengkung */
+cursor: pointer; /* Pointer cursor saat dihover */
+font-size: 16px; /* Ukuran teks tombol */
+}
+
+.save-button:hover {
+background-color: #218838; /* Warna hijau saat tombol dihover */
+}
+
+/* Menambahkan style text-right */
+.text-right {
+text-align: right;
+}
+
+.file-upload {
+  display: none;
+}

@@ -1,0 +1,146 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-title {
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: black;
+    margin-top: 0.5cm;
+    margin-left: -23cm;
+}
+
+.tulisantengah {
+    font-weight: bold;
+    text-align: center;
+    font-size: 36px;
+    color: black;
+    margin-top: 6vh; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.tulisantengah:hover {
+    color: #0e690e;
+    font-family: 'Poppins', sans-serif;
+}
+
+.center-textt {
+    text-align: center;
+    margin-left: -15cm;
+    font-family: 'Poppins', sans-serif;
+}
+
+.center-textt p {
+    font-size: 22px;
+    color: black;
+}
+
+.center-textt p {
+    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    margin-left: 578px;
+}
+
+.center-textt .admin-text {
+    font-size: 22px;
+    color: #28A745;
+    font-weight: normal;
+}
+
+.table-container {
+margin: 10px 2cm; 
+margin-top: 1.5cm;
+position: relative;
+font-family: 'Poppins', sans-serif;
+}
+
+.custom-box {
+position: absolute;
+top: -5px; 
+left: -5px; 
+width: calc(100% + 10px); 
+font-family: 'Poppins', sans-serif;
+height: 180px;
+border: 3px solid #d3d3d3; 
+box-sizing: border-box;
+border-radius: 10px; 
+}
+
+.custom-table td:nth-child(3) .card:hover {
+background: linear-gradient(to right, #55efc4, #00b894);
+border: none; 
+}
+
+.custom-table {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.custom-table th {
+    background-color: #007bff;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+.custom-table td {
+    padding: 8px;
+    text-align: center;
+    width: 100%; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.custom-table td .card {
+    font-size: 24px; 
+    width: 250px; 
+    height: 125px; 
+}
+
+.custom-table td:nth-child(3) .card:hover {
+    width: 120%;
+    height: 120%; 
+}
+
+
+.custom-table td .number {
+    font-size: 30px; 
+    font-weight: bold; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.custom-table td .text {
+    font-size: 18px;
+}
+
+.custom-table td .card-footer {
+    margin-top: 5px;
+}
+
+.centered-content {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.card-footer {
+    text-align: center;
+}
+
+.card-footer a {
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;
+}

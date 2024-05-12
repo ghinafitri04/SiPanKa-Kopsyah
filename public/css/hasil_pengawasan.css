@@ -1,0 +1,92 @@
+h4 {
+    font-size: 20px !important; /* Gunakan !important untuk memastikan prioritas tertinggi */
+  }
+
+  .dashboard-title {
+    font-size: 24px; /* Sesuaikan ukuran font pada judul */
+    margin-top: 0;
+    margin-bottom: 20px; /* Sesuaikan margin bottom pada judul */
+}
+    /* Tambahkan gaya CSS di sini */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      border-color: rgb(255, 255, 255); /* Warna border navbar */
+      background-color: #28A745; /* Warna latar belakang navbar */
+    }
+
+    .navbar-brand, .navbar-nav .nav-link {
+      color: white; /* Warna teks putih untuk brand dan link navbar */
+    }
+
+      .navbar-brand img {
+      margin-right: 10px; /* Jarak antara gambar dan teks brand */
+      max-height: 45px; /* Sesuaikan tinggi maksimal gambar sesuai kebutuhan */
+    }
+    .center-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 75px; 
+    }
+
+    .center-text img{
+        max-height: 35px;
+        margin-right: 10px;
+    }
+
+    .center-text h2 {
+      font-size: 16px;
+      color: black;
+      margin-top: 0;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+/* Style untuk tabel */
+.table {
+    border-collapse: collapse;
+    width: 95%; /* Sesuaikan dengan lebar yang diinginkan */
+    margin: 10px; /* Sesuaikan dengan margin yang diinginkan */
+    border-radius: 8px; /* Menambahkan sudut melengkung pada tabel */
+    overflow: hidden; /* Memastikan border-radius bekerja dengan baik */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Efek bayangan pada tabel */
+}
+
+/* Style untuk sel header dan sel data */
+/* Style untuk sel header dan sel data */
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Left-align style for "Nama DPS" column */
+th.left-align, td.left-align {
+    text-align: left;
+}
+
+/* Style untuk baris genap */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Warna latar belakang untuk baris genap */
+}
+
+/* Hover efek untuk baris */
+tr:hover {
+    background-color: #e0e0e0; /* Warna latar belakang saat dihover */
+}
+
+
+.containermt-5{
+        margin-left: 60px;
+        margin-top: 20px;
+    }

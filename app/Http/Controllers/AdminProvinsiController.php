@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 class AdminProvinsiController extends Controller
 {
-    public function showDashboard()
+    public function dashboard()
     {
-        return view('admin_provinsi_konversikoperasi');
+        return view('admin_provinsi_dashboard');
     }
+
+ 
 
 }

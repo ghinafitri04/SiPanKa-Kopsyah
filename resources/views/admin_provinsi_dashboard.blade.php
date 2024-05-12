@@ -14,12 +14,13 @@
 </head>
 
 <body>
-    @include('layouts.sidebar')
-    @include('layouts.navbar')
+    @include('layouts.admin_provinsi_sidebar')
+    @include('layouts.admin_provinsi_navbar')
+    <script src="{{asset('js/script.js')}}"></script>
+    <script src="{{asset('js/dashboard_provinsi.js')}}"></script>
 
     <!-- Bagian baru yang ditambahkan -->
     <div class="content">
-
         <div class="center-text">
             <h4 class="dashboard-title">Dashboard Admin</h4>
         </div>
@@ -32,7 +33,7 @@
             <p>Selamat datang, <span class="admin-text">Admin</span></p>
         </div>
 
-        <!-- Bagian baru yang ditambahkan -->
+        <!-- Ini Untuk Tabel di Dashboard -->
         <div class="table-container">
             <div class="custom-box"></div>
             <table class="custom-table">
@@ -47,45 +48,49 @@
                         <th></th>
                         <th></th>
                     </tr>
-
+           
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <div class="card bg-danger text-white mb-4">
-                                <div class="number">0</div>
+                            <a href="{{ route('admin_provinsi.manajemen_kab_kota.index') }}" class="card bg-danger text-white mb-4">
+                                <div class="number" id="jumlahAdminKabupatenKota">{{ session('jumlahAdminKabupatenKota') }}</div>
                                 <div class="text">Admin Kab Kota</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link">Lihat Detail</a>
+                                    <span class="small text-white stretched-link">Lihat Detail</span>
                                 </div>
-                            </div>
+                            </a>    
                         </td>
+
                         <td>
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="number">0</div>
+                            <a href="{{ route('admin_provinsi.manajemen_dps.index') }}" class="card bg-primary text-white mb-4">
+                                <div class="number" id="jumlahAdminDps">{{ session('jumlahAdminDps') }}</div>
                                 <div class="text">DPS</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link">Lihat Detail</a>
+                                    <span class="small text-white stretched-link">Lihat Detail</span>
                                 </div>
-                            </div>
+                            </a>   
                         </td>
+
                         <td>
-                            <div class="card bg-success text-white mb-4">
-                                <div class="number">0</div>
+                            <div class="card bg-success text-white mb-4" data-route-name="{{ route('admin_provinsi.manajemen_koperasi.index') }}">
+                                <div class="number"id="jumlahAdminKoperasi">{{ session('jumlahAdminKoperasi') }}</div>
                                 <div class="text">Koperasi Syariah</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link">Lihat Detail</a>
+                                    <a href="#" class="small text-white stretched-link">Lihat Detail</a>
                                 </div>
                             </div>
                         </td>
+
                     </tr>
                 </tbody>
             </table>
         </div>
-        <button id="toggleSidebar" onclick="toggleSidebar()">Toggle Sidebar</button>
-        <script src="{{asset('js/script.js')}}"></script>
-        <script src="{{asset('js/dashboard_provinsi.js')}}"></script>
     </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </html>

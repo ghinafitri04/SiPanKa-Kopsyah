@@ -7,59 +7,55 @@
   <link rel="stylesheet" href="{{ asset('css/pengawasandps.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
-  <!-- Font Awesome -->
-
-  <title>Sipanka KopSyah - Landing Page</title>
-
-
+  <title>Sipanka KopSyah - Pengawasan DPS</title>
 </head>
 
 <body>
+    @include('layouts.admin_provinsi_sidebar')
+    @include('layouts.admin_provinsi_navbar')
 
-    @include('layouts.sidebar')
-    @include('layouts.navbar')
-
-    <script src="{{asset('js/script.js')}}"></script>
-
+  <div class="content">
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
           <div class="dashboard-title">
-            <h4>Dashboard / Manajemen DPS / Pengawasan DPS</h4>
-      </div>
-
-
-         <!-- POP -->
-
-        <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
-            <table class="table">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama DPS</th>
-                        <th scope="col">Jumlah Koperasi</th>
-                        <th scope="col">Tindakan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Ghina Fitri </td>
-                        <td> 100 </td>
-                        <td>            <a><img src="/img/Info Icon.png" alt="Edit Icon" width="30" height="30">
-                        </i></a></td>
-                        
-                    </tr>
-                    <!-- Tambahkan baris lain sesuai kebutuhan -->
-                </tbody>
-            </table>
+            <strong>Manajemen DPS / Pengawasan DPS</strong>
+          </div>
         </div>
-
-</div>
+      
+       <div class="mt-3" style="margin-left: 0cm; margin-right: 0cm;">
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama DPS</th>
+                    <th scope="col">Jumlah Koperasi</th>
+                    <th scope="col">Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($dps as $index => $dpsData)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $dpsData->nama_lengkap }}</td>
+                        <td>{{ isset($jumlahKoperasi[$dpsData->id_dps]) ? $jumlahKoperasi[$dpsData->id_dps] : 0 }}</td>
+                        <td>
+                          <a href="{{ route('provinsi_pengawasan_daftar_koperasi', ['id' => $dpsData->id_dps]) }}">
+                                <img src="/img/Info Icon.png" alt="Info Icon" width="30" height="30">
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
 
 <!-- jQuery and Bootstrap JS (jika menggunakan Bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="{{asset('js/script.js')}}"></script>
 
-    </body>
+</body>
 </html>
