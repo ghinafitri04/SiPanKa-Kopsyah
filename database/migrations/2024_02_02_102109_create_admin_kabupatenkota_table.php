@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('password_text');
             $table->string('role');
+            $table->string('nama_instansi');
             $table->timestamps();
 
             // Foreign Keys

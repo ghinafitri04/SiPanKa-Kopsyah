@@ -64,7 +64,7 @@ Route::middleware(['auth:admin_provinsi'])->group(function () {
         ->name('admin_provinsi.manajemen_kab_kota.destroy');
     Route::get('/admin_provinsi/manajemen_kab_kota/{id}/edit', [AdminProvinsiManajemenKabKotaController::class, 'edit'])
         ->name('admin_provinsi.manajemen_kab_kota.edit');
-    Route::put('/admin_provinsi/manajemen_kab_kota/{id}', [AdminProvinsiManajemenKabKotaController::class, 'update'])
+        Route::put('admin_provinsi/manajemen_kab_kota/{id}', [AdminProvinsiManajemenKabKotaController::class, 'update'])
         ->name('admin_provinsi.manajemen_kab_kota.update');
     Route::get('/admin_provinsi/get_jumlah_admin_kabupaten_kota', 'AdminProvinsiManajemenKabKotaController@getJumlahAdminKabupatenKota')
         ->name('admin_provinsi.get_jumlah_admin_kabupaten_kota');

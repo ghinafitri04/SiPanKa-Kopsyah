@@ -22,6 +22,7 @@ class AdminKabupatenKota extends Model implements Authenticatable
         'password',
         'password_text',
         'role',
+        'nama_instansi',
     ];
 
     public function kabupatenKota()

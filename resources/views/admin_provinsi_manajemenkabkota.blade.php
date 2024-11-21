@@ -6,152 +6,151 @@
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
   <link rel="stylesheet" href="{{ asset('css/manajemenkabkota.css') }}">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
   <title>Sipanka KopSyah - ManajemenKabKota</title>
 </head>
-
 <body>
-    @include('layouts.admin_provinsi_sidebar')
-    @include('layouts.admin_provinsi_navbar')
-  <div class="content">
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="dashboard-title">
-            <h4>
-                <strong> Manajemen Kabupaten/Kota</strong>
-            </h4>
-          </div>
-          <button class="tambah-admin" id="btnTambah" onclick="togglePopup()">Tambah Data Admin</button>
+    @include('layouts.admin_provinsi_sidebar') 
+    @include('layouts.admin_provinsi_navbar') 
+    <script src="{{asset('js/script.js')}}"></script>
+   
+
+    <div class="content">
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4><strong>Manajemen Kabupaten/Kota</strong></h4>
+                <button class="tambah-admin" id="btnTambah" onclick="togglePopup()">Tambah Data Admin</button>
+            </div>
         </div>
-    </div>
 
-    <div class="overlay" id="overlay"></div>
-<div class="popup-container" id="popupContainer">
-    <span class="close-icon" onclick="togglePopup()">X</span>
-    <div class="popup-content">
-        <div class="popup-title">Data Admin Kab/Kota</div>
-        <form action="{{ route('admin.tambahDataAdmin') }}" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="namaLengkap">Nama Lengkap:</label>
-                <input type="text" id="namaLengkap" name="namaLengkap">
+        <!-- Popup Tambah Data Admin -->
+        <div class="overlay" id="overlay"></div>
+        <div class="popup-container" id="popupContainer">
+            <span class="close-icon" onclick="togglePopup()">X</span>
+            <div class="popup-content">
+                <h5 class="popup-title">Tambah Data Admin Kab/Kota</h5>
+                <form action="{{ route('admin_provinsi.manajemen_kab_kota.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nama_instansi">Nama Instansi:</label>
+                        <input type="text" id="nama_instansi" name="nama_instansi" class="form-control" placeholder="Masukkan nama instansi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Masukkan username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Masukkan password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kabupatenKota">Kabupaten/Kota:</label>
+                        <select id="kabupatenKota" name="kabupatenKota" class="form-control" required>
+                            <option value="">Pilih Kabupaten/Kota</option>
+                            @foreach($kabupatenKotaList as $kabupaten)
+                                <option value="{{ $kabupaten->id_kabupatenkota }}">{{ $kabupaten->nama_kabupatenkota }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-secondary" onclick="togglePopup()">Batal</button>
+                        <button type="submit" class="btn btn-success">Tambah</button>
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-            </div>
-
-            <div class="form-group">
-                <label for="kabupatenKota">Kabupaten/Kota:</label>
-                <input type="text" id="kabupatenKota" name="kabupatenKota">
-            </div>
-            <div class="btn-container">
-                <button type="button" class="btn btn-danger" onclick="togglePopup()">Batal</button>
-                <button type="submit" class="btn btn-success">Tambah</button>
-            </div>
-        </form>
-    </div>
-</div>
-
+        <!-- Tabel Data Admin -->
         <div class="mt-3" style="margin-left: 6.5cm; margin-right: 4cm;">
             <table class="table">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama Lengkap</th>
-                        <th scope="col">Akses Login</th>
-                        <th scope="col">Kabupaten/Kota</th>
-                        <th scope="col">Tindakan</th>
+                        <th>No</th>
+                        <th>Nama Instansi</th>
+                        <th>Akses Login</th>
+                        <th>Kabupaten/Kota</th>
+                        <th>Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($admins as $admin)
+                    @foreach($adminKabupatenKota as $admin)
                     <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $admin->nama_instansi }}</td>
                         <td>
-                            <img src="/img/Profile Icon.png" alt="Profile Icon" width="15" height="15"> {{ $admin->username }}<br>
-                            <img src="/img/Lock Icon.png" alt="Lock Icon" width="15" height="15"> {{ $admin->password }}
+                            <strong>Username:</strong> {{ $admin->username }}<br>
+                            <strong>Password:</strong> {{ $admin->password_text }}
                         </td>
-                        <td>{{ $admin->region }}</td>
+                        <td>{{ $admin->kabupatenKota->nama_kabupatenkota ?? 'Tidak Diketahui' }}</td>
                         <td>
-                            <!-- Icon Edit dengan Modal -->
-                            <a data-toggle="modal" data-target="#editModal{{ $admin->id }}">
-                                <img src="/img/Edit.png" alt="Edit Icon" width="30" height="30">
+                            <!-- Tombol Edit -->
+                            <a href="#" data-toggle="modal" data-target="#editModal{{ $admin->id_admin_kabupatenkota }}">
+                                <img src="/img/Edit.png" alt="Edit Icon" width="30">
                             </a>
-            
                             <!-- Modal Edit -->
-                            <div class="modal fade" id="editModal{{ $admin->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                            <div class="modal fade" id="editModal{{ $admin->id_admin_kabupatenkota }}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="editModalLabel">Edit Data Admin</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            <h5 class="modal-title">Edit Admin</h5>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                        <div class="modal-body">
-                                            <!-- Tempatkan formulir edit di sini -->
-                                            <form action="{{ route('admin.updateDataAdmin', ['id' => $admin->id]) }}" method="post">
-                                                @csrf
-                                                @method('PUT')
-                                            
-                                                <div class="form-group">
-                                                    <label for="editNamaLengkap">Nama Lengkap:</label>
-                                                    <input type="text" id="editNamaLengkap" name="editNamaLengkap" value="{{ $admin->nama_instansi }}">
-                                                </div>
-                                            
+                                        <form action="{{ route('admin_provinsi.manajemen_kab_kota.update', $admin->id_admin_kabupatenkota) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="editUsername">Username:</label>
-                                                    <input type="text" id="editUsername" name="editUsername" value="{{ $admin->username }}">
+                                                    <input type="text" id="editUsername" name="username" class="form-control" value="{{ $admin->username }}" required>
                                                 </div>
-                                            
+                                                <div class="form-group">
+                                                    <label for="editPassword">Password (opsional):</label>
+                                                    <input type="password" id="editPassword" name="password" class="form-control">
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="editKabKota">Kabupaten/Kota:</label>
-                                                    <input type="text" id="editKabKota" name="editKabKota" value="{{ $admin->region }}">
+                                                    <select id="editKabKota" name="id_kabupatenkota" class="form-control" required>
+                                                        <option value="">Pilih Kabupaten/Kota</option>
+                                                        @foreach($kabupatenKotaList as $kabupaten)
+                                                            <option value="{{ $kabupaten->id_kabupatenkota }}" {{ $admin->id_kabupatenkota == $kabupaten->id_kabupatenkota ? 'selected' : '' }}>
+                                                                {{ $kabupaten->nama_kabupatenkota }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
-                                            
-                                                <button type="submit" class="btn btn-success">Simpan Perubahan</button>
-                                            </form>
-                                            
-                                        </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-            
-                            <a href="{{ route('admin.hapusDataAdmin', ['id' => $admin->id]) }}"
-                                onclick="event.preventDefault(); if (confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('hapus-form-{{ $admin->id }}').submit(); }">
-                                <img src="/img/Hapus.png" alt="Hapus Icon" width="30" height="30">
-                             </a>
-                             
-                             <form id="hapus-form-{{ $admin->id }}" action="{{ route('admin.hapusDataAdmin', ['id' => $admin->id]) }}" method="POST" style="display: none;">
-                                 @csrf
-                                 @method('DELETE')
-                             </form>
+
+                            <!-- Tombol Hapus -->
+                            <a href="#" onclick="event.preventDefault(); if (confirm('Yakin ingin menghapus?')) document.getElementById('deleteForm{{ $admin->id_admin_kabupatenkota }}').submit();">
+                                <img src="/img/Hapus.png" alt="Delete Icon" width="30">
+                            </a>
+                            <form id="deleteForm{{ $admin->id_admin_kabupatenkota }}" action="{{ route('admin_provinsi.manajemen_kab_kota.destroy', $admin->id_admin_kabupatenkota) }}" method="POST" style="display:none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            
         </div>
     </div>
-    
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
-  <script src="{{asset('js/script.js')}}"></script>
-  <script src="{{asset('js/manajemen_kab.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        function togglePopup() {
+            $('#popupContainer').toggle();
+            $('#overlay').toggle();
+        }
+    </script>
 </body>
 </html>
